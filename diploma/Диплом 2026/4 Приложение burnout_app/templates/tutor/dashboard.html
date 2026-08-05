@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %}Мой дашборд — БВТ{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Добро пожаловать, {{ current_user.full_name or current_user.username }}</h1>
+    <p class="page-sub">Мониторинг вашего эмоционального состояния на основе MBI и CBI</p>
+  </div>
+  <a href="{{ url_for('tutor.survey') }}" class="btn btn--primary btn--lg">
+    <span>◉</span> Пройти опрос сейчас
+  </a>
+</div>
+
+{% if recent %}
+  <!-- Последний результат -->
+  {% set last = recent[0] %}
+  {% set level_map = {'low': ('Низкий', 'level--low'), 'medium': ('Средний', 'level--medium'), 'high': ('Высокий', 'level--high')} %}
+  {% set lvl = level_map[last.burnout_level] %}
+  <div class="hero-result hero-result--{{ last.burnout_level }}">
+    <div class="hero-result__left">
+      <p class="hero-result__label">Текущий уровень выгорания</p>
+      <h2 class="hero-result__level">{{ lvl[0] }}</h2>
+      <p class="hero-result__date">Последний тест: {{ last.created_at | dateformat('%d.%m.%Y') }}</p>
+      <a href="{{ url_for('tutor.result', result_id=last.id) }}" class="btn btn--outline">Посмотреть детали →</a>
+    </div>
+    <div class="hero-result__right">
+      {% set scores = last.scores_json | fromjson %}
+      <div class="mini-bars">
+        <div class="mini-bar">
+          <span class="mini-bar__label">Эм. истощение</span>
+          <div class="mini-bar__track"><div class="mini-bar__fill" style="width:{{ [scores.EE / 54 * 100, 100] | min }}%"></div></div>
+          <span class="mini-bar__val">{{ scores.EE }}/54</span>
+        </div>
+        <div class="mini-bar">
+          <span class="mini-bar__label">Деперсонализация</span>
+          <div class="mini-bar__track"><div class="mini-bar__fill" style="width:{{ [scores.DP / 30 * 100, 100] | min }}%"></div></div>
+          <span class="mini-bar__val">{{ scores.DP }}/30</span>
+        </div>
+        <div class="mini-bar">
+          <span class="mini-bar__label">Личностное (CBI)</span>
+          <div class="mini-bar__track"><div class="mini-bar__fill" style="width:{{ scores.PB }}%"></div></div>
+          <span class="mini-bar__val">{{ scores.PB }}%</span>
+        </div>
+        <div class="mini-bar">
+          <span class="mini-bar__label">Рабочее (CBI)</span>
+          <div class="mini-bar__track"><div class="mini-bar__fill" style="width:{{ scores.WB }}%"></div></div>
+          <span class="mini-bar__val">{{ scores.WB }}%</span>
+        </div>
+        <div class="mini-bar">
+          <span class="mini-bar__label">Взаимодействие (CBI)</span>
+          <div class="mini-bar__track"><div class="mini-bar__fill" style="width:{{ scores.CB }}%"></div></div>
+          <span class="mini-bar__val">{{ scores.CB }}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="empty-state">
+    <div class="empty-state__icon">📋</div>
+    <h3>Вы ещё не проходили опрос</h3>
+    <p>Пройдите первый опрос, чтобы получить оценку вашего эмоционального состояния</p>
+    <a href="{{ url_for('tutor.survey') }}" class="btn btn--primary">Начать опрос</a>
+  </div>
+{% endif %}
+
+{% if dynamics.labels | length > 1 %}
+<div class="section-card">
+  <h2 class="section-title">Динамика состояния</h2>
+  <div class="chart-wrapper">
+    <canvas id="dynamicsChart" height="100"></canvas>
+  </div>
+</div>
+{% endif %}
+
+{% if recent %}
+<div class="section-card">
+  <div class="section-header">
+    <h2 class="section-title">Последние результаты</h2>
+    <a href="{{ url_for('tutor.history') }}" class="link-more">Все результаты →</a>
+  </div>
+  <div class="results-list">
+    {% for res in recent %}
+      {% set lvl_info = {'low': ('Низкий', '🟢'), 'medium': ('Средний', '🟡'), 'high': ('Высокий', '🔴')} %}
+      {% set info = lvl_info[res.burnout_level] %}
+      <a href="{{ url_for('tutor.result', result_id=res.id) }}" class="result-row">
+        <div class="result-row__date">{{ res.created_at | dateformat('%d.%m.%Y %H:%M') }}</div>
+        <div class="result-row__level">
+          <span>{{ info[1] }}</span>
+          <span class="badge badge--{{ res.burnout_level }}">{{ info[0] }}</span>
+        </div>
+        <div class="result-row__arrow">→</div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<div class="info-cards">
+  <div class="info-card">
+    <div class="info-card__icon">📏</div>
+    <h3>MBI — Маслач</h3>
+    <p>Опросник профессионального выгорания. Оценивает эмоциональное истощение, деперсонализацию и редукцию достижений.</p>
+    <p class="info-card__source">Водопьянова–Старченкова, 2008</p>
+  </div>
+  <div class="info-card">
+    <div class="info-card__icon">📐</div>
+    <h3>CBI — Копенгагенский</h3>
+    <p>Краткий инструмент для экспресс-мониторинга. Три шкалы: личностное, рабочее и клиентское выгорание.</p>
+    <p class="info-card__source">Шайгерова и др., 2025</p>
+  </div>
+  <div class="info-card">
+    <div class="info-card__icon">🧠</div>
+    <h3>Экспертная система</h3>
+    <p>Продукционная модель IF–THEN с базой знаний из 41 правила. Прямой вывод по шести субшкалам.</p>
+    <p class="info-card__source">MBI + CBI</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if dynamics.labels | length > 1 %}
+<script>
+const dyn = {{ dynamics | tojson }};
+const ctx = document.getElementById('dynamicsChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: dyn.labels,
+    datasets: [
+      {label:'Эм. истощение (MBI)', data: dyn.scores.EE, borderColor:'#e74c3c', backgroundColor:'rgba(231,76,60,0.08)', tension:0.4, pointRadius:4},
+      {label:'Деперсонализация (MBI)', data: dyn.scores.DP, borderColor:'#e67e22', backgroundColor:'rgba(230,126,34,0.08)', tension:0.4, pointRadius:4},
+      {label:'Личностное (CBI)', data: dyn.scores.PB, borderColor:'#9b59b6', backgroundColor:'rgba(155,89,182,0.08)', tension:0.4, pointRadius:4},
+      {label:'Рабочее (CBI)', data: dyn.scores.WB, borderColor:'#3498db', backgroundColor:'rgba(52,152,219,0.08)', tension:0.4, pointRadius:4},
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {legend:{position:'bottom', labels:{font:{family:'Onest',size:12}}}},
+    scales: {
+      x: {grid:{color:'rgba(0,0,0,0.05)'}, ticks:{font:{family:'Onest'}}},
+      y: {grid:{color:'rgba(0,0,0,0.05)'}, ticks:{font:{family:'Onest'}}}
+    }
+  }
+});
+</script>
+{% endif %}
+{% endblock %}

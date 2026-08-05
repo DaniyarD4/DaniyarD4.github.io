@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Нурсалимов Данияр | Портфолио</title>
+<meta name="description" content="Портфолио IT-специалиста: диплом по экспертным системам, учебные проекты, опыт преподавания программирования. Открыт к Junior/Middle-позициям и Digital Nomad Residency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+
+/* Токены оформления: цвета, отступы, тени, кривые анимаций */
+:root{
+  --porcelain:#FBFCFD;
+  --surface:#FFFFFF;
+  --surface-2:#F0F5FA;
+  --ink:#0E1E30;
+  --slate:#5A6E82;
+  --navy:#12324F;
+  --navy-2:#1E5382;
+  --azure:#2E7DD1;
+  --azure-deep:#1B5FA8;
+  --azure-mist:#E7F0FA;
+  --hairline:#E6EDF4;
+
+  --s-1:8px;  --s-2:16px; --s-3:24px; --s-4:32px;
+  --s-5:48px; --s-6:64px; --s-7:96px; --s-8:140px;
+
+  --r-card:18px;
+  --r-media:22px;
+  --shadow-soft:0 1px 2px rgba(14,30,48,.04), 0 12px 32px -14px rgba(14,30,48,.12);
+  --shadow-lift:0 2px 4px rgba(14,30,48,.05), 0 24px 56px -20px rgba(14,30,48,.20);
+
+  --ease:cubic-bezier(.22,.72,.24,1);
+  --maxw:1140px;
+  --splash-time:2600ms;
+}
+
+/* Базовые сбросы */
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--porcelain);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg,video{max-width:100%;display:block;}
+a{color:inherit;}
+
+/* Пока показывается заставка, страница не прокручивается */
+html.splash-active,
+html.splash-active body{overflow:hidden;}
+
+/* Типографика */
+.display{
+  font-family:'Instrument Serif',Georgia,serif;
+  font-weight:400;letter-spacing:-.015em;line-height:1.08;
+  color:var(--ink);margin:0;
+}
+h1,h2,h3{margin:0;}
+h3{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-.01em;color:var(--ink);}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--slate);
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--azure);}
+.lead{color:var(--slate);font-size:16px;line-height:1.7;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s-3);}
+
+/* Стили шапки */
+header.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(251,252,253,.72);
+  backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .4s var(--ease), background .4s var(--ease);
+}
+header.nav.is-scrolled{border-bottom-color:var(--hairline);background:rgba(251,252,253,.9);}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);
+  max-width:var(--maxw);margin:0 auto;padding:18px var(--s-3);
+}
+.nav-name{
+  font-family:'Instrument Serif',Georgia,serif;font-size:20px;
+  letter-spacing:-.01em;white-space:nowrap;text-decoration:none;
+}
+.nav-links{display:flex;gap:var(--s-4);list-style:none;margin:0;padding:0;}
+.nav-links a{
+  position:relative;text-decoration:none;font-size:14px;font-weight:500;
+  color:var(--slate);transition:color .25s var(--ease);
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-5px;width:100%;height:1px;
+  background:var(--azure);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s var(--ease);
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--ink);}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{transform:scaleX(1);}
+.nav-right{display:flex;align-items:center;gap:var(--s-2);}
+
+/* Круглое фото в шапке */
+.nav-avatar{
+  width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:1px solid var(--hairline);background:var(--surface-2);
+  box-shadow:0 2px 10px -4px rgba(14,30,48,.25);
+  transition:transform .45s var(--ease);
+}
+.nav-avatar img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+.nav-avatar:hover{transform:scale(1.06);}
+
+.nav-cta{
+  font-size:13.5px;font-weight:600;text-decoration:none;
+  padding:11px 20px;border-radius:999px;white-space:nowrap;
+  color:var(--ink);border:1px solid var(--ink);background:transparent;
+  transition:background .3s var(--ease), color .3s var(--ease);
+}
+.nav-cta:hover{background:var(--ink);color:#fff;}
+
+.burger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+.burger span{
+  display:block;width:20px;height:1.5px;background:var(--ink);
+  margin:5px 0;border-radius:2px;
+  transition:transform .3s var(--ease),opacity .3s var(--ease);
+}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* Заставка на весь экран, растворяется сама через пару секунд */
+.splash{
+  position:fixed;inset:0;z-index:200;
+  background:var(--porcelain);
+  display:flex;align-items:center;
+  overflow-y:auto;
+  transition:opacity 1s var(--ease), transform 1s var(--ease);
+  will-change:opacity,transform;
+}
+.splash.is-leaving{opacity:0;transform:translateY(-34px) scale(.985);pointer-events:none;}
+.splash.is-done{display:none;}
+
+.splash-grid{
+  display:grid;grid-template-columns:1.1fr .75fr;
+  gap:var(--s-6);align-items:center;width:100%;
+  padding:var(--s-6) 0 var(--s-7);
+}
+.splash h1{font-size:clamp(26px,3.6vw,42px);margin-top:var(--s-2);}
+.splash h1 em{font-style:italic;color:var(--azure-deep);}
+.splash .role{margin-top:var(--s-2);font-size:13.5px;font-weight:500;color:var(--slate);}
+.splash .lead{margin-top:var(--s-3);max-width:50ch;font-size:15px;}
+.splash-rule{height:1px;background:var(--hairline);margin:var(--s-4) 0 var(--s-3);}
+
+/* Портрет на заставке */
+.portrait{
+  position:relative;border-radius:var(--r-media);overflow:hidden;
+  aspect-ratio:4/5;max-height:56vh;margin-left:auto;
+  background:var(--surface-2);box-shadow:var(--shadow-lift);
+}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 18%;}
+
+/* Строка фактов со значками */
+.facts{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-4);margin-top:var(--s-3);}
+.fact{display:flex;align-items:center;gap:10px;}
+.fact .ico{color:var(--azure);flex-shrink:0;}
+.fact b{display:block;font-size:13.5px;font-weight:600;line-height:1.3;}
+.fact span{display:block;font-size:12px;color:var(--slate);}
+
+/* Полоса загрузки внизу заставки */
+.splash-progress{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;align-items:center;gap:var(--s-2);
+  padding:var(--s-3) var(--s-3) var(--s-4);
+  max-width:var(--maxw);margin:0 auto;
+}
+.splash-bar{flex:1;height:1px;background:var(--hairline);position:relative;overflow:hidden;}
+.splash-bar::after{
+  content:"";position:absolute;inset:0;background:var(--azure);
+  transform-origin:left;transform:scaleX(0);
+  animation:load var(--splash-time) linear forwards;
+}
+@keyframes load{to{transform:scaleX(1);}}
+.splash-skip{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--slate);white-space:nowrap;
+}
+
+/* Кнопки */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 26px;border-radius:999px;
+  font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;
+  border:1px solid transparent;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease),
+             background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 10px 26px -14px rgba(14,30,48,.6);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px -16px rgba(14,30,48,.55);}
+.btn-ghost{border-color:var(--hairline);color:var(--ink);background:var(--surface);}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
+.btn-light{background:#fff;color:var(--ink);}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 18px 38px -18px rgba(0,0,0,.45);}
+.btn:active{transform:translateY(0) scale(.985);}
+.btn-row{display:flex;gap:var(--s-2);flex-wrap:wrap;margin-top:var(--s-3);}
+
+/* Секции и заголовки разделов */
+.section{padding:var(--s-8) 0;}
+.section + .section{padding-top:0;}
+.section-head{max-width:640px;margin-bottom:var(--s-6);}
+.section-head h2{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(28px,3.6vw,42px);line-height:1.1;letter-spacing:-.015em;
+  margin-top:var(--s-2);
+}
+.section-head p{color:var(--slate);margin:var(--s-3) 0 0;font-size:16px;}
+
+/* Появление блоков при прокрутке */
+.js .reveal{opacity:0;transform:translateY(22px);}
+.js .reveal.in{opacity:1;transform:none;transition:opacity .9s var(--ease), transform .9s var(--ease);}
+
+/* Дорога с проектами */
+.journey{position:relative;display:grid;grid-template-columns:64px 1fr;column-gap:var(--s-4);}
+.road-track{
+  position:relative;grid-column:1;width:8px;margin:0 auto;border-radius:999px;
+  background:linear-gradient(180deg,var(--navy),var(--navy-2));
+}
+.road-track::before{
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;
+  transform:translateX(-50%);
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.85) 0 14px,transparent 14px 30px);
+}
+.rider{
+  position:absolute;left:50%;top:0;transform:translate(-50%,-4px);
+  width:34px;height:34px;z-index:2;
+  transition:top .12s linear;
+  filter:drop-shadow(0 4px 8px rgba(14,30,48,.35));
+}
+.stations{grid-column:2;display:flex;flex-direction:column;gap:var(--s-5);}
+.station{position:relative;}
+.station-dot{
+  position:absolute;left:calc(-32px - 6px);top:12px;
+  width:13px;height:13px;border-radius:50%;
+  background:var(--porcelain);border:2px solid var(--azure);z-index:1;
+}
+.station.is-featured .station-dot{
+  width:19px;height:19px;left:calc(-32px - 9px);top:8px;
+  background:var(--azure);border-color:var(--navy);
+  box-shadow:0 0 0 6px rgba(46,125,209,.12);
+}
+.km{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--slate);
+  background:var(--surface-2);border:1px solid var(--hairline);
+  padding:5px 12px;border-radius:999px;margin-bottom:var(--s-2);
+}
+.station.is-featured .km{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+/* Карточка проекта */
+.card{
+  background:var(--surface);border:1px solid var(--hairline);
+  border-radius:var(--r-card);padding:var(--s-4);
+  box-shadow:var(--shadow-soft);
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);}
+.station.is-featured .card{border-color:rgba(46,125,209,.4);}
+.card h3{font-size:19px;line-height:1.35;}
+.card .desc{margin:10px 0 0;color:var(--slate);font-size:15px;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s-2);}
+.tag{
+  font-size:12px;font-weight:500;color:var(--navy);
+  background:var(--surface-2);padding:6px 12px;border-radius:999px;
+}
+.card-more{
+  margin-top:var(--s-3);background:none;border:none;padding:0;
+  font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;
+  color:var(--azure-deep);cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.card-more .chev{transition:transform .35s var(--ease);}
+.card-more[aria-expanded="true"] .chev{transform:rotate(180deg);}
+.card-details{max-height:0;overflow:hidden;transition:max-height .45s var(--ease);}
+.card-details-inner{
+  margin-top:var(--s-3);padding-top:var(--s-3);
+  border-top:1px solid var(--hairline);
+  color:var(--slate);font-size:14.5px;
+}
+
+/* Вложения карточек: картинки, PDF, видео, файлы */
+.attachments-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:var(--s-2);margin-top:var(--s-3);
+}
+.attachment-item{
+  background:var(--porcelain);border:1px solid var(--hairline);
+  border-radius:12px;overflow:hidden;padding:8px;display:block;
+  text-decoration:none;color:inherit;
+  transition:transform .35s var(--ease), border-color .35s var(--ease);
+}
+.attachment-item:hover{transform:translateY(-2px);border-color:rgba(46,125,209,.45);}
+.attachment-preview{
+  width:100%;aspect-ratio:16/9;background:#fff;border-radius:8px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.attachment-preview img{width:100%;height:100%;object-fit:cover;}
+.attachment-label{
+  display:block;margin-top:8px;font-size:12px;font-weight:500;
+  color:var(--slate);text-align:center;
+}
+.pdf-preview,.file-preview{background:var(--azure-mist);flex-direction:column;gap:6px;}
+.pdf-icon{font-size:26px;line-height:1;}
+.pdf-name{font-size:12.5px;font-weight:600;color:var(--navy);text-align:center;padding:0 8px;}
+.pdf-open-btn{
+  display:block;width:100%;margin-top:8px;padding:10px;
+  background:var(--ink);border:none;border-radius:8px;
+  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:#fff;
+  cursor:pointer;transition:background .3s var(--ease);
+}
+.pdf-open-btn:hover{background:var(--azure-deep);}
+.video-item{grid-column:1 / -1;max-width:300px;}
+.attachment-video{width:100%;max-height:440px;border-radius:8px;background:#000;}
+
+/* Опыт и образование */
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-3);}
+.exp-card{
+  background:var(--surface);border:1px solid var(--hairline);
+  border-radius:var(--r-card);padding:var(--s-4);
+  box-shadow:var(--shadow-soft);
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.exp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);}
+.exp-card .ico{color:var(--azure);margin-bottom:var(--s-3);}
+.exp-meta{
+  font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--slate);
+}
+.exp-card h3{font-size:18px;margin-top:10px;}
+.exp-card p{color:var(--slate);margin:10px 0 0;font-size:15px;}
+
+/* Блок с дипломом */
+.diploma{
+  display:grid;grid-template-columns:.95fr 1.05fr;gap:var(--s-6);
+  align-items:center;margin-top:var(--s-3);
+  background:var(--surface);border:1px solid var(--hairline);
+  border-radius:var(--r-card);padding:var(--s-5);box-shadow:var(--shadow-soft);
+}
+.diploma-copy h3{font-size:20px;margin-top:var(--s-2);}
+.diploma-copy p{color:var(--slate);font-size:15px;margin:12px 0 0;}
+.diploma-frame{
+  border-radius:14px;overflow:hidden;border:1px solid var(--hairline);
+  background:var(--surface-2);box-shadow:var(--shadow-soft);
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+}
+.diploma-frame img{width:100%;height:100%;object-fit:cover;}
+.diploma-frame.is-empty{
+  flex-direction:column;gap:10px;text-align:center;padding:var(--s-4);
+  border-style:dashed;color:var(--slate);
+}
+.diploma-frame.is-empty .ico{color:var(--azure);}
+.diploma-frame.is-empty small{font-size:12px;line-height:1.5;max-width:26ch;}
+
+/* Навыки */
+.skills-cloud{display:flex;flex-wrap:wrap;gap:10px;}
+.skill-pill{
+  background:var(--surface);border:1px solid var(--hairline);
+  padding:11px 20px;border-radius:999px;font-size:14px;font-weight:500;
+  transition:border-color .35s var(--ease), transform .35s var(--ease);
+}
+.skill-pill:hover{border-color:var(--azure);transform:translateY(-2px);}
+.skill-pill.accent{border-color:rgba(46,125,209,.5);background:var(--azure-mist);}
+
+/* Контакты и подвал */
+.contact-box{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
+  color:#fff;border-radius:26px;padding:var(--s-7) var(--s-6);
+  display:flex;justify-content:space-between;align-items:center;
+  gap:var(--s-6);flex-wrap:wrap;
+  box-shadow:0 30px 70px -34px rgba(18,50,79,.7);
+}
+.contact-box h2{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(28px,3.6vw,42px);line-height:1.1;color:#fff;
+}
+.contact-box .eyebrow{color:rgba(255,255,255,.62);}
+.contact-box .eyebrow::before{background:rgba(255,255,255,.55);}
+.contact-box p{color:rgba(255,255,255,.72);margin:var(--s-2) 0 0;max-width:44ch;}
+.contact-list{
+  list-style:none;padding:0;margin:var(--s-4) 0 0;
+  display:flex;flex-direction:column;gap:10px;
+  font-size:15px;color:rgba(255,255,255,.66);
+}
+.contact-list a{
+  color:#fff;text-decoration:none;font-weight:500;
+  border-bottom:1px solid rgba(255,255,255,.25);
+  transition:border-color .3s var(--ease);
+}
+.contact-list a:hover{border-color:#fff;}
+
+footer{
+  padding:var(--s-5) 0 var(--s-6);text-align:center;
+  color:var(--slate);font-size:12.5px;
+}
+
+/* Окно просмотра PDF */
+.pdf-modal{
+  display:none;position:fixed;inset:0;z-index:1000;padding:var(--s-3);
+  background:rgba(14,30,48,.82);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  animation:fade .35s var(--ease);
+}
+.pdf-modal.active{display:flex;align-items:center;justify-content:center;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.pdf-modal-content{
+  width:100%;max-width:1120px;height:90vh;background:#fff;
+  border-radius:18px;padding:var(--s-2);position:relative;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.6);
+  animation:rise .45s var(--ease);
+}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.pdf-modal-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 8px 12px;border-bottom:1px solid var(--hairline);margin-bottom:12px;
+}
+.pdf-modal-title{font-size:15px;font-weight:600;color:var(--ink);}
+.pdf-modal-close{
+  background:none;border:none;font-size:24px;line-height:1;cursor:pointer;
+  color:var(--slate);padding:4px 10px;border-radius:8px;
+  transition:color .25s var(--ease), background .25s var(--ease);
+}
+.pdf-modal-close:hover{color:var(--ink);background:var(--surface-2);}
+.pdf-modal-content iframe{
+  width:100%;height:calc(100% - 56px);border:none;
+  border-radius:12px;background:var(--surface-2);
+}
+
+/* Планшеты */
+@media (max-width:1000px){
+  :root{--s-7:72px;--s-8:100px;}
+  .splash-grid{grid-template-columns:1fr;gap:var(--s-4);}
+  .portrait{max-width:210px;max-height:30vh;margin:0;aspect-ratio:1/1;order:-1;}
+  .diploma{grid-template-columns:1fr;gap:var(--s-4);padding:var(--s-4);}
+}
+
+/* Мобильное меню */
+@media (max-width:820px){
+  .nav-links{
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(251,252,253,.98);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    flex-direction:column;gap:0;
+    border-bottom:1px solid var(--hairline);
+    max-height:0;overflow:hidden;
+    transition:max-height .45s var(--ease);
+  }
+  .nav-links.open{max-height:340px;}
+  .nav-links li{border-top:1px solid var(--hairline);}
+  .nav-links a{display:block;padding:16px var(--s-3);font-size:15px;}
+  .nav-links a::after{display:none;}
+  .burger{display:block;order:3;}
+  .nav-cta{display:none;}
+  .exp-grid{grid-template-columns:1fr;}
+}
+
+/* Телефоны */
+@media (max-width:640px){
+  :root{--s-7:56px;--s-8:80px;}
+  body{font-size:15.5px;}
+  .splash-grid{padding:var(--s-5) 0 var(--s-7);gap:var(--s-3);}
+  .splash h1{font-size:clamp(22px,6.4vw,30px);}
+  .splash .lead{font-size:14px;}
+  .splash .facts{gap:12px var(--s-3);}
+  .fact b{font-size:12.5px;}
+  .fact span{font-size:11px;}
+  .portrait{max-width:130px;max-height:none;}
+  .journey{grid-template-columns:30px 1fr;column-gap:var(--s-2);}
+  .station-dot{left:calc(-16px - 6px);top:10px;}
+  .station.is-featured .station-dot{left:calc(-16px - 9px);top:6px;}
+  .card{padding:var(--s-3);}
+  .contact-box{padding:var(--s-5) var(--s-3);border-radius:20px;}
+  .attachments-grid{grid-template-columns:1fr;}
+  .video-item{max-width:100%;}
+}
+
+@media (max-width:400px){
+  .nav-avatar{display:none;}
+}
+
+/* Если в системе включено «меньше движения» */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;}
+  .js .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- Набор линейных значков, подключается через use href -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-cap" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 7.5 12 3l10 4.5-10 4.5L2 7.5Z"/><path d="M6 9.6V15c0 1.7 2.7 3 6 3s6-1.3 6-3V9.6"/><path d="M22 7.5v5.5"/>
+    </g>
+    <g id="i-teach" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7.5 11.5 10 9l2 2 3.5-3.5"/>
+    </g>
+    <g id="i-code" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m8.5 8.5-4 3.5 4 3.5M15.5 8.5l4 3.5-4 3.5M13.5 5.5l-3 13"/>
+    </g>
+    <g id="i-doc" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2.5H7a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5L14 2.5Z"/><path d="M14 2.5v5h5"/><path d="M9 13h6M9 17h4"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- Заставка: показывается на весь экран и растворяется сама -->
+<div class="splash" id="splash" role="status" aria-label="Заставка портфолио">
+  <div class="wrap">
+    <div class="splash-grid">
+
+      <div>
+        <span class="eyebrow">Обо мне</span>
+
+        <h1 class="display">
+          Прикладная информатика,<br>
+          экспертные системы<br>
+          и <em>преподавание</em>.
+        </h1>
+
+        <p class="role">Данияр Нурсалимов · Астана</p>
+
+        <p class="lead">
+          Закончил «Прикладную информатику» в ОмГТУ, два года преподавал программирование
+          детям 6–14 лет. Дипломная работа — экспертная система, распознающая признаки
+          эмоционального выгорания.
+        </p>
+
+        <div class="splash-rule"></div>
+
+        <div class="facts">
+          <div class="fact">
+            <svg class="ico" width="20" height="20" viewBox="0 0 24 24"><use href="#i-cap"/></svg>
+            <span><b>ОмГТУ</b><span>Прикладная информатика</span></span>
+          </div>
+          <div class="fact">
+            <svg class="ico" width="20" height="20" viewBox="0 0 24 24"><use href="#i-teach"/></svg>
+            <span><b>2 года</b><span>Преподавания</span></span>
+          </div>
+          <div class="fact">
+            <svg class="ico" width="20" height="20" viewBox="0 0 24 24"><use href="#i-code"/></svg>
+            <span><b>14 проектов</b><span>С отчётами</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portrait">
+        <img src="images/myphoto.jpg" alt="Данияр Нурсалимов" fetchpriority="high">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="splash-progress">
+    <span class="splash-bar"></span>
+    <span class="splash-skip">Нажмите, чтобы пропустить</span>
+  </div>
+</div>
+
+<!-- Шапка сайта -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Данияр Нурсалимов</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#journey">Путь</a></li>
+      <li><a href="#experience">Опыт</a></li>
+      <li><a href="#skills">Навыки</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="nav-avatar" href="#top" aria-label="Наверх">
+        <img src="images/myphoto.jpg" alt="Данияр Нурсалимов">
+      </a>
+      <a class="nav-cta" href="#contacts">Написать</a>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- Раздел с проектами -->
+  <section class="section" id="journey">
+    <div class="section-head reveal">
+      <span class="eyebrow">Маршрут</span>
+      <h2>Мой путь в IT</h2>
+      <p>Каждая точка на дороге — проект или этап, который привёл к дипломной работе.
+         Нажмите «Подробнее», чтобы открыть детали, отчёты и демонстрации.</p>
+    </div>
+
+    <div class="journey" id="journeyTrack">
+      <div class="road-track" id="roadTrack">
+        <svg class="rider" id="rider" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="24" cy="40" rx="14" ry="3" fill="#0E1E30" opacity="0.14"/>
+          <path d="M4 30 Q8 20 18 20 Q22 12 30 14 Q36 15 36 22 L40 24 L37 26 L34 24 Q32 30 26 30 L26 36 L22 36 L22 30 L16 30 L16 36 L12 36 L12 27 Q7 27 4 30 Z" fill="#FBFCFD"/>
+          <circle cx="19" cy="14" r="4.2" fill="#2E7DD1"/>
+          <path d="M15 16 Q19 24 19 20" stroke="#2E7DD1" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="stations" id="stations">
+        <!-- Карточки собираются из массива PROJECTS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Опыт и образование -->
+  <section class="section" id="experience">
+    <div class="section-head reveal">
+      <span class="eyebrow">Опыт</span>
+      <h2>Опыт и образование</h2>
+    </div>
+
+    <div class="exp-grid reveal">
+      <div class="exp-card">
+        <svg class="ico" width="26" height="26" viewBox="0 0 24 24"><use href="#i-teach"/></svg>
+        <div class="exp-meta">2 года</div>
+        <h3>Преподаватель программирования</h3>
+        <p>Вёл занятия по основам программирования и алгоритмическому мышлению для детей
+           6–14 лет: базовый синтаксис, логика, структуры данных и разбор практических
+           задач вместе с учениками.</p>
+      </div>
+      <div class="exp-card">
+        <svg class="ico" width="26" height="26" viewBox="0 0 24 24"><use href="#i-cap"/></svg>
+        <div class="exp-meta">Высшее образование</div>
+        <h3>Прикладная информатика</h3>
+        <p>ОмГТУ, направление 09.03.03. Проектирование и разработка ПО, базы данных,
+           операционные системы, сетевые технологии, имитационное моделирование
+           и методы оптимизации.</p>
+      </div>
+    </div>
+
+    <!-- Диплом. Скан кладётся в files/diploma/diploma-degree.jpg -->
+    <div class="diploma reveal">
+      <div class="diploma-copy">
+        <span class="eyebrow">Документ</span>
+        <h3>Диплом о высшем образовании</h3>
+        <p>Бакалавр по направлению 09.03.03 «Прикладная информатика», Омский
+           государственный технический университет. Дипломная работа защищена по теме
+           экспертной системы мониторинга признаков эмоционального выгорания.</p>
+      </div>
+      <div class="diploma-frame" id="diplomaFrame">
+        <img src="files/diploma/diploma-degree.jpg" alt="Диплом о высшем образовании"
+             loading="lazy" onerror="window.__diplomaMissing&&window.__diplomaMissing()">
+      </div>
+    </div>
+  </section>
+
+  <!-- Навыки -->
+  <section class="section" id="skills">
+    <div class="section-head reveal">
+      <span class="eyebrow">Навыки</span>
+      <h2>Технологии и инструменты</h2>
+    </div>
+    <div class="skills-cloud reveal">
+      <span class="skill-pill accent">Python</span>
+      <span class="skill-pill accent">C / C++</span>
+      <span class="skill-pill">SQL</span>
+      <span class="skill-pill">PostgreSQL</span>
+      <span class="skill-pill">MongoDB</span>
+      <span class="skill-pill">1С:Предприятие 8</span>
+      <span class="skill-pill">1С:УНФ</span>
+      <span class="skill-pill">ООП</span>
+      <span class="skill-pill">Многопоточность и IPC</span>
+      <span class="skill-pill">Linux / Windows API</span>
+      <span class="skill-pill">UML</span>
+      <span class="skill-pill">BPMN / Business Studio</span>
+      <span class="skill-pill">HTML / CSS / JS</span>
+      <span class="skill-pill">Bootstrap</span>
+      <span class="skill-pill">Проектирование ПО</span>
+      <span class="skill-pill">Тестирование ПО</span>
+      <span class="skill-pill">Экспертные системы</span>
+      <span class="skill-pill">GNS3 / Cisco / Eltex</span>
+      <span class="skill-pill">AnyLogic / Arena</span>
+      <span class="skill-pill">Имитационное моделирование</span>
+      <span class="skill-pill">Методы оптимизации</span>
+      <span class="skill-pill">Figma</span>
+      <span class="skill-pill">Excel</span>
+      <span class="skill-pill">Анализ данных</span>
+      <span class="skill-pill">Преподавание</span>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section class="section" id="contacts">
+    <div class="contact-box reveal">
+      <div>
+        <span class="eyebrow">Контакты</span>
+        <h2>Готов пройти собеседование</h2>
+        <p>Открыт к предложениям в Астане, к удалённой работе и к программе
+           Digital Nomad Residency.</p>
+        <ul class="contact-list">
+          <li>Telegram: <a href="https://t.me/username" target="_blank" rel="noopener">@username</a></li>
+          <li>Email: <a href="mailto:email@example.com">email@example.com</a></li>
+          <li>Телефон: <a href="tel:+70000000000">+7 000 000 00 00</a></li>
+        </ul>
+      </div>
+      <a class="btn btn-light" href="mailto:email@example.com">Написать</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>© <span id="year"></span> Данияр Нурсалимов · Портфолио для подачи на Digital Nomad Residency</footer>
+
+<script>
+/* Данные проектов.
+   Вложения задаются в поле attachments, поддерживаются четыре типа:
+   { type: "pdf",   src: "files/папка/файл.pdf",  label: "Подпись" }
+   { type: "image", src: "files/папка/файл.jpg",  label: "Подпись" }
+   { type: "video", src: "files/папка/файл.mp4",  label: "Подпись" }
+   { type: "file",  src: "files/папка/файл.xlsx", label: "Подпись" }
+   Порядок карточек на дороге совпадает с порядком объектов в массиве.
+   featured: true выделяет карточку акцентом. */
+const PROJECTS = [
+  {
+    km: "0 KM",
+    title: "Диплом: Экспертная система мониторинга эмоционального выгорания",
+    desc: "Дипломная работа — экспертная система, которая распознаёт признаки эмоционального выгорания и формирует рекомендации для тьюторов.",
+    tags: ["Экспертные системы", "Python", "Анализ данных", "Проектирование ПО"],
+    details: "Разработал экспертную систему для мониторинга признаков эмоционального выгорания у учащихся и автоматического формирования рекомендаций для тьюторов. Работа включала сбор и структурирование критериев оценки, проектирование логики принятия решений и реализацию системы.",
+    attachments: [
+      { type: "image", src: "files/diploma/diploma.png", label: "Интерфейс" },
+      { type: "pdf", src: "files/diploma/ОмГТУ.ММиИТЭ.ПИ-221.НурсалимовДаниярЕрланович.ВКР.pdf", label: "Дипломная работа.pdf" }
+    ],
+    featured: true
+  },
+  ,
+  {
+    km: "15 KM",
+    title: "«Истории C++» — обучающая игра и лэндинг для неё",
+    desc: "Командный проект на три курсовые: от идеи и анализа рынка до прототипа консольной игры для изучения C++ и лэндинга, который её продаёт.",
+    tags: ["C++", "HTML/CSS/JS", "Bootstrap", "UML", "Figma", "PEST / SWOT", "Командная работа"],
+    details: "Проект вели командой из 5 студентов группы ПИ-221 на протяжении трёх курсовых работ по проектной деятельности. Провели опрос среди 150 студентов: 94% ответили, что хотели бы изучать C++ в игровом формате. Разобрали конкурентов (Code Combat, Java Rush, Code Hunt), сделали PEST- и SWOT-анализ, описали профили пользователей и их сценарии до появления продукта. Затем спроектировали функциональную схему, интерфейс и сами уроки, собрали прототип двух уровней игры. На третьем курсе разработали лэндинг: обосновали выбор стека (HTML, CSS, JS + Bootstrap против React), спроектировали систему через UML-диаграммы прецедентов и компонентов, прописали спецификации сценариев (покупка игры, регистрация, переход в Steam) и свёрстали адаптивную страницу с блоками преимуществ, описания, отзывов и покупки.",
+    attachments: [
+      { type: "image", src: "files/cpp-stories/landing-adv.jpg", label: "Лэндинг: блок преимуществ" },
+      { type: "image", src: "files/cpp-stories/landing-info.jpg", label: "Лэндинг: описание игры" },
+      { type: "pdf", src: "files/cpp-stories/cpp-landing.pdf", label: "Курсовая: лэндинг.pdf" },
+      { type: "pdf", src: "files/cpp-stories/cpp-prototype.pdf", label: "Курсовая: прототип игры.pdf" },
+      { type: "pdf", src: "files/cpp-stories/cpp-product.pdf", label: "Курсовая: анализ и оценка идеи.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "30 KM",
+    title: "Проектирование и тестирование ПО: машина вывода на правилах",
+    desc: "Программа на C++, которая загружает базу продукционных правил, анализирует введённые факты и выводит применимое правило — прототип логики, лёгшей в основу диплома.",
+    tags: ["C++", "UML", "Базы знаний", "Тестирование ПО"],
+    details: "Расчётно-графическая работа: спроектировал классы Rule и KnowledgeBase, реализовал загрузку правил из файла, сопоставление посылок с фактами и вывод заключения. Отдельная лабораторная работа — алгоритм расстановки подсказок в задаче «Сапёр» (RC/UVa 110102) с чтением данных из файла. Для обеих задач построены UML-диаграммы до написания кода.",
+    attachments: [
+      { type: "image", src: "files/pritpo/uml-1.jpg", label: "UML-диаграмма (1)" },
+      { type: "image", src: "files/pritpo/uml-2.jpg", label: "UML-диаграмма (2)" },
+      { type: "pdf", src: "files/pritpo/pritpo-rgr.pdf", label: "РГР: база правил.pdf" },
+      { type: "pdf", src: "files/pritpo/pritpo-lr1.pdf", label: "ЛР: Сапёр.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "45 KM",
+    title: "Операционные системы: процессы, нити и синхронизация на C",
+    desc: "Десять лабораторных на низкоуровневом C под Windows и Linux: работа с файловыми дескрипторами, блокировки файлов, дерево процессов, многопоточность, разделяемая память и семафоры.",
+    tags: ["C", "Windows API", "Linux", "Многопоточность", "Синхронизация", "IPC", "Bash / Batch"],
+    details: "Работал с системными вызовами напрямую, без обёрток: небуферизованный ввод-вывод через ReadFile/WriteFile, открытие файлов с запретом доступа для других процессов и многопользовательские блокировки записи в Linux. Построил дерево из пяти процессов (родитель, два дочерних, два «внучатых») с обменом сообщениями и принудительным завершением потомков по расписанию. Реализовал программу на трёх дополнительных нитях с цветным выводом, запретом и попытками отмены нитей, а также классическую задачу «читатели-писатели» — три писателя и три читателя над общим буфером на 12 символов с записью в два приёма и случайными задержками. Отдельная работа — обмен между двумя процессами Windows через разделяемую память с синхронизацией по семафору. Завершил набор командными файлами для Windows и Linux, копирующими файлы по расширению в создаваемый каталог.",
+    attachments: [
+      { type: "pdf", src: "files/os/os-lr7-threads.pdf", label: "Нити и их отмена.pdf" },
+      { type: "pdf", src: "files/os/os-lr8-readers-writers.pdf", label: "Читатели-писатели.pdf" },
+      { type: "pdf", src: "files/os/os-lr9-shared-memory.pdf", label: "Разделяемая память.pdf" },
+      { type: "pdf", src: "files/os/os-lr6-processes.pdf", label: "Дерево процессов.pdf" },
+      { type: "video", src: "files/os/os-lr10-linux.mp4", label: "Скрипт в Linux" }
+    ]
+  },
+  ,
+  {
+    km: "60 KM",
+    title: "ООП",
+    desc: "Проектировал программы на основе классов и объектов вместо линейного кода.",
+    tags: ["Python", "ООП", "Проектирование"],
+    details: "Практические работы по объектно-ориентированному программированию: инкапсуляция, наследование, полиморфизм. Реализовывал небольшие учебные системы с разделением на классы и модули.",
+    attachments: [
+      { type: "pdf",   src: "files/OOP/ОТЧЕТ_НУРСАЛИМОВ_ООП.pdf",         label: "ОТЧЕТ.pdf" },
+      { type: "image", src: "files/OOP/OOP.png",   label: "Скриншот программы"}
+    ]
+  },
+  ,
+  {
+    km: "75 KM",
+    title: "СУБД: PostgreSQL и MongoDB",
+    desc: "Спроектировал две базы данных с нуля — от ER-модели до SQL-скриптов: учёт замечаний машинистов электропоездов в PostgreSQL и предметная область страховой компании в MongoDB.",
+    tags: ["PostgreSQL", "MongoDB", "SQL", "ER-моделирование", "pgAdmin"],
+    details: "PostgreSQL: построил логическую модель предметной области (участки железной дороги, машинисты, замечания, ответственные службы, планы мероприятий), создал таблицы с первичными ключами и связями, наполнил данными и написал запросы. MongoDB: на основе ER-диаграммы определил состав коллекций для страховой компании — филиалы, договоры, виды страхования, агенты и расчёт их вознаграждения.",
+    attachments: [
+      { type: "pdf", src: "files/dbms/dbms-postgresql.pdf", label: "Отчёт: PostgreSQL.pdf" },
+      { type: "pdf", src: "files/dbms/dbms-mongodb.pdf", label: "Отчёт: MongoDB.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "90 KM",
+    title: "Сетевые технологии: стенд на Cisco и Eltex",
+    desc: "Собрал в GNS3 сетевой стенд из коммутатора Cisco и маршрутизатора Eltex vESR, рассчитал IPv4-адресацию по CIDR и настроил маршрутизацию, DHCP и удалённый доступ.",
+    tags: ["GNS3", "Cisco IOS", "Eltex vESR", "IPv4/IPv6", "CIDR", "DHCP", "SSH"],
+    details: "Разбил сеть /24 на подсети по 25 узлов и распределил диапазоны между четырьмя сегментами стенда. На маршрутизаторе Eltex настроил имена и метки интерфейсов, время и часовой пояс, службы DHCP, telnet, SSH и syslog, а также резервное копирование running-config на tftp-сервер. Проверил связность и работу служб с клиентов Windows и Debian: ping и tracert по IPv4/IPv6, подключение по SSH и telnet, перехват syslog в Wireshark.",
+    attachments: [
+      { type: "image", src: "files/network/topology-cidr.png", label: "Топология и расчёт CIDR" },
+      { type: "image", src: "files/network/eltex-router.png", label: "Настройка Eltex" },
+      { type: "pdf", src: "files/network/network-ksr.pdf", label: "Отчёт по КСР.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "105 KM",
+    title: "Приложения на 1С",
+    desc: "Разработал работающее мобильное приложение на платформе 1С — на видео короткая демонстрация интерфейса и работы со списком задач.",
+    tags: ["1С", "Мобильное приложение", "Учётные системы", "Бизнес-логика"],
+    details: "Создание конфигурации в 1С: справочники, документы и формы для мобильного клиента. Приложение запускается на телефоне и позволяет работать с записями напрямую из интерфейса.",
+    attachments: [
+      { type: "video", src: "files/onec/onec-demo.mp4", label: "Демонстрация приложения (1 мин)" }
+    ]
+  },
+  ,
+  {
+    km: "120 KM",
+    title: "Моделирование систем: датчики случайных величин и AnyLogic",
+    desc: "Шесть работ на стыке статистики и имитации: собственные генераторы случайных величин с проверкой качества выборки, затем модели эпидемии и пассажиропотока метро в AnyLogic.",
+    tags: ["AnyLogic", "Системная динамика", "Статистическое моделирование", "Метод Бокса-Мюллера", "Excel"],
+    details: "Первая часть — генераторы: реализовал конгруэнтный мультипликативный датчик базовой случайной величины, добился длины периода свыше 10 000 и проверил выборку тремя способами — на равномерность через оценки математического ожидания и дисперсии, на независимость через коэффициент корреляции, плюс построил эмпирическую функцию распределения. Дальше сделал датчики дискретной величины (с гистограммой и сравнением с теоретическими вероятностями, отдельно пуассоновская величина) и непрерывной величины с кусочно-линейной функцией распределения, а нормальную величину получил методом Бокса-Мюллера. Вторая часть — AnyLogic: модель распространения инфекции на диаграмме накопителей и потоков с усиливающим циклом и графиком динамики по каждой группе населения; модель холла метро на пешеходной библиотеке, где подбирал оптимальное количество турникетов по времени ожидания в очередях и смотрел карту плотности потока; модель с нуля с графиками и слайдерами для управления параметрами.",
+    attachments: [
+      { type: "image", src: "files/sysmodel/anylogic-epidemic.jpg", label: "Модель эпидемии в AnyLogic" },
+      { type: "image", src: "files/sysmodel/anylogic-metro.jpg", label: "Модель холла метро" },
+      { type: "image", src: "files/sysmodel/bsv-distribution.jpg", label: "Датчик БСВ: распределение" },
+      { type: "pdf", src: "files/sysmodel/ms-lr1-rng.pdf", label: "Датчик БСВ.pdf" },
+      { type: "pdf", src: "files/sysmodel/ms-lr4-epidemic.pdf", label: "Модель эпидемии.pdf" },
+      { type: "pdf", src: "files/sysmodel/ms-lr5-metro.pdf", label: "Модель метро.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "135 KM",
+    title: "Имитационное моделирование в Arena",
+    desc: "Построил имитационную модель мастерской по производству печатных плат и по результатам прогона нашёл узкие места производственной линии.",
+    tags: ["Arena", "Имитационное моделирование", "Анализ узких мест", "Теория очередей"],
+    details: "Смена 8 часов, два типа плат с разными законами поступления, этапы очистки, нагрева, нанесения фоторезиста, охлаждения и упаковки. Заложил вероятность дефекта 25% с повторным прохождением цикла и браковкой на второй итерации, добавил счётчики и график загрузки. Прогон модели показал, что основное время сущности проводят в очередях: очистка и нагрев работают на пределе, фоторезист загружен почти полностью, а упаковка и охлаждение недоиспользованы — отсюда вывод о необходимости перераспределить ресурсы.",
+    attachments: [
+      { type: "image", src: "files/arena/arena-model.png", label: "Модель в Arena" },
+      { type: "image", src: "files/arena/arena-run.png", label: "Прогон и график загрузки" },
+      { type: "pdf", src: "files/arena/arena-report.pdf", label: "Отчёт по модели.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "150 KM",
+    title: "Оптимизация и принятие решений",
+    desc: "Решал задачи линейного и целочисленного программирования вручную, разворачивая каждый шаг метода в таблицах: симплекс-метод, искусственный базис, двойственный симплекс, метод Гомори и задача о рюкзаке.",
+    tags: ["Линейное программирование", "Симплекс-метод", "Метод Гомори", "Динамическое программирование", "Excel"],
+    details: "Каждая задача решена по шагам с полными симплекс-таблицами, а не вызовом готового решателя: прямой симплекс-метод с выбором разрешающего элемента, метод искусственного базиса для задач без очевидного начального решения, двойственный симплекс-метод. Для целочисленных задач применял метод Гомори — строил отсекающие ограничения по дробным частям и добавлял их в таблицу до получения целого решения. Задачу о рюкзаке решил динамическим программированием, заполнив таблицу оптимальных значений по всем весам от 1 до 20.",
+    attachments: [
+      { type: "file", src: "files/optimization/simplex.xlsx", label: "Симплекс-метод.xlsx" },
+      { type: "file", src: "files/optimization/dual-simplex.xlsx", label: "Двойственный симплекс.xlsx" },
+      { type: "file", src: "files/optimization/gomory.xlsx", label: "Метод Гомори.xlsx" },
+      { type: "file", src: "files/optimization/knapsack.xlsx", label: "Задача о рюкзаке.xlsx" }
+    ]
+  },
+  ,
+  {
+    km: "165 KM",
+    title: "Информационные системы в экономике",
+    desc: "Сценарный анализ «что если» в Excel через диспетчер сценариев и обработка выборки данных для экономических расчётов.",
+    tags: ["Excel", "Диспетчер сценариев", "Сценарный анализ", "Обработка данных"],
+    details: "Лабораторная работа по диспетчеру сценариев: задавал наборы входных параметров и сравнивал получаемые результаты расчёта, чтобы оценить, как изменение исходных условий влияет на итоговые показатели. Отдельное задание — работа с выборкой данных: сортировка, фильтрация и сводные расчёты по набору записей.",
+    attachments: [
+      { type: "pdf", src: "files/econ/econ-scenarios.pdf", label: "ЛР: диспетчер сценариев.pdf" },
+      { type: "pdf", src: "files/econ/econ-homework.pdf", label: "Домашнее задание.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "180 KM",
+    title: "Учебная практика: BPMN и автоматизация на 1С:УНФ",
+    desc: "Практика в ООО «Сатори Партнер» в роли бизнес-аналитика: описал бизнес-процессы реальной сети столовых в нотации BPMN и разобрал их автоматизацию на 1С:Управление нашей фирмой.",
+    tags: ["BPMN", "Business Studio", "1С:УНФ", "1С:Предприятие 8", "Бизнес-анализ", "drawio"],
+    details: "Прошёл вводный курс по 1С с получением сертификата. Для работы выбрал омскую сеть столовых «Ланч Тайм» из сферы общественного питания: описал предприятие, построил организационную структуру и разобрал, как устроено обслуживание гостя от подноса до кассы. Освоил Business Studio и нотацию BPMN, построил схему основного бизнес-процесса компании и две учебные схемы. Отдельные блоки практики — администрирование и изучение возможностей 1С:УНФ, сравнение прикладного ПО, мастер-класс по оформлению коммерческого предложения и итоговая демонстрация контрольного примера.",
+    attachments: [
+      { type: "image", src: "files/bpmn/bpmn-main.jpg", label: "BPMN: основной процесс" },
+      { type: "image", src: "files/bpmn/bpmn-cafe.jpg", label: "BPMN: обслуживание в кафе" },
+      { type: "image", src: "files/bpmn/org-structure.jpg", label: "Организационная структура" },
+      { type: "image", src: "files/bpmn/certificate-1c.jpg", label: "Сертификат курса 1С" },
+      { type: "pdf", src: "files/bpmn/bpmn-report.pdf", label: "Отчёт по практике.pdf" }
+    ]
+  },
+  ,
+  {
+    km: "195 KM",
+    title: "Производственная практика 2025",
+    desc: "Месяц практики в детской школе программирования KIBERone: готовил учебные материалы — макеты сайтов в Figma и мобильные приложения в Thunkable, вёл учёт данных резидентов.",
+    tags: ["Figma", "Thunkable", "Excel", "UI-дизайн", "Учебные материалы"],
+    details: "23.06–19.07.2025, ООО «Абсолютная школа» (KIBERone), Омск. Изучил документацию и программное обеспечение школы, структурировал персональные данные и учёт посещаемости резидентов в Excel. Разработал макеты сайтов в Figma и мобильные приложения в Thunkable как учебные примеры для занятий, по каждому блоку подготовил презентацию проектов.",
+    attachments: [
+      { type: "image", src: "files/practice/figma-case.jpg", label: "Макет сайта в Figma" },
+      { type: "image", src: "files/practice/figma-app.jpg", label: "Дизайн приложения" },
+      { type: "image", src: "files/practice/thunkable-app.jpg", label: "Приложение в Thunkable" },
+      { type: "pdf", src: "files/practice/practice-report.pdf", label: "Отчёт по практике.pdf" }
+    ]
+  }
+];
+
+/* Сколько заставка держится на экране до растворения */
+const SPLASH_TIME = 2600;
+
+/* Функция собирает карточки проектов на дороге */
+function renderStations() {
+  const container = document.getElementById("stations");
+
+  container.innerHTML = PROJECTS.map((p, i) => {
+    let attachmentsHTML = "";
+
+    if (p.attachments && p.attachments.length) {
+      attachmentsHTML = `
+        <div class="attachments-grid">
+          ${p.attachments.map(att => {
+            if (att.type === "image") {
+              return `
+                <div class="attachment-item">
+                  <div class="attachment-preview">
+                    <img src="${att.src}" alt="${att.label}" loading="lazy">
+                  </div>
+                  <span class="attachment-label">${att.label}</span>
+                </div>`;
+            }
+            if (att.type === "pdf") {
+              return `
+                <div class="attachment-item pdf-item">
+                  <div class="attachment-preview pdf-preview">
+                    <div class="pdf-icon">📄</div>
+                    <div class="pdf-name">${att.label}</div>
+                  </div>
+                  <button class="pdf-open-btn" data-pdf="${att.src}" data-title="${att.label}">Читать PDF</button>
+                </div>`;
+            }
+            if (att.type === "video") {
+              return `
+                <div class="attachment-item video-item">
+                  <video class="attachment-video" src="${att.src}" controls preload="metadata" playsinline></video>
+                  <span class="attachment-label">${att.label}</span>
+                </div>`;
+            }
+            if (att.type === "file") {
+              return `
+                <a class="attachment-item file-item" href="${att.src}" download>
+                  <div class="attachment-preview file-preview">
+                    <div class="pdf-icon">${att.icon || "📊"}</div>
+                    <div class="pdf-name">${att.label}</div>
+                  </div>
+                  <span class="attachment-label">Скачать файл</span>
+                </a>`;
+            }
+            return "";
+          }).join("")}
+        </div>`;
+    }
+
+    return `
+      <article class="station ${p.featured ? "is-featured" : ""} reveal" data-index="${i}">
+        <span class="station-dot"></span>
+        <span class="km">${p.km}${p.featured ? " · Дипломная работа" : ""}</span>
+        <div class="card">
+          <h3>${p.title}</h3>
+          <p class="desc">${p.desc}</p>
+          <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+          <button class="card-more" aria-expanded="false" aria-controls="details-${i}" data-target="details-${i}">
+            Подробнее <span class="chev">▾</span>
+          </button>
+          <div class="card-details" id="details-${i}">
+            <div class="card-details-inner">
+              <p>${p.details}</p>
+              ${attachmentsHTML}
+            </div>
+          </div>
+        </div>
+      </article>`;
+  }).join("");
+
+  /* Раскрытие и сворачивание карточек */
+  container.querySelectorAll(".card-more").forEach(btn => {
+    const details = document.getElementById(btn.dataset.target);
+
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+      if (isOpen) {
+        details.style.maxHeight = details.scrollHeight + "px";
+        void details.offsetHeight;
+        details.style.maxHeight = "0px";
+        btn.setAttribute("aria-expanded", "false");
+      } else {
+        details.style.maxHeight = details.scrollHeight + "px";
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    /* После анимации снимаем ограничение высоты, чтобы содержимое не обрезалось */
+    details.addEventListener("transitionend", e => {
+      if (e.target !== details || e.propertyName !== "max-height") return;
+      if (btn.getAttribute("aria-expanded") === "true") details.style.maxHeight = "none";
+    });
+  });
+}
+
+/* Функция создаёт окно для просмотра PDF */
+function initPdfModal() {
+  const modal = document.createElement("div");
+  modal.className = "pdf-modal";
+  modal.id = "pdfModal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.innerHTML = `
+    <div class="pdf-modal-content">
+      <div class="pdf-modal-header">
+        <span class="pdf-modal-title" id="pdfModalTitle">Просмотр документа</span>
+        <button class="pdf-modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <iframe id="pdfViewer" src="" title="Просмотр PDF"></iframe>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const viewer = modal.querySelector("#pdfViewer");
+  const titleEl = modal.querySelector("#pdfModalTitle");
+
+  const close = () => {
+    modal.classList.remove("active");
+    viewer.src = "";
+    document.body.style.overflow = "";
+  };
+
+  modal.querySelector(".pdf-modal-close").addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && modal.classList.contains("active")) close();
+  });
+
+  document.addEventListener("click", e => {
+    const btn = e.target.closest(".pdf-open-btn");
+    if (!btn) return;
+    viewer.src = btn.dataset.pdf;
+    titleEl.textContent = btn.dataset.title || "Просмотр документа";
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+}
+
+/* Функция управляет заставкой: держит её на экране, затем плавно убирает */
+function initSplash() {
+  const splash = document.getElementById("splash");
+  if (!splash) return;
+
+  const root = document.documentElement;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let dismissed = false;
+
+  root.classList.add("splash-active");
+
+  const dismiss = () => {
+    if (dismissed) return;
+    dismissed = true;
+
+    splash.classList.add("is-leaving");
+    root.classList.remove("splash-active");
+
+    const finish = () => {
+      splash.classList.add("is-done");
+      splash.setAttribute("aria-hidden", "true");
+    };
+
+    if (reduced) finish();
+    else splash.addEventListener("transitionend", finish, { once: true });
+
+    window.removeEventListener("wheel", dismiss);
+    window.removeEventListener("touchmove", dismiss);
+    window.removeEventListener("keydown", dismiss);
+    splash.removeEventListener("click", dismiss);
+  };
+
+  /* Заставка уходит сама через заданное время */
+  setTimeout(dismiss, reduced ? 400 : SPLASH_TIME);
+
+  /* Или раньше, если посетитель что-то нажал или прокрутил */
+  window.addEventListener("wheel", dismiss, { passive: true });
+  window.addEventListener("touchmove", dismiss, { passive: true });
+  window.addEventListener("keydown", dismiss);
+  splash.addEventListener("click", dismiss);
+}
+
+/* Функция показывает блоки при прокрутке */
+function initReveal() {
+  const items = document.querySelectorAll(".reveal");
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(el => el.classList.add("in"));
+    return;
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("in");
+      io.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+
+  items.forEach(el => io.observe(el));
+}
+
+/* Функция двигает всадника вдоль дороги при прокрутке */
+function initRider() {
+  const roadTrack = document.getElementById("roadTrack");
+  const rider = document.getElementById("rider");
+  if (!roadTrack || !rider) return;
+
+  let ticking = false;
+
+  const update = () => {
+    const rect = roadTrack.getBoundingClientRect();
+    const trackHeight = roadTrack.offsetHeight;
+    const anchor = window.innerHeight * 0.4;
+    let progress = anchor - rect.top;
+    progress = Math.max(0, Math.min(trackHeight, progress));
+    rider.style.top = progress + "px";
+    ticking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+}
+
+/* Функция включает мобильное меню и тонкую линию под шапкой */
+function initNav() {
+  const burger = document.getElementById("burger");
+  const navLinks = document.getElementById("navLinks");
+  const nav = document.getElementById("nav");
+
+  if (burger && navLinks) {
+    burger.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      burger.setAttribute("aria-expanded", String(isOpen));
+    });
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+    }));
+  }
+
+  if (nav) {
+    const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+}
+
+/* Функция показывает подсказку, если скан диплома ещё не добавлен */
+window.__diplomaMissing = function () {
+  const frame = document.getElementById("diplomaFrame");
+  if (!frame || frame.classList.contains("is-empty")) return;
+  frame.classList.add("is-empty");
+  frame.innerHTML = `
+    <svg class="ico" width="30" height="30" viewBox="0 0 24 24"><use href="#i-doc"/></svg>
+    <small>Положите скан диплома в<br><b>files/diploma/diploma-degree.jpg</b></small>`;
+};
+
+/* Запуск */
+renderStations();
+initPdfModal();
+initSplash();
+initRider();
+initReveal();
+initNav();
+
+/* Если картинка диплома не загрузилась ещё до запуска скрипта */
+(function checkDiploma() {
+  const img = document.querySelector("#diplomaFrame img");
+  if (img && img.complete && img.naturalWidth === 0) window.__diplomaMissing();
+})();
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
