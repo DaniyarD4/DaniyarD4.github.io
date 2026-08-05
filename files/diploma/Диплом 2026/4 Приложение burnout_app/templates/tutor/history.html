@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}История — БВТ{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <h1 class="page-title">История тестирований</h1>
+    <p class="page-sub">Все ваши результаты — {{ results | length }} тест(ов)</p>
+  </div>
+  <a href="{{ url_for('tutor.survey') }}" class="btn btn--primary">+ Новый опрос</a>
+</div>
+
+{% if results %}
+  <div class="section-card">
+    <div class="history-table-wrap">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Уровень</th>
+            <th>EE</th>
+            <th>DP</th>
+            <th>PB%</th>
+            <th>WB%</th>
+            <th>CB%</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for res in results %}
+            {% set scores = res.scores_json | fromjson %}
+            {% set level_labels = {'low': 'Низкий', 'medium': 'Средний', 'high': 'Высокий'} %}
+            <tr>
+              <td>{{ res.created_at | dateformat('%d.%m.%Y %H:%M') }}</td>
+              <td><span class="badge badge--{{ res.burnout_level }}">{{ level_labels[res.burnout_level] }}</span></td>
+              <td>{{ scores.EE }}</td>
+              <td>{{ scores.DP }}</td>
+              <td>{{ scores.PB }}%</td>
+              <td>{{ scores.WB }}%</td>
+              <td>{{ scores.CB }}%</td>
+              <td><a href="{{ url_for('tutor.result', result_id=res.id) }}" class="link-btn">Подробнее →</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% else %}
+  <div class="empty-state">
+    <div class="empty-state__icon">📋</div>
+    <h3>Вы ещё не проходили опрос</h3>
+    <a href="{{ url_for('tutor.survey') }}" class="btn btn--primary">Пройти первый опрос</a>
+  </div>
+{% endif %}
+{% endblock %}

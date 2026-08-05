@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вход — БВТ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo">◈</div>
+        <h1 class="auth-title">БВТ</h1>
+        <p class="auth-subtitle">Система мониторинга эмоционального выгорания тьюторов</p>
+        <div class="auth-sources">
+          <span class="badge-source">MBI</span>
+          <span class="badge-sep">+</span>
+          <span class="badge-source">CBI</span>
+        </div>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash flash--{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST" class="auth-form">
+        <div class="form-group">
+          <label for="username" class="form-label">Имя пользователя</label>
+          <input type="text" id="username" name="username" class="form-input" required autocomplete="username" placeholder="username" />
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Пароль</label>
+          <input type="password" id="password" name="password" class="form-input" required autocomplete="current-password" placeholder="••••••" />
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="remember" name="remember" />
+          <label for="remember">Запомнить меня</label>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Войти</button>
+      </form>
+
+      <p class="auth-footer">Нет аккаунта? <a href="{{ url_for('auth.register') }}">Зарегистрироваться</a></p>
+
+      <div class="demo-hints">
+        <p class="demo-title">Демо-аккаунты:</p>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <span class="demo-role">Тьютор:</span>
+            <code>tutor1 / tutor123</code>
+          </div>
+          <div class="demo-item">
+            <span class="demo-role">HR:</span>
+            <code>hr_admin / hr123456</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
