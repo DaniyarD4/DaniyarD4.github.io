@@ -3,8 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Нурсалимов Данияр | Портфолио</title>
-<meta name="description" content="Портфолио IT-специалиста: диплом по экспертным системам, учебные проекты, опыт преподавания программирования. Открыт к Junior/Middle-позициям и Digital Nomad Residency.">
+<title>Данияр Нурсалимов — разработчик программного обеспечения | Портфолио</title>
+<meta name="description" content="Портфолио Software Developer: 15 проектов на Python, FastAPI, PostgreSQL, Docker. Коммерческий опыт разработки, диплом по экспертным системам, 2 года преподавания. Астана, удалённая работа.">
+<meta name="author" content="Данияр Нурсалимов">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#12324F">
+<link rel="canonical" href="https://daniyard4.github.io/">
+
+<!-- Превью ссылки в соцсетях и мессенджерах -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Данияр Нурсалимов — портфолио">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://daniyard4.github.io/">
+<meta property="og:title" content="Данияр Нурсалимов — разработчик программного обеспечения">
+<meta property="og:description" content="15 проектов: Python, FastAPI, PostgreSQL, Docker, LLM API. Коммерческий опыт разработки, диплом по экспертным системам, 2 года преподавания.">
+<meta property="og:image" content="https://daniyard4.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Портфолио Данияра Нурсалимова, разработчика программного обеспечения">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Данияр Нурсалимов — разработчик программного обеспечения">
+<meta name="twitter:description" content="15 проектов: Python, FastAPI, PostgreSQL, Docker, LLM API.">
+<meta name="twitter:image" content="https://daniyard4.github.io/og-image.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -188,8 +212,16 @@ header.nav.is-scrolled{border-bottom-color:var(--hairline);background:rgba(251,2
 }
 @keyframes load{to{transform:scaleX(1);}}
 .splash-skip{
+  font-family:'Inter',sans-serif;
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--slate);white-space:nowrap;
+  background:none;border:1px solid var(--hairline);
+  padding:9px 16px;border-radius:999px;cursor:pointer;
+  transition:color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.splash-skip:hover,
+.splash-skip:focus-visible{
+  color:var(--ink);border-color:var(--ink);background:var(--surface);
 }
 
 /* Кнопки */
@@ -530,7 +562,7 @@ footer{
         <span class="eyebrow">Обо мне</span>
 
         <h1 class="display">
-          Прикладная информатика,<br>
+          Software Developer,<br>
           экспертные системы<br>
           и <em>преподавание</em>.
         </h1>
@@ -538,9 +570,9 @@ footer{
         <p class="role">Данияр Нурсалимов · Астана</p>
 
         <p class="lead">
-          Закончил «Прикладную информатику» в ОмГТУ, два года преподавал программирование
-          детям 6–14 лет. Дипломная работа — экспертная система, распознающая признаки
-          эмоционального выгорания.
+          Разрабатываю веб-сервисы на Python и FastAPI с PostgreSQL и развёртыванием
+          в Docker. Есть коммерческий опыт разработки. Закончил «Прикладную информатику»
+          в ОмГТУ, два года преподавал программирование детям 6–14 лет.
         </p>
 
         <div class="splash-rule"></div>
@@ -556,7 +588,7 @@ footer{
           </div>
           <div class="fact">
             <svg class="ico" width="20" height="20" viewBox="0 0 24 24"><use href="#i-code"/></svg>
-            <span><b>14 проектов</b><span>С отчётами</span></span>
+            <span><b>15 проектов</b><span>С отчётами</span></span>
           </div>
         </div>
       </div>
@@ -570,7 +602,7 @@ footer{
 
   <div class="splash-progress">
     <span class="splash-bar"></span>
-    <span class="splash-skip">Нажмите, чтобы пропустить</span>
+    <button class="splash-skip" id="splashSkip" type="button">Пропустить</button>
   </div>
 </div>
 
@@ -706,20 +738,21 @@ footer{
       <div>
         <span class="eyebrow">Контакты</span>
         <h2>Готов пройти собеседование</h2>
-        <p>Открыт к предложениям в Астане, к удалённой работе и прохожу в программу
+        <p>Открыт к предложениям в Астане, к удалённой работе и к программе
            Digital Nomad Residency.</p>
         <ul class="contact-list">
-          <li>Email: <a href="mailto:nursalimovd4@gmail.com">nursalimovd4@gmail.com</a></li>
-          <li>Телефон: <a href="tel:+77078302170">+7 707 830 21 70</a></li>
+          <li>Telegram: <a href="https://t.me/username" target="_blank" rel="noopener">@username</a></li>
+          <li>Email: <a href="mailto:email@example.com">email@example.com</a></li>
+          <li>Телефон: <a href="tel:+70000000000">+7 000 000 00 00</a></li>
         </ul>
       </div>
-      <a class="btn btn-light" href="mailto:nursalimovd4@gmail.com">Написать</a>
+      <a class="btn btn-light" href="mailto:email@example.com">Написать</a>
     </div>
   </section>
 
 </main>
 
-<footer>© <span id="year"></span> Данияр Нурсалимов · Портфолио </footer>
+<footer>© <span id="year"></span> Данияр Нурсалимов · Software Developer · Астана</footer>
 
 <script>
 /* Данные проектов.
@@ -733,6 +766,15 @@ footer{
 const PROJECTS = [
   {
     km: "0 KM",
+    title: "Сервис бронирования переговорных комнат",
+    desc: "Полнофункциональный веб-сервис: REST API на FastAPI, PostgreSQL, двухфакторная аутентификация, ролевая модель и создание брони фразой на естественном языке. Разворачивается одной командой.",
+    tags: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Docker", "JWT", "TOTP / 2FA", "LLM API"],
+    details: "Внутренний сервис для офиса: показывает занятость переговорных комнат и позволяет бронировать слоты. Ядро логики — проверка пересечения интервалов: две брони одной комнаты не могут накладываться по времени, конфликт возвращается отдельным кодом ответа. Реализовал двухфакторную аутентификацию по стандарту TOTP (RFC 6238): подключение приложения-аутентификатора через QR-код, одноразовые резервные коды на случай потери доступа, ограничение частоты попыток ввода кода. JWT-токены разделены по назначению — временный токен второго шага входа нельзя подставить вместо основного. Ролевая модель: администратор управляет комнатами, сотрудник только бронирует; проверка прав вынесена в переиспользуемую зависимость FastAPI, а не разбросана условиями по коду. Отдельно интегрирован внешний LLM API — бронь создаётся обычной фразой вида «забронируй большую переговорку завтра с 14:00 на полтора часа», с корректной обработкой отказа стороннего сервиса. Валидация входных данных декларативная, через схемы Pydantic. Всё окружение, включая базу, поднимается одной командой в Docker Compose на чистой машине.",
+    attachments: [],
+    featured: true
+  },
+  {
+    km: "15 KM",
     title: "Диплом: Экспертная система мониторинга эмоционального выгорания",
     desc: "Дипломная работа — экспертная система, которая распознаёт признаки эмоционального выгорания и формирует рекомендации для тьюторов.",
     tags: ["Экспертные системы", "Python", "Анализ данных", "Проектирование ПО"],
@@ -743,9 +785,8 @@ const PROJECTS = [
     ],
     featured: true
   },
-  ,
   {
-    km: "15 KM",
+    km: "30 KM",
     title: "«Истории C++» — обучающая игра и лэндинг для неё",
     desc: "Командный проект на три курсовые: от идеи и анализа рынка до прототипа консольной игры для изучения C++ и лэндинга, который её продаёт.",
     tags: ["C++", "HTML/CSS/JS", "Bootstrap", "UML", "Figma", "PEST / SWOT", "Командная работа"],
@@ -758,9 +799,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/cpp-stories/cpp-product.pdf", label: "Курсовая: анализ и оценка идеи.pdf" }
     ]
   },
-  ,
   {
-    km: "30 KM",
+    km: "45 KM",
     title: "Проектирование и тестирование ПО: машина вывода на правилах",
     desc: "Программа на C++, которая загружает базу продукционных правил, анализирует введённые факты и выводит применимое правило — прототип логики, лёгшей в основу диплома.",
     tags: ["C++", "UML", "Базы знаний", "Тестирование ПО"],
@@ -772,9 +812,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/pritpo/pritpo-lr1.pdf", label: "ЛР: Сапёр.pdf" }
     ]
   },
-  ,
   {
-    km: "45 KM",
+    km: "60 KM",
     title: "Операционные системы: процессы, нити и синхронизация на C",
     desc: "Десять лабораторных на низкоуровневом C под Windows и Linux: работа с файловыми дескрипторами, блокировки файлов, дерево процессов, многопоточность, разделяемая память и семафоры.",
     tags: ["C", "Windows API", "Linux", "Многопоточность", "Синхронизация", "IPC", "Bash / Batch"],
@@ -787,9 +826,8 @@ const PROJECTS = [
       { type: "video", src: "files/os/os-lr10-linux.mp4", label: "Скрипт в Linux" }
     ]
   },
-  ,
   {
-    km: "60 KM",
+    km: "75 KM",
     title: "ООП",
     desc: "Проектировал программы на основе классов и объектов вместо линейного кода.",
     tags: ["Python", "ООП", "Проектирование"],
@@ -799,9 +837,8 @@ const PROJECTS = [
       { type: "image", src: "files/OOP/OOP.png",   label: "Скриншот программы"}
     ]
   },
-  ,
   {
-    km: "75 KM",
+    km: "90 KM",
     title: "СУБД: PostgreSQL и MongoDB",
     desc: "Спроектировал две базы данных с нуля — от ER-модели до SQL-скриптов: учёт замечаний машинистов электропоездов в PostgreSQL и предметная область страховой компании в MongoDB.",
     tags: ["PostgreSQL", "MongoDB", "SQL", "ER-моделирование", "pgAdmin"],
@@ -811,9 +848,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/dbms/dbms-mongodb.pdf", label: "Отчёт: MongoDB.pdf" }
     ]
   },
-  ,
   {
-    km: "90 KM",
+    km: "105 KM",
     title: "Сетевые технологии: стенд на Cisco и Eltex",
     desc: "Собрал в GNS3 сетевой стенд из коммутатора Cisco и маршрутизатора Eltex vESR, рассчитал IPv4-адресацию по CIDR и настроил маршрутизацию, DHCP и удалённый доступ.",
     tags: ["GNS3", "Cisco IOS", "Eltex vESR", "IPv4/IPv6", "CIDR", "DHCP", "SSH"],
@@ -824,9 +860,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/network/network-ksr.pdf", label: "Отчёт по КСР.pdf" }
     ]
   },
-  ,
   {
-    km: "105 KM",
+    km: "120 KM",
     title: "Приложения на 1С",
     desc: "Разработал работающее мобильное приложение на платформе 1С — на видео короткая демонстрация интерфейса и работы со списком задач.",
     tags: ["1С", "Мобильное приложение", "Учётные системы", "Бизнес-логика"],
@@ -835,9 +870,8 @@ const PROJECTS = [
       { type: "video", src: "files/onec/onec-demo.mp4", label: "Демонстрация приложения (1 мин)" }
     ]
   },
-  ,
   {
-    km: "120 KM",
+    km: "135 KM",
     title: "Моделирование систем: датчики случайных величин и AnyLogic",
     desc: "Шесть работ на стыке статистики и имитации: собственные генераторы случайных величин с проверкой качества выборки, затем модели эпидемии и пассажиропотока метро в AnyLogic.",
     tags: ["AnyLogic", "Системная динамика", "Статистическое моделирование", "Метод Бокса-Мюллера", "Excel"],
@@ -851,9 +885,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/sysmodel/ms-lr5-metro.pdf", label: "Модель метро.pdf" }
     ]
   },
-  ,
   {
-    km: "135 KM",
+    km: "150 KM",
     title: "Имитационное моделирование в Arena",
     desc: "Построил имитационную модель мастерской по производству печатных плат и по результатам прогона нашёл узкие места производственной линии.",
     tags: ["Arena", "Имитационное моделирование", "Анализ узких мест", "Теория очередей"],
@@ -864,9 +897,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/arena/arena-report.pdf", label: "Отчёт по модели.pdf" }
     ]
   },
-  ,
   {
-    km: "150 KM",
+    km: "165 KM",
     title: "Оптимизация и принятие решений",
     desc: "Решал задачи линейного и целочисленного программирования вручную, разворачивая каждый шаг метода в таблицах: симплекс-метод, искусственный базис, двойственный симплекс, метод Гомори и задача о рюкзаке.",
     tags: ["Линейное программирование", "Симплекс-метод", "Метод Гомори", "Динамическое программирование", "Excel"],
@@ -878,9 +910,8 @@ const PROJECTS = [
       { type: "file", src: "files/optimization/knapsack.xlsx", label: "Задача о рюкзаке.xlsx" }
     ]
   },
-  ,
   {
-    km: "165 KM",
+    km: "180 KM",
     title: "Информационные системы в экономике",
     desc: "Сценарный анализ «что если» в Excel через диспетчер сценариев и обработка выборки данных для экономических расчётов.",
     tags: ["Excel", "Диспетчер сценариев", "Сценарный анализ", "Обработка данных"],
@@ -890,9 +921,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/econ/econ-homework.pdf", label: "Домашнее задание.pdf" }
     ]
   },
-  ,
   {
-    km: "180 KM",
+    km: "195 KM",
     title: "Учебная практика: BPMN и автоматизация на 1С:УНФ",
     desc: "Практика в ООО «Сатори Партнер» в роли бизнес-аналитика: описал бизнес-процессы реальной сети столовых в нотации BPMN и разобрал их автоматизацию на 1С:Управление нашей фирмой.",
     tags: ["BPMN", "Business Studio", "1С:УНФ", "1С:Предприятие 8", "Бизнес-анализ", "drawio"],
@@ -905,9 +935,8 @@ const PROJECTS = [
       { type: "pdf", src: "files/bpmn/bpmn-report.pdf", label: "Отчёт по практике.pdf" }
     ]
   },
-  ,
   {
-    km: "195 KM",
+    km: "210 KM",
     title: "Производственная практика 2025",
     desc: "Месяц практики в детской школе программирования KIBERone: готовил учебные материалы — макеты сайтов в Figma и мобильные приложения в Thunkable, вёл учёт данных резидентов.",
     tags: ["Figma", "Thunkable", "Excel", "UI-дизайн", "Учебные материалы"],
@@ -1105,6 +1134,15 @@ function initSplash() {
   window.addEventListener("touchmove", dismiss, { passive: true });
   window.addEventListener("keydown", dismiss);
   splash.addEventListener("click", dismiss);
+
+  /* Кнопка «Пропустить» — отдельный обработчик, чтобы работала и с клавиатуры */
+  const skipBtn = document.getElementById("splashSkip");
+  if (skipBtn) {
+    skipBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      dismiss();
+    });
+  }
 }
 
 /* Функция показывает блоки при прокрутке */
