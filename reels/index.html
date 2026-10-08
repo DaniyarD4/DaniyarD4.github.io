@@ -297,6 +297,23 @@ ul{margin:0;padding:0;list-style:none;}
   display:grid;place-items:center;border:0;cursor:pointer;flex:none;
 }
 .play[hidden]{display:none;}
+.play-center{
+  position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;box-shadow:0 10px 30px -8px rgba(0,0,0,.5);
+}
+.play-center svg{width:22px;height:22px;}
+.reel.playing .play{pointer-events:none;}
+/* Листалка роликов внутри одной карточки */
+.reel-track{
+  display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;
+  border-radius:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+}
+.reel-track::-webkit-scrollbar{display:none;}
+.reel-track .reel{flex:0 0 86%;scroll-snap-align:start;}
+.reel-dots{display:flex;justify-content:center;gap:2px;margin-top:6px;}
+.reel-dots button{width:30px;height:24px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;}
+.reel-dots button::before{content:"";width:8px;height:8px;border-radius:99px;background:#CFCFD6;transition:width .25s var(--ease),background .25s var(--ease);}
+.reel-dots button.on::before{width:22px;background:var(--ink);}
 .play svg{width:18px;height:18px;margin-left:3px;}
 .reel-glyph{
   position:absolute;inset:0;display:grid;place-items:center;
@@ -737,14 +754,21 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
         </article>
 
         <article class="case">
-          <div class="reel kr" data-video="" data-poster="">
-            <span class="reel-glyph" aria-hidden="true">한식</span>
-            <div class="reel-top">
-              <span class="reel-badge">TikTok · 9:16</span>
-              <button class="play" type="button" aria-label="Смотреть ролик Чико"><svg><use href="#i-play"/></svg></button>
+          <!-- Два ролика Чико: листаются пальцем или точками под ними -->
+          <div class="reel-carousel">
+            <div class="reel-track" tabindex="0" aria-label="Ролики для Чико, листайте вбок">
+              <div class="reel kr" data-video="cases/chico-1.mp4" data-poster="cases/chico-1.jpg">
+                <div class="reel-top"><span class="reel-badge">한식 · ролик 1 из 2</span></div>
+                <button class="play play-center" type="button" aria-label="Смотреть ролик 1 для Чико"><svg><use href="#i-play"/></svg></button>
+              </div>
+              <div class="reel kr" data-video="cases/chico-2.mp4" data-poster="cases/chico-2.jpg">
+                <div class="reel-top"><span class="reel-badge">한식 · ролик 2 из 2</span></div>
+                <button class="play play-center" type="button" aria-label="Смотреть ролик 2 для Чико"><svg><use href="#i-play"/></svg></button>
+              </div>
             </div>
-            <div class="reel-bottom">
-              <p class="reel-title">Корейская кухня, которую узнают в лицо</p>
+            <div class="reel-dots" role="group" aria-label="Выбор ролика">
+              <button type="button" class="on" aria-label="Ролик 1" aria-current="true"></button>
+              <button type="button" aria-label="Ролик 2"></button>
             </div>
           </div>
           <div class="case-body">
@@ -985,6 +1009,29 @@ document.querySelectorAll('.reel').forEach(function(reel){
   });
   v.addEventListener('pause',function(){ if(!v.seeking) reel.classList.remove('playing'); v.controls=false; });
   v.addEventListener('ended',function(){ reel.classList.remove('playing'); v.controls=false; });
+});
+
+// Листалка роликов: точки показывают текущий ролик, уехавший ролик ставится на паузу
+document.querySelectorAll('.reel-carousel').forEach(function(car){
+  var track=car.querySelector('.reel-track');
+  var slides=[].slice.call(track.querySelectorAll('.reel'));
+  var dots=[].slice.call(car.querySelectorAll('.reel-dots button'));
+  function current(){
+    var step=slides.length>1 ? slides[1].offsetLeft-slides[0].offsetLeft : 1;
+    return Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/step)));
+  }
+  var raf=0;
+  track.addEventListener('scroll',function(){
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(function(){
+      var i=current();
+      dots.forEach(function(d,k){ d.classList.toggle('on',k===i); if(k===i) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current'); });
+      slides.forEach(function(sl,k){ var v=sl.querySelector('video'); if(k!==i && v && !v.paused) v.pause(); });
+    });
+  },{passive:true});
+  dots.forEach(function(d,k){
+    d.addEventListener('click',function(){ track.scrollTo({left:slides[k].offsetLeft-slides[0].offsetLeft,behavior:'smooth'}); });
+  });
 });
 </script>
 </body>
