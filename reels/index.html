@@ -407,6 +407,7 @@ ul{margin:0;padding:0;list-style:none;}
 .plan.hl{background:var(--ink);color:#fff;}
 .plan.hl .plan-for,.plan.hl .plan-price small{color:var(--muted-dark);}
 .plan.hl li::before{background-color:var(--lime);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230C0C10' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E");}
+.price-note{margin-top:14px;color:var(--muted);font-size:13.5px;}
 .plan .chip.badge{background:var(--lime);font-weight:600;}
 
 /* Контакты */
@@ -835,8 +836,8 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
 
   <!-- 6. Прайс -->
   <!--
-    ЦЕНЫ: впишите стоимость вместо «Цена по запросу» в блоках .plan-price
-    (например «от 50 000 ₸») и уберите у этого блока класс tbd — цифры станут крупным шрифтом.
+    ЦЕНЫ: стоимость — в блоках .plan-price, состав пакета — в списке под ней.
+    Если нужно временно написать текст вместо цифры («Цена по запросу»), добавьте блоку класс tbd.
     и при необходимости поправьте состав пакетов.
   -->
   <section class="section" id="prices" aria-labelledby="prices-title">
@@ -853,10 +854,11 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
             <div class="plan-top"><h3 class="plan-name">Пробный</h3></div>
             <p class="plan-for">Чтобы познакомиться и посмотреть на результат</p>
           </div>
-          <p class="plan-price tbd">Цена по запросу<small>за ролик</small></p>
+          <p class="plan-price">25&nbsp;000&nbsp;₸<small>за 1 ролик</small></p>
           <ul>
             <li>Рилс под ключ: идея, сценарий, съёмка, монтаж</li>
             <li>Один выезд на съёмку</li>
+            <li>Одна правка после просмотра</li>
           </ul>
           <a class="btn btn-dark" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9F%D1%80%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
         </article>
@@ -866,10 +868,11 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
             <div class="plan-top"><h3 class="plan-name">Месяц контента</h3><span class="chip badge">Оптимально</span></div>
             <p class="plan-for">Регулярные рилсы, чтобы аккаунт работал весь месяц</p>
           </div>
-          <p class="plan-price tbd">Цена по запросу<small>в месяц</small></p>
+          <p class="plan-price">150&nbsp;000&nbsp;₸<small>в месяц · около 19&nbsp;000&nbsp;₸ за ролик</small></p>
           <ul>
             <li>Контент-план на месяц</li>
-            <li>Серия рилсов под ключ</li>
+            <li>8 рилсов под ключ — по 2 в неделю</li>
+            <li>2 выезда на съёмку</li>
             <li>Съёмка с моим участием в кадре</li>
           </ul>
           <a class="btn btn-lime" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9C%D0%B5%D1%81%D1%8F%D1%86%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82%D0%B0%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -880,15 +883,17 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
             <div class="plan-top"><h3 class="plan-name">Лицо бренда</h3></div>
             <p class="plan-for">Максимум узнаваемости: рилсы и фото в одном стиле</p>
           </div>
-          <p class="plan-price tbd">Цена по запросу<small>в месяц</small></p>
+          <p class="plan-price">250&nbsp;000&nbsp;₸<small>в месяц · 12 рилсов + фото</small></p>
           <ul>
-            <li>Всё из пакета «Месяц контента»</li>
-            <li>Я — постоянное лицо заведения в роликах</li>
-            <li>Мобилография: фото для меню, карточек и соцсетей</li>
+            <li>Контент-план на месяц</li>
+            <li>12 рилсов под ключ — по 3 в неделю</li>
+            <li>Я — постоянное лицо заведения в каждом ролике</li>
+            <li>Мобилография: 20 фото для меню, карточек и соцсетей</li>
           </ul>
           <a class="btn btn-dark" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9B%D0%B8%D1%86%D0%BE%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
         </article>
       </div>
+      <p class="price-note">Цены для Астаны. Выезд за город, дополнительные локации и срочный монтаж — обсуждаем отдельно.</p>
     </div>
   </section>
 
