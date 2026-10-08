@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Данияр Нурсалимов — Reels Maker | Рилсы для кафе, ресторанов и магазинов</title>
-<meta name="description" content="Снимаю рилсы, которые приводят гостей, а не просто набирают лайки. Идея, сценарий, съёмка, монтаж и съёмка с моим участием в кадре. До 70K просмотров на ролик.">
+<meta name="description" content="Снимаю рилсы, которые приводят гостей, а не просто набирают лайки. Идея, сценарий, съёмка, монтаж и съёмка с моим участием в кадре. До 4 млн просмотров на лучшем ролике.">
 <meta name="author" content="Данияр Нурсалимов">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#2340EE">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://daniyard4.github.io/reels/">
 <meta property="og:title" content="Данияр — Reels Maker. Рилсы, которые приводят гостей">
-<meta property="og:description" content="Идея, съёмка, монтаж и лицо бренда в кадре. Для кафе, ресторанов и магазинов.">
+<meta property="og:description" content="До 4 млн просмотров на лучшем ролике. Идея, съёмка, монтаж и лицо бренда в кадре — для кафе, ресторанов и магазинов.">
 <meta property="og:image" content="https://daniyard4.github.io/reels/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -296,6 +296,24 @@ ul{margin:0;padding:0;list-style:none;}
   width:52px;height:52px;border-radius:50%;background:#fff;color:var(--ink);
   display:grid;place-items:center;border:0;cursor:pointer;flex:none;
 }
+.play[hidden]{display:none;}
+.play-center{
+  position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;box-shadow:0 10px 30px -8px rgba(0,0,0,.5);
+}
+.play-center svg{width:22px;height:22px;}
+.reel.playing .play{pointer-events:none;}
+/* Листалка роликов внутри одной карточки */
+.reel-track{
+  display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;
+  border-radius:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+}
+.reel-track::-webkit-scrollbar{display:none;}
+.reel-track .reel{flex:0 0 86%;scroll-snap-align:start;}
+.reel-dots{display:flex;justify-content:center;gap:2px;margin-top:6px;}
+.reel-dots button{width:30px;height:24px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;}
+.reel-dots button::before{content:"";width:8px;height:8px;border-radius:99px;background:#CFCFD6;transition:width .25s var(--ease),background .25s var(--ease);}
+.reel-dots button.on::before{width:22px;background:var(--ink);}
 .play svg{width:18px;height:18px;margin-left:3px;}
 .reel-glyph{
   position:absolute;inset:0;display:grid;place-items:center;
@@ -312,9 +330,40 @@ ul{margin:0;padding:0;list-style:none;}
   position:absolute;inset:0;background:url(photo.webp) 50% 20%/cover;opacity:.35;mix-blend-mode:luminosity;
 }
 
+.reel.has-video{aspect-ratio:9/16;}
+.reel video{background:#000;}
+.reel.playing .reel-stats,.reel.playing .reel-hero{opacity:0;}
+.reel.playing .reel-top,.reel.playing .reel-bottom,.reel.playing .reel-hero,.reel.playing .reel-glyph,.reel.playing .reel-face{pointer-events:none;}
+/* Крупная цифра вместо иероглифа на превью */
+.reel-hero{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;pointer-events:none;
+}
+.reel-hero b{font:500 clamp(48px,15vw,76px)/1 var(--f-num);letter-spacing:-.05em;white-space:nowrap;}
+.reel-hero span{
+  margin-top:10px;padding:6px 12px;border-radius:999px;background:var(--lime);color:var(--ink);
+  font-size:12.5px;font-weight:600;
+}
+/* Плитки с цифрами внизу превью */
+.reel-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;}
+.reel-stats div{
+  padding:10px 12px;border-radius:14px;
+  background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.reel-stats div.top{background:var(--lime);color:var(--ink);}
+.reel-stats b{display:block;font:500 clamp(22px,6.6vw,28px)/1.05 var(--f-num);letter-spacing:-.04em;white-space:nowrap;}
+.reel-stats small{display:block;margin-top:4px;font-size:12px;line-height:1.25;opacity:.85;}
+.case-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  padding:10px 16px;border-radius:999px;background:var(--ink);color:#fff;
+  font-size:14px;font-weight:600;transition:background .2s var(--ease);
+}
+.case-link:hover{background:var(--blue);}
+.case-link svg{width:16px;height:16px;}
+.case-link em{font-style:normal;color:var(--lime);}
 .case-body{padding:20px 10px 0;}
 .case-type{font-size:13px;color:var(--muted);font-weight:500;}
-.case h3{margin-top:4px;font-size:23px;font-weight:600;letter-spacing:-.02em;}
+.case h3{margin-top:4px;font-size:23px;font-weight:600;letter-spacing:-.02em;line-height:1.2;}
 .steps{margin-top:16px;display:grid;gap:12px;}
 .steps li{display:grid;grid-template-columns:96px 1fr;gap:12px;font-size:14.5px;line-height:1.45;}
 .steps li span{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:2px;}
@@ -324,12 +373,6 @@ ul{margin:0;padding:0;list-style:none;}
 }
 .steps li.result span{color:#3B4A12;}
 
-/* Мини-график просмотров для личного блога */
-.views{display:flex;align-items:flex-end;gap:8px;height:96px;margin-top:4px;}
-.views div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%;}
-.views i{display:block;width:100%;border-radius:8px 8px 4px 4px;background:rgba(255,255,255,.28);}
-.views div.top i{background:var(--lime);}
-.views b{font-size:12px;font-weight:600;}
 
 /* Как работаем — тёмный блок */
 .process{
@@ -381,6 +424,7 @@ ul{margin:0;padding:0;list-style:none;}
 .plan.hl{background:var(--ink);color:#fff;}
 .plan.hl .plan-for,.plan.hl .plan-price small{color:var(--muted-dark);}
 .plan.hl li::before{background-color:var(--lime);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230C0C10' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E");}
+.price-note{margin-top:14px;color:var(--muted);font-size:13.5px;}
 .plan .chip.badge{background:var(--lime);font-weight:600;}
 
 /* Контакты */
@@ -573,7 +617,7 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
           <img src="photo.jpg" width="900" height="1200" alt="Данияр Нурсалимов — reels maker" fetchpriority="high">
         </picture>
         <span class="float f1"><i></i>Сам в кадре — лицо бренда</span>
-        <span class="float f2"><i></i>До 70K просмотров</span>
+        <span class="float f2"><i></i>До 4 млн просмотров</span>
       </div>
 
       <div class="hero-text">
@@ -597,8 +641,8 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
     <!-- 2. Цифры -->
     <section class="stats" aria-label="Коротко в цифрах">
       <div class="stat dark">
-        <p class="stat-label">Просмотров на ролик</p>
-        <p class="stat-num">70K</p>
+        <p class="stat-label">Просмотров на лучшем ролике</p>
+        <p class="stat-num">4&nbsp;млн</p>
       </div>
       <div class="stat">
         <p class="stat-label">Проекта: ресторан, магазин и личный блог</p>
@@ -678,46 +722,62 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
 
       <div class="cases">
         <!--
-          Чтобы вставить настоящее видео: положите файл в папку reels/cases/
-          и пропишите путь в data-video, например data-video="cases/korean.mp4".
-          Можно добавить обложку: data-poster="cases/korean.jpg".
+          Видео в кейсах: положите файл в папку reels/cases/ и пропишите путь в data-video,
+          например data-video="cases/yoko.mp4". Обложка (кадр-превью) — data-poster="cases/yoko.jpg".
+          Формат вертикальный 9:16. Видео грузится и играет только по нажатию — без автоплея.
+          Пока data-video пустой, показывается цветная заглушка.
         -->
         <article class="case">
-          <div class="reel kr" data-video="" data-poster="">
-            <span class="reel-glyph" aria-hidden="true">한식</span>
-            <div class="reel-top"><span class="reel-badge">Reels · 9:16</span></div>
-            <div class="reel-bottom">
-              <p class="reel-title">Корейская кухня, которую узнают в лицо</p>
-              <button class="play" type="button" aria-label="Смотреть ролик"><svg><use href="#i-play"/></svg></button>
-            </div>
-          </div>
-          <div class="case-body">
-            <p class="case-type">Ресторан</p>
-            <h3>Корейский ресторан</h3>
-            <ul class="steps">
-              <li><span>Задача</span>Чтобы о ресторане узнали и пришли новые гости.</li>
-              <li><span>Сделал</span>Контент-план, съёмка и монтаж, сам в кадре как лицо заведения.</li>
-              <li class="result"><span>Результат</span>Выросла узнаваемость, гостей стало больше — меня узнавали лично.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="case">
           <div class="reel jp" data-video="" data-poster="">
-            <span class="reel-glyph" aria-hidden="true">日本</span>
-            <div class="reel-top"><span class="reel-badge">Reels · 9:16</span></div>
+            <div class="reel-hero" aria-hidden="true"><b>4&nbsp;млн</b><span>просмотров на лучшем ролике</span></div>
+            <div class="reel-top">
+              <span class="reel-badge">TikTok · 9:16</span>
+              <button class="play" type="button" aria-label="Смотреть ролик YOKO"><svg><use href="#i-play"/></svg></button>
+            </div>
             <div class="reel-bottom">
-              <p class="reel-title">Японский магазин, в который хочется зайти</p>
-              <button class="play" type="button" aria-label="Смотреть ролик"><svg><use href="#i-play"/></svg></button>
+              <div class="reel-stats" role="img" aria-label="Аккаунт YOKO: 6270 подписчиков и 662 тысячи лайков">
+                <div><b>6270</b><small>подписчиков</small></div>
+                <div class="top"><b>662K</b><small>лайков</small></div>
+              </div>
             </div>
           </div>
           <div class="case-body">
             <p class="case-type">Магазин</p>
-            <h3>Японский магазин</h3>
+            <h3>YOKO · магазин азиатских товаров</h3>
             <ul class="steps">
-              <li><span>Задача</span>Рассказать о магазине и привести покупателей офлайн.</li>
-              <li><span>Сделал</span>Контент-план, съёмка и монтаж, сам в кадре.</li>
-              <li class="result"><span>Результат</span>Выросла узнаваемость — люди приходили в магазин после роликов.</li>
+              <li><span>Задача</span>Привести покупателей в офлайн-магазин через короткие видео.</li>
+              <li><span>Сделал</span>Всё от идеи до монтажа — сценарий, съёмка, монтаж, сам в кадре.</li>
+              <li class="result"><span>Результат</span>Мой лучший ролик — 4 млн просмотров. Аккаунт: 6270 подписчиков, 662K лайков.</li>
+            </ul>
+            <a class="case-link" href="https://www.tiktok.com/@yoko_omsk" target="_blank" rel="noopener">Смотреть аккаунт <svg><use href="#i-arrow"/></svg> <em>@yoko_omsk</em></a>
+          </div>
+        </article>
+
+        <article class="case">
+          <!-- Два ролика Чико: листаются пальцем или точками под ними -->
+          <div class="reel-carousel">
+            <div class="reel-track" tabindex="0" aria-label="Ролики для Чико, листайте вбок">
+              <div class="reel kr" data-video="cases/chico-1.mp4" data-poster="cases/chico-1.jpg">
+                <div class="reel-top"><span class="reel-badge">한식 · ролик 1 из 2</span></div>
+                <button class="play play-center" type="button" aria-label="Смотреть ролик 1 для Чико"><svg><use href="#i-play"/></svg></button>
+              </div>
+              <div class="reel kr" data-video="cases/chico-2.mp4" data-poster="cases/chico-2.jpg">
+                <div class="reel-top"><span class="reel-badge">한식 · ролик 2 из 2</span></div>
+                <button class="play play-center" type="button" aria-label="Смотреть ролик 2 для Чико"><svg><use href="#i-play"/></svg></button>
+              </div>
+            </div>
+            <div class="reel-dots" role="group" aria-label="Выбор ролика">
+              <button type="button" class="on" aria-label="Ролик 1" aria-current="true"></button>
+              <button type="button" aria-label="Ролик 2"></button>
+            </div>
+          </div>
+          <div class="case-body">
+            <p class="case-type">Сеть ресторанов</p>
+            <h3>Чико · сеть ресторанов корейской кухни</h3>
+            <ul class="steps">
+              <li><span>Задача</span>Сделать ресторан узнаваемым и привести гостей.</li>
+              <li><span>Сделал</span>Идеи, контент-план, съёмка, монтаж, сам в кадре как лицо заведения.</li>
+              <li class="result"><span>Результат</span>Ролики в TikTok залетали, меня узнавали гости и приходили за этим. Статистика не сохранилась — аккаунт в TikTok закрыт.</li>
             </ul>
           </div>
         </article>
@@ -725,12 +785,14 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
         <article class="case">
           <div class="reel me" data-video="" data-poster="">
             <span class="reel-face" aria-hidden="true"></span>
-            <div class="reel-top"><span class="reel-badge">Личный блог</span></div>
-            <div class="reel-bottom" style="display:block">
-              <div class="views" role="img" aria-label="Просмотры роликов: 10 тысяч, 70 тысяч и больше 20 тысяч на свежем">
-                <div><i style="height:22%"></i><b>10K</b></div>
-                <div class="top"><i style="height:100%"></i><b>70K</b></div>
-                <div><i style="height:36%"></i><b>20K+</b></div>
+            <div class="reel-top">
+              <span class="reel-badge">Instagram · личный блог</span>
+              <button class="play" type="button" aria-label="Смотреть ролик из блога"><svg><use href="#i-play"/></svg></button>
+            </div>
+            <div class="reel-bottom">
+              <div class="reel-stats" role="img" aria-label="127 тысяч просмотров на лучшем ролике за сутки и 51 тысяча просмотров за 30 дней">
+                <div class="top"><b>127K</b><small>за сутки на лучшем ролике</small></div>
+                <div><b>51K</b><small>просмотров за 30 дней</small></div>
               </div>
             </div>
           </div>
@@ -739,9 +801,10 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
             <h3>Личный блог</h3>
             <ul class="steps">
               <li><span>Задача</span>Проверить на себе, какой контент смотрят до конца.</li>
-              <li><span>Сделал</span>Идеи, съёмка, монтаж и ведение — полностью сам.</li>
-              <li class="result"><span>Результат</span>10K, 70K и 20K+ на свежем ролике. Умею делать контент, который досматривают.</li>
+              <li><span>Сделал</span>Полностью сам — идеи, съёмка, монтаж, ведение.</li>
+              <li class="result"><span>Результат</span>127K на лучшем ролике за сутки, 51K просмотров за 30 дней.</li>
             </ul>
+            <a class="case-link" href="https://www.instagram.com/daniyar.217/" target="_blank" rel="noopener">Смотреть блог <svg><use href="#i-arrow"/></svg> <em>@daniyar.217</em></a>
           </div>
         </article>
       </div>
@@ -797,8 +860,8 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
 
   <!-- 6. Прайс -->
   <!--
-    ЦЕНЫ: впишите стоимость вместо «Цена по запросу» в блоках .plan-price
-    (например «от 50 000 ₸») и уберите у этого блока класс tbd — цифры станут крупным шрифтом.
+    ЦЕНЫ: стоимость — в блоках .plan-price, состав пакета — в списке под ней.
+    Если нужно временно написать текст вместо цифры («Цена по запросу»), добавьте блоку класс tbd.
     и при необходимости поправьте состав пакетов.
   -->
   <section class="section" id="prices" aria-labelledby="prices-title">
@@ -815,10 +878,11 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
             <div class="plan-top"><h3 class="plan-name">Пробный</h3></div>
             <p class="plan-for">Чтобы познакомиться и посмотреть на результат</p>
           </div>
-          <p class="plan-price tbd">Цена по запросу<small>за ролик</small></p>
+          <p class="plan-price">25&nbsp;000&nbsp;₸<small>за 1 ролик</small></p>
           <ul>
             <li>Рилс под ключ: идея, сценарий, съёмка, монтаж</li>
             <li>Один выезд на съёмку</li>
+            <li>Одна правка после просмотра</li>
           </ul>
           <a class="btn btn-dark" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9F%D1%80%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
         </article>
@@ -828,10 +892,11 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
             <div class="plan-top"><h3 class="plan-name">Месяц контента</h3><span class="chip badge">Оптимально</span></div>
             <p class="plan-for">Регулярные рилсы, чтобы аккаунт работал весь месяц</p>
           </div>
-          <p class="plan-price tbd">Цена по запросу<small>в месяц</small></p>
+          <p class="plan-price">150&nbsp;000&nbsp;₸<small>в месяц · около 19&nbsp;000&nbsp;₸ за ролик</small></p>
           <ul>
             <li>Контент-план на месяц</li>
-            <li>Серия рилсов под ключ</li>
+            <li>8 рилсов под ключ — по 2 в неделю</li>
+            <li>2 выезда на съёмку</li>
             <li>Съёмка с моим участием в кадре</li>
           </ul>
           <a class="btn btn-lime" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9C%D0%B5%D1%81%D1%8F%D1%86%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82%D0%B0%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -842,15 +907,17 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
             <div class="plan-top"><h3 class="plan-name">Лицо бренда</h3></div>
             <p class="plan-for">Максимум узнаваемости: рилсы и фото в одном стиле</p>
           </div>
-          <p class="plan-price tbd">Цена по запросу<small>в месяц</small></p>
+          <p class="plan-price">250&nbsp;000&nbsp;₸<small>в месяц · 12 рилсов + фото</small></p>
           <ul>
-            <li>Всё из пакета «Месяц контента»</li>
-            <li>Я — постоянное лицо заведения в роликах</li>
-            <li>Мобилография: фото для меню, карточек и соцсетей</li>
+            <li>Контент-план на месяц</li>
+            <li>12 рилсов под ключ — по 3 в неделю</li>
+            <li>Я — постоянное лицо заведения в каждом ролике</li>
+            <li>Мобилография: 20 фото для меню, карточек и соцсетей</li>
           </ul>
           <a class="btn btn-dark" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9B%D0%B8%D1%86%D0%BE%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
         </article>
       </div>
+      <p class="price-note">Цены для Астаны. Выезд за город, дополнительные локации и срочный монтаж — обсуждаем отдельно.</p>
     </div>
   </section>
 
@@ -922,21 +989,49 @@ footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;jus
   new IntersectionObserver(function(e){contactsVisible=e[0].isIntersecting;update();},{threshold:.15}).observe(contacts);
 })();
 
-// Видео в кейсах: если в data-video указан файл, кнопка запускает его прямо в карточке
+// Видео в кейсах: превью-картинкой, грузится и играет только по нажатию (без автоплея)
 document.querySelectorAll('.reel').forEach(function(reel){
   var btn=reel.querySelector('.play');
   var src=reel.getAttribute('data-video');
   if(!btn) return;
   if(!src){ btn.hidden=true; return; }
+  reel.classList.add('has-video');
   var v=document.createElement('video');
-  v.src=src; v.playsInline=true; v.loop=true; v.preload='none';
-  v.setAttribute('playsinline','');
+  v.preload='none'; v.playsInline=true; v.setAttribute('playsinline','');
   var poster=reel.getAttribute('data-poster'); if(poster) v.poster=poster;
   reel.insertBefore(v,reel.firstChild);
   btn.addEventListener('click',function(){
-    v.play(); reel.classList.add('playing');
+    if(!v.src) v.src=src;
+    v.controls=true;
+    reel.classList.add('playing');
+    var pr=v.play();
+    if(pr && pr.catch) pr.catch(function(){ reel.classList.remove('playing'); v.controls=false; });
   });
-  v.addEventListener('click',function(){ v.pause(); reel.classList.remove('playing'); });
+  v.addEventListener('pause',function(){ if(!v.seeking) reel.classList.remove('playing'); v.controls=false; });
+  v.addEventListener('ended',function(){ reel.classList.remove('playing'); v.controls=false; });
+});
+
+// Листалка роликов: точки показывают текущий ролик, уехавший ролик ставится на паузу
+document.querySelectorAll('.reel-carousel').forEach(function(car){
+  var track=car.querySelector('.reel-track');
+  var slides=[].slice.call(track.querySelectorAll('.reel'));
+  var dots=[].slice.call(car.querySelectorAll('.reel-dots button'));
+  function current(){
+    var step=slides.length>1 ? slides[1].offsetLeft-slides[0].offsetLeft : 1;
+    return Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/step)));
+  }
+  var raf=0;
+  track.addEventListener('scroll',function(){
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(function(){
+      var i=current();
+      dots.forEach(function(d,k){ d.classList.toggle('on',k===i); if(k===i) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current'); });
+      slides.forEach(function(sl,k){ var v=sl.querySelector('video'); if(k!==i && v && !v.paused) v.pause(); });
+    });
+  },{passive:true});
+  dots.forEach(function(d,k){
+    d.addEventListener('click',function(){ track.scrollTo({left:slides[k].offsetLeft-slides[0].offsetLeft,behavior:'smooth'}); });
+  });
 });
 </script>
 </body>
