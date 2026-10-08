@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Данияр Нурсалимов — Reels Maker | Рилсы для кафе, ресторанов и магазинов</title>
+<meta name="description" content="Снимаю рилсы, которые приводят гостей, а не просто набирают лайки. Идея, сценарий, съёмка, монтаж и съёмка с моим участием в кадре. До 70K просмотров на ролик.">
+<meta name="author" content="Данияр Нурсалимов">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#2340EE">
+<link rel="canonical" href="https://daniyard4.github.io/reels/">
+
+<!-- Превью ссылки в мессенджерах и соцсетях -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Данияр Нурсалимов — Reels Maker">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://daniyard4.github.io/reels/">
+<meta property="og:title" content="Данияр — Reels Maker. Рилсы, которые приводят гостей">
+<meta property="og:description" content="Идея, съёмка, монтаж и лицо бренда в кадре. Для кафе, ресторанов и магазинов.">
+<meta property="og:image" content="https://daniyard4.github.io/reels/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://daniyard4.github.io/reels/og.jpg">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="photo.webp" type="image/webp">
+
+<style>
+/* Токены: цвета, радиусы, отступы */
+:root{
+  --bg:#E9E9EC;
+  --card:#FFFFFF;
+  --ink:#0C0C10;
+  --ink-2:#16161C;
+  --muted:#6B6B76;
+  --muted-dark:#9A9AA8;
+  --line:#DCDCE2;
+  --line-dark:rgba(255,255,255,.09);
+
+  --blue:#2340EE;
+  --blue-deep:#1428B8;
+  --blue-soft:#E6EAFF;
+  --lime:#C9F25B;
+  --lime-deep:#A6DB2C;
+
+  --r-xl:28px;
+  --r-lg:22px;
+  --r-md:16px;
+  --gutter:16px;
+  --maxw:1200px;
+  --ease:cubic-bezier(.22,.72,.24,1);
+
+  --f-body:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-num:'Unbounded','Onest',system-ui,sans-serif;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:76px;}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--f-body);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img,video,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,p{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+.ico{width:20px;height:20px;flex:none;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+/* Кнопки */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:0 22px;border-radius:999px;border:0;
+  font:600 15px/1 var(--f-body);cursor:pointer;white-space:nowrap;
+  transition:transform .25s var(--ease),background .25s var(--ease),color .25s var(--ease);
+}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(0);}
+.btn-white{background:#fff;color:var(--ink);}
+.btn-dark{background:var(--ink);color:#fff;}
+.btn-lime{background:var(--lime);color:var(--ink);}
+.btn-ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor;}
+.btn-round{width:52px;padding:0;}
+.btn-sm{min-height:40px;padding:0 16px;font-size:14px;}
+
+/* Метка раздела — как «(02) Why Cognix» */
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:999px;background:#fff;
+  font-size:13px;font-weight:500;color:var(--ink);
+}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);}
+.tag.on-dark{background:rgba(255,255,255,.08);color:#fff;}
+.tag.on-dark::before{background:var(--lime);}
+
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:500;
+  background:#F1F1F4;color:var(--ink);
+}
+.chip.dark{background:rgba(255,255,255,.08);color:#E6E6EE;}
+
+/* Шапка */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(233,233,236,.82);
+  backdrop-filter:saturate(150%) blur(14px);-webkit-backdrop-filter:saturate(150%) blur(14px);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:-.01em;}
+.logo-mark{
+  width:32px;height:32px;border-radius:50%;background:var(--blue);
+  display:grid;place-items:center;flex:none;
+}
+.logo small{display:block;font-size:11.5px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:1px;}
+.nav-links{display:none;gap:28px;font-size:14.5px;font-weight:500;}
+.nav-links a{color:#2A2A33;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.nav-cta{display:flex;gap:8px;}
+.nav-cta .btn-white{display:none;}
+
+/* Первый экран */
+.hero{
+  position:relative;overflow:hidden;
+  margin-top:4px;border-radius:var(--r-xl);
+  background:
+    radial-gradient(120% 80% at 85% 10%, rgba(120,150,255,.55) 0%, rgba(120,150,255,0) 55%),
+    linear-gradient(160deg,#2C4BFF 0%,var(--blue) 45%,var(--blue-deep) 100%);
+  color:#fff;
+  display:grid;
+}
+/* Мягкий световой блик, как на референсе */
+.hero::after{
+  content:"";position:absolute;inset:auto -20% -30% -20%;height:60%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.14),transparent 70%);
+  pointer-events:none;
+}
+.hero-photo{
+  position:relative;height:min(32vh,280px);min-height:210px;
+  margin:10px 10px 0;border-radius:22px;overflow:hidden;
+  background:#9fb0ff;
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;}
+.hero-photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,40,184,0) 55%,rgba(20,40,184,.55) 100%);
+}
+.float{
+  position:absolute;z-index:2;display:inline-flex;align-items:center;gap:8px;
+  padding:7px 13px 7px 8px;border-radius:999px;
+  background:rgba(255,255,255,.92);color:var(--ink);
+  font-size:12.5px;font-weight:600;
+  box-shadow:0 10px 30px -10px rgba(10,20,90,.45);
+}
+.float i{
+  width:18px;height:18px;border-radius:50%;background:var(--blue);
+  box-shadow:inset 0 0 0 4px #fff,0 0 0 1.5px var(--blue);
+}
+.float.f1{left:12px;bottom:14px;}
+.float.f2{right:12px;top:14px;}
+.float.f2 i{background:var(--lime-deep);box-shadow:inset 0 0 0 4px #fff,0 0 0 1.5px var(--lime-deep);}
+
+.hero-text{position:relative;z-index:1;padding:18px 18px 20px;}
+.hero-kicker{font-size:14px;font-weight:500;color:rgba(255,255,255,.82);}
+.hero-kicker b{color:#fff;font-weight:600;}
+.hero h1{
+  margin-top:10px;
+  font-weight:700;text-transform:uppercase;
+  font-size:clamp(32px,9.4vw,84px);line-height:1.08;letter-spacing:-.035em;
+}
+.h1-row{display:flex;align-items:center;gap:.22em;flex-wrap:wrap;}
+/* Пилюля со «стопкой» рилсов вместо аватаров референса */
+.stack{display:inline-flex;align-items:center;}
+.stack span{
+  width:.8em;height:.8em;border-radius:50%;margin-right:-.24em;
+  border:.06em solid var(--blue);background:#fff;display:grid;place-items:center;color:var(--ink);
+}
+.stack svg{width:34%;height:34%;margin-left:6%;}
+.stack span:nth-child(1){background:url(photo.webp) 50% 20%/cover,#cfd6ff;}
+.stack span:nth-child(2){background:var(--lime);}
+.stack span:nth-child(3){background:#fff;margin-right:0;}
+.hero-sub{
+  margin-top:12px;max-width:430px;
+  font-size:15.5px;line-height:1.5;color:rgba(255,255,255,.86);
+}
+.hero-sub strong{color:#fff;font-weight:600;}
+.hero-cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;}
+.hero-cta .btn-white{flex:1 1 auto;}
+.hero-cta .btn-round{background:#fff;color:var(--ink);}
+.hero-cta .ig{display:none;}
+
+/* Цифры */
+.section{padding-top:56px;}
+.stats{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat{
+  border-radius:var(--r-lg);padding:18px 16px 18px;min-height:150px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:16px;
+  background:var(--card);
+}
+.stat-num{font:500 clamp(30px,8.6vw,46px)/1 var(--f-num);letter-spacing:-.04em;}
+.stat-label{font-size:13.5px;line-height:1.35;color:var(--muted);}
+.stat.dark{background:var(--ink);color:#fff;}
+.stat.dark .stat-label{color:var(--muted-dark);}
+.stat.lime{background:linear-gradient(150deg,#E4FB9F 0%,var(--lime) 60%,var(--lime-deep) 100%);}
+.stat.lime .stat-label{color:#3B4A12;}
+.stat.blue{background:var(--blue);color:#fff;}
+.stat.blue .stat-label{color:rgba(255,255,255,.75);}
+.flow{display:flex;flex-wrap:wrap;gap:4px 6px;font-weight:600;font-size:15px;line-height:1.3;}
+.flow span{white-space:nowrap;}
+.flow em{font-style:normal;opacity:.45;}
+
+/* Заголовки секций */
+.head{display:grid;gap:14px;margin-bottom:22px;}
+.head .tag{justify-self:start;}
+.head h2{
+  font-weight:600;font-size:clamp(28px,7.4vw,52px);line-height:1.04;letter-spacing:-.035em;
+}
+.head p{color:var(--muted);font-size:15.5px;max-width:420px;}
+
+/* Услуги */
+.services{display:grid;gap:10px;}
+.svc{border-radius:var(--r-lg);padding:22px 20px;background:var(--card);position:relative;overflow:hidden;}
+.svc h3{font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.2;padding-right:52px;}
+.svc p{margin-top:8px;color:var(--muted);font-size:15px;}
+.svc-ico{
+  position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:12px;
+  display:grid;place-items:center;background:var(--blue);color:#fff;
+}
+.svc-ico .ico{width:20px;height:20px;}
+.svc .chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
+.svc .chips .chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);}
+.svc .chips .chip.on{background:var(--blue);color:#fff;}
+.svc .chips .chip.on::before{background:var(--lime);}
+
+.svc.main{
+  min-height:430px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;
+  background:
+    radial-gradient(70% 60% at 75% 25%,rgba(80,110,255,.75),transparent 70%),
+    linear-gradient(180deg,#0E1650 0%,#0A0F33 100%);
+}
+.svc.main p{color:rgba(255,255,255,.75);}
+.svc.main h3{font-size:26px;padding-right:0;}
+.svc.main .tag{position:absolute;top:18px;left:18px;}
+.svc.main .chips .chip{background:rgba(255,255,255,.1);color:#fff;}
+.svc.main .chips .chip::before{background:var(--lime);}
+/* Декоративная «лента» из кадров рилсов */
+.frames{position:absolute;top:70px;right:-10px;display:flex;gap:10px;transform:rotate(-8deg);}
+.frames span{
+  width:62px;aspect-ratio:9/16;border-radius:12px;
+  border:1px solid rgba(255,255,255,.22);
+  background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.03));
+  display:grid;place-items:center;
+}
+.frames span:nth-child(2){transform:translateY(22px);background:linear-gradient(180deg,rgba(201,242,91,.55),rgba(201,242,91,.08));}
+.frames svg{width:18px;height:18px;opacity:.9;}
+
+.svc.lime{background:linear-gradient(135deg,#F6FFE0 0%,#E5FA9E 55%,var(--lime) 100%);}
+.svc.lime p{color:#43501F;}
+.svc.lime .svc-ico{background:var(--ink);color:var(--lime);}
+.quote{
+  margin-top:16px;display:inline-flex;align-items:center;gap:10px;
+  padding:9px 16px 9px 9px;border-radius:999px;background:rgba(255,255,255,.75);
+  font-size:13.5px;font-weight:500;
+}
+.quote b{width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-size:12px;flex:none;}
+.svc.dark{background:var(--ink);color:#fff;}
+.svc.dark p{color:var(--muted-dark);}
+.svc.dark .svc-ico{background:#fff;color:var(--ink);}
+.svc.dark .chips .chip{background:rgba(255,255,255,.08);color:#fff;}
+.svc.dark .chips .chip::before{background:var(--lime);}
+
+/* Кейсы */
+.cases{display:grid;gap:12px;}
+.case{background:var(--card);border-radius:var(--r-xl);padding:10px 10px 22px;}
+.reel{
+  position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;color:#fff;
+  display:flex;flex-direction:column;justify-content:space-between;padding:14px;
+}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.reel-top,.reel-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.reel-bottom{align-items:flex-end;}
+.reel-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;
+  background:rgba(0,0,0,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font-size:12px;font-weight:600;
+}
+.play{
+  width:52px;height:52px;border-radius:50%;background:#fff;color:var(--ink);
+  display:grid;place-items:center;border:0;cursor:pointer;flex:none;
+}
+.play svg{width:18px;height:18px;margin-left:3px;}
+.reel-glyph{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-size:min(38vw,170px);font-weight:700;line-height:1;opacity:.16;letter-spacing:-.05em;
+  pointer-events:none;
+}
+.reel-title{font-size:19px;font-weight:600;line-height:1.15;max-width:72%;letter-spacing:-.01em;}
+.reel.playing .reel-glyph,.reel.playing .reel-top,.reel.playing .reel-title,.reel.playing .reel-face{opacity:0;}
+.reel.playing .play{opacity:0;}
+.reel.kr{background:radial-gradient(80% 60% at 30% 20%,#FF7A45 0%,transparent 70%),linear-gradient(170deg,#C3261F 0%,#5B0E10 100%);}
+.reel.jp{background:radial-gradient(80% 60% at 70% 25%,#FFB3C7 0%,transparent 70%),linear-gradient(170deg,#3A3F8F 0%,#11132E 100%);}
+.reel.me{background:radial-gradient(80% 60% at 60% 20%,#6F86FF 0%,transparent 70%),linear-gradient(170deg,var(--blue) 0%,#0B145C 100%);}
+.reel.me .reel-face{
+  position:absolute;inset:0;background:url(photo.webp) 50% 20%/cover;opacity:.35;mix-blend-mode:luminosity;
+}
+
+.case-body{padding:20px 10px 0;}
+.case-type{font-size:13px;color:var(--muted);font-weight:500;}
+.case h3{margin-top:4px;font-size:23px;font-weight:600;letter-spacing:-.02em;}
+.steps{margin-top:16px;display:grid;gap:12px;}
+.steps li{display:grid;grid-template-columns:96px 1fr;gap:12px;font-size:14.5px;line-height:1.45;}
+.steps li span{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:2px;}
+.steps li.result{
+  margin-top:4px;padding:14px;border-radius:var(--r-md);
+  background:var(--lime);grid-template-columns:84px 1fr;font-weight:500;
+}
+.steps li.result span{color:#3B4A12;}
+
+/* Мини-график просмотров для личного блога */
+.views{display:flex;align-items:flex-end;gap:8px;height:96px;margin-top:4px;}
+.views div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%;}
+.views i{display:block;width:100%;border-radius:8px 8px 4px 4px;background:rgba(255,255,255,.28);}
+.views div.top i{background:var(--lime);}
+.views b{font-size:12px;font-weight:600;}
+
+/* Как работаем — тёмный блок */
+.process{
+  border-radius:var(--r-xl);padding:28px 16px 18px;color:#fff;
+  background:
+    radial-gradient(60% 55% at 85% 0%,rgba(35,64,238,.75) 0%,rgba(35,64,238,0) 70%),
+    #08080B;
+}
+.process .head p{color:var(--muted-dark);}
+.process .head h2{color:#fff;}
+.pgrid{display:grid;gap:10px;}
+.pstep{
+  border-radius:var(--r-lg);padding:20px 18px;
+  background:rgba(255,255,255,.035);border:1px solid var(--line-dark);
+  display:flex;flex-direction:column;gap:18px;
+}
+.pstep-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.pstep-num{font:400 44px/1 var(--f-num);color:var(--lime);letter-spacing:-.04em;}
+.pstep-arrow{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;}
+.pstep-arrow svg{width:16px;height:16px;}
+.pstep h3{font-size:20px;font-weight:600;letter-spacing:-.015em;}
+.pstep p{margin-top:6px;color:var(--muted-dark);font-size:14.5px;}
+.pstep .chips{display:flex;gap:6px;flex-wrap:wrap;}
+.pstep.hl{background:var(--lime);border-color:transparent;color:var(--ink);}
+.pstep.hl .pstep-num{color:var(--ink);}
+.pstep.hl p{color:#3B4A12;}
+.pstep.hl .pstep-arrow{background:var(--ink);color:var(--lime);}
+.pstep.hl .chip{background:rgba(12,12,16,.1);color:var(--ink);}
+
+/* Прайс */
+.prices{display:grid;gap:10px;}
+.plan{
+  border-radius:var(--r-xl);padding:24px 20px 20px;background:var(--card);
+  display:flex;flex-direction:column;gap:18px;
+}
+.plan-top{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.plan-name{font-size:20px;font-weight:600;letter-spacing:-.015em;}
+.plan-for{margin-top:4px;color:var(--muted);font-size:14px;}
+.plan-price{font:500 clamp(26px,7vw,34px)/1.05 var(--f-num);letter-spacing:-.04em;}
+.plan-price.tbd{font:600 24px/1.1 var(--f-body);letter-spacing:-.02em;}
+.plan-price small{display:block;margin-top:6px;font:500 13px/1.3 var(--f-body);letter-spacing:0;color:var(--muted);}
+.plan ul{display:grid;gap:10px;font-size:15px;}
+.plan li{display:flex;gap:10px;align-items:flex-start;}
+.plan li::before{
+  content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;
+  background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/11px no-repeat;
+}
+.plan .btn{margin-top:auto;width:100%;}
+.plan.hl{background:var(--ink);color:#fff;}
+.plan.hl .plan-for,.plan.hl .plan-price small{color:var(--muted-dark);}
+.plan.hl li::before{background-color:var(--lime);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230C0C10' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E");}
+.plan .chip.badge{background:var(--lime);font-weight:600;}
+
+/* Контакты */
+.contact{
+  border-radius:var(--r-xl);overflow:hidden;color:#fff;padding:28px 16px 16px;
+  background:
+    radial-gradient(90% 60% at 100% 0%,rgba(140,165,255,.6),transparent 65%),
+    linear-gradient(165deg,#2C4BFF 0%,var(--blue) 50%,var(--blue-deep) 100%);
+}
+.contact h2{
+  font-weight:700;text-transform:uppercase;letter-spacing:-.035em;
+  font-size:clamp(34px,10vw,76px);line-height:.98;
+}
+.contact-sub{margin-top:14px;color:rgba(255,255,255,.82);max-width:440px;}
+.clinks{margin-top:24px;display:grid;gap:8px;}
+.clink{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 14px 14px 14px;border-radius:20px;background:rgba(255,255,255,.1);
+  transition:background .25s var(--ease),color .25s var(--ease);
+}
+.clink:hover{background:#fff;color:var(--ink);}
+.clink .ci{width:48px;height:48px;border-radius:14px;background:#fff;color:var(--blue);display:grid;place-items:center;flex:none;}
+.clink .ci .ico{width:24px;height:24px;}
+.clink.wa .ci{background:var(--lime);color:var(--ink);}
+.clink .cl-label{font-size:13px;opacity:.75;}
+.clink .cl-val{font-size:clamp(18px,5.2vw,26px);font-weight:600;letter-spacing:-.02em;line-height:1.2;word-break:break-word;}
+.clink .arr{margin-left:auto;width:22px;height:22px;flex:none;opacity:.8;}
+
+footer{padding:28px 0 110px;color:var(--muted);font-size:13.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+
+/* Липкая кнопка внизу экрана на телефоне */
+.dock{
+  position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;
+  display:flex;gap:8px;padding:6px;border-radius:999px;
+  background:rgba(12,12,16,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 18px 40px -12px rgba(0,0,0,.45);
+  transform:translateY(140%);transition:transform .35s var(--ease);
+}
+.dock.show{transform:none;}
+.dock .btn{min-height:48px;}
+.dock .btn-lime{flex:1;}
+.dock .btn-round{width:48px;background:rgba(255,255,255,.12);color:#fff;}
+
+/* ---------- Планшет ---------- */
+@media (min-width:640px){
+  :root{--gutter:24px;}
+  .stats{grid-template-columns:repeat(4,1fr);}
+  .stat{min-height:190px;padding:22px 20px;}
+  .services{grid-template-columns:1fr 1fr;}
+  .svc.main{grid-column:1 / -1;}
+  .cases{grid-template-columns:1fr 1fr;}
+  .reel{aspect-ratio:9/14;}
+  .case:last-child{grid-column:1 / -1;}
+  .case:last-child{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:8px;align-items:start;}
+  .pgrid{grid-template-columns:1fr 1fr;}
+  .prices{grid-template-columns:1fr 1fr;}
+  .plan:last-child{grid-column:1 / -1;}
+  .clinks{grid-template-columns:1fr 1fr;}
+  .nav-cta .btn-white{display:inline-flex;}
+  .hero-cta .ig{display:inline-flex;}
+}
+
+/* ---------- Десктоп ---------- */
+@media (min-width:1000px){
+  .nav-links{display:flex;}
+  .hero{grid-template-columns:1.15fr .85fr;min-height:620px;}
+  .hero-text{order:1;padding:64px 0 56px 52px;display:flex;flex-direction:column;justify-content:center;}
+  .hero-photo{order:2;height:auto;min-height:0;margin:14px 14px 14px 0;border-radius:24px;background:none;}
+  .hero-sub{font-size:17px;}
+  .hero-cta .btn-white{flex:0 0 auto;padding:0 26px;}
+  .float.f1{left:-14px;bottom:auto;top:52%;}
+  .float.f2{right:18px;top:auto;bottom:24%;}
+  .hero-photo{overflow:visible;}
+  .hero-photo picture,.hero-photo::after{position:absolute;inset:0;border-radius:24px;overflow:hidden;
+    clip-path:polygon(0 0,78% 0,100% 15%,100% 100%,0 100%);}
+  .hero-text{padding-right:24px;}
+
+  .section{padding-top:96px;}
+  .head{grid-template-columns:1.3fr 1fr;align-items:end;gap:40px;margin-bottom:32px;}
+  .head .tag{grid-column:1 / -1;justify-self:start;}
+  .head p{justify-self:end;}
+
+  .stat{min-height:220px;}
+  .services{grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto auto;}
+  .svc.main{grid-column:1;grid-row:1 / span 2;min-height:520px;padding:28px;}
+  .svc.main h3{font-size:34px;}
+  .frames{top:80px;right:40px;}
+  .frames span{width:96px;}
+  .svc.dark{grid-column:1 / -1;}
+
+  .cases{grid-template-columns:repeat(3,1fr);}
+  .case:last-child{grid-column:auto;display:block;}
+
+  .process{padding:52px 44px 44px;}
+  .pgrid{grid-template-columns:repeat(4,1fr);}
+  .pstep{min-height:300px;justify-content:space-between;}
+
+  .prices{grid-template-columns:repeat(3,1fr);}
+  .plan:last-child{grid-column:auto;}
+
+  .contact{padding:56px 52px 44px;display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:end;}
+  .contact h2{font-size:clamp(44px,4.6vw,64px);}
+  .clinks{grid-template-columns:1fr;margin-top:0;}
+
+  .dock{display:none;}
+  footer{padding-bottom:40px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- Иконки: один раз описаны, дальше используются через <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/>
+    <path d="M9.1 8.3c.2-.5.6-.5.9-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .5-.1.6l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .7-.5.9-.6.3-1.6.6-3-.1a9.3 9.3 0 0 1-4.3-4.3c-.7-1.4-.4-2.4-.3-3z" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21.5 4.2L2.8 11.4c-.8.3-.8 1.4.1 1.6l4.6 1.4 1.8 5.6c.2.7 1.1.9 1.6.3l2.6-2.6 4.6 3.4c.6.4 1.4.1 1.6-.6l3.1-14.1c.2-.8-.6-1.5-1.3-1.2z"/>
+    <path d="M7.5 14.4l9.8-6.9-7 7.9"/>
+  </symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/>
+    <circle cx="12" cy="12" r="4.1"/>
+    <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 3.5h3.2l1.6 4.2-2.2 1.5a11.5 11.5 0 0 0 7.2 7.2l1.5-2.2 4.2 1.6V19a1.8 1.8 0 0 1-1.9 1.8A16.8 16.8 0 0 1 3.2 5.4 1.8 1.8 0 0 1 5 3.5z"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h14M13 6l6 6-6 6"/>
+  </symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 17L17 7M8 7h9v9"/>
+  </symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.3-7.2c.6-.4.6-1.3 0-1.7L8.6 3.9C7.9 3.5 7 4 7 4.8z" fill="currentColor"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h3M8 17h6"/>
+  </symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9zM18.5 15l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" fill="currentColor"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 7.5h3l1.6-2.5h6.8L17 7.5h3a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V9A1.5 1.5 0 0 1 4 7.5z"/><circle cx="12" cy="13.3" r="3.6"/>
+  </symbol>
+</svg>
+
+<!--
+  КОНТАКТЫ. Замените заглушки на свои данные во всём файле (поиск и замена):
+    77000000000      → номер WhatsApp, только цифры, с кодом страны (7...)
+    +7 700 000 00 00 → телефон, как он показывается на сайте
+    tel:+77000000000 → телефон для звонка
+    t.me/username    → ваш Telegram
+    instagram.com/username и @username → ваш Instagram
+-->
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Данияр — Reels Maker, наверх">
+      <span class="logo-mark"><svg class="ico" style="width:14px;height:14px;color:#fff;margin-left:2px"><use href="#i-play"/></svg></span>
+      <span>Данияр<small>Reels Maker</small></span>
+    </a>
+    <nav aria-label="Разделы">
+      <ul class="nav-links">
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#cases">Кейсы</a></li>
+        <li><a href="#process">Как работаем</a></li>
+        <li><a href="#prices">Цены</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-white btn-sm" href="https://t.me/username" target="_blank" rel="noopener">Telegram</a>
+      <a class="btn btn-dark btn-sm" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B8%D0%BB%D1%81%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B2%D0%BE%D0%B5%D0%B3%D0%BE%20%D0%B7%D0%B0%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Первый экран -->
+  <div class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-photo">
+        <picture>
+          <source srcset="photo.webp" type="image/webp">
+          <img src="photo.jpg" width="900" height="1200" alt="Данияр Нурсалимов — reels maker" fetchpriority="high">
+        </picture>
+        <span class="float f1"><i></i>Сам в кадре — лицо бренда</span>
+        <span class="float f2"><i></i>До 70K просмотров</span>
+      </div>
+
+      <div class="hero-text">
+        <p class="hero-kicker"><b>Данияр Нурсалимов</b> · Reels Maker</p>
+        <h1 id="hero-title">
+          <span class="h1-row">Рилсы,</span>
+          <span class="h1-row"><span class="stack" aria-hidden="true"><span></span><span></span><span><svg><use href="#i-play"/></svg></span></span>которые</span>
+          <span class="h1-row">приводят гостей</span>
+        </h1>
+        <p class="hero-sub">А не просто набирают лайки. Идея, съёмка, монтаж и&nbsp;<strong>я сам в кадре</strong> — для кафе, ресторанов и магазинов.</p>
+        <div class="hero-cta">
+          <a class="btn btn-white" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B8%D0%BB%D1%81%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B2%D0%BE%D0%B5%D0%B3%D0%BE%20%D0%B7%D0%B0%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F" target="_blank" rel="noopener">
+            <svg class="ico"><use href="#i-wa"/></svg>Написать в WhatsApp
+          </a>
+          <a class="btn btn-round" href="https://t.me/username" target="_blank" rel="noopener" aria-label="Написать в Telegram"><svg class="ico"><use href="#i-tg"/></svg></a>
+          <a class="btn btn-round ig" href="https://instagram.com/username" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Цифры -->
+    <section class="stats" aria-label="Коротко в цифрах">
+      <div class="stat dark">
+        <p class="stat-label">Просмотров на ролик</p>
+        <p class="stat-num">70K</p>
+      </div>
+      <div class="stat">
+        <p class="stat-label">Проекта: ресторан, магазин и личный блог</p>
+        <p class="stat-num">3</p>
+      </div>
+      <div class="stat lime">
+        <p class="stat-label">Полный цикл</p>
+        <p class="flow"><span>Идея</span><em>→</em><span>съёмка</span><em>→</em><span>монтаж</span><em>→</em><span>в кадре</span></p>
+      </div>
+      <div class="stat blue">
+        <p class="stat-label">Один человек на весь процесс — без агентских наценок и цепочек</p>
+        <p class="stat-num">1</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 3. Что я делаю -->
+  <section class="section" id="services" aria-labelledby="svc-title">
+    <div class="wrap">
+      <div class="head">
+        <span class="tag">(01) Что я делаю</span>
+        <h2 id="svc-title">Контент, после которого к вам приходят, а не листают дальше.</h2>
+        <p>Беру на себя всё — от идеи до готового ролика. Вам не нужно искать сценариста, оператора и монтажёра отдельно.</p>
+      </div>
+
+      <div class="services">
+        <article class="svc main">
+          <span class="tag on-dark">Главная услуга</span>
+          <div class="frames" aria-hidden="true">
+            <span><svg><use href="#i-play"/></svg></span>
+            <span><svg><use href="#i-play"/></svg></span>
+            <span><svg><use href="#i-play"/></svg></span>
+          </div>
+          <h3>Рилсы под ключ</h3>
+          <p>Придумываю идею, пишу сценарий, снимаю и монтирую. Вы получаете готовые ролики, которые остаётся только выложить.</p>
+          <div class="chips">
+            <span class="chip">Идея</span><span class="chip">Сценарий</span><span class="chip">Съёмка</span><span class="chip">Монтаж</span>
+          </div>
+        </article>
+
+        <article class="svc">
+          <span class="svc-ico"><svg class="ico"><use href="#i-cal"/></svg></span>
+          <h3>Контент-план на месяц</h3>
+          <p>Расписываю, что и когда выходит, чтобы аккаунт жил регулярно, а не от случая к случаю.</p>
+          <div class="chips">
+            <span class="chip">Неделя 1</span><span class="chip">Неделя 2</span><span class="chip on">Неделя 3</span><span class="chip">Неделя 4</span>
+          </div>
+        </article>
+
+        <article class="svc lime">
+          <span class="svc-ico"><svg class="ico"><use href="#i-star"/></svg></span>
+          <h3>Съёмка с моим участием в кадре</h3>
+          <p>Становлюсь лицом бренда, которое запоминают. Гостям проще прийти туда, где их уже «встретил» знакомый человек.</p>
+          <span class="quote"><b>“</b>«Это же вы из рилса!»</span>
+        </article>
+
+        <article class="svc dark">
+          <span class="svc-ico"><svg class="ico"><use href="#i-camera"/></svg></span>
+          <h3>Мобилография</h3>
+          <p>Фото для меню, карточек товаров и соцсетей — снятые так, чтобы хотелось заказать.</p>
+          <div class="chips">
+            <span class="chip">Меню</span><span class="chip">Карточки товаров</span><span class="chip">Соцсети</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Кейсы -->
+  <section class="section" id="cases" aria-labelledby="cases-title">
+    <div class="wrap">
+      <div class="head">
+        <span class="tag">(02) Кейсы</span>
+        <h2 id="cases-title">Что уже сделано и что это дало бизнесу.</h2>
+        <p>Не «красивые картинки», а результат: люди узнавали, приходили и досматривали до конца.</p>
+      </div>
+
+      <div class="cases">
+        <!--
+          Чтобы вставить настоящее видео: положите файл в папку reels/cases/
+          и пропишите путь в data-video, например data-video="cases/korean.mp4".
+          Можно добавить обложку: data-poster="cases/korean.jpg".
+        -->
+        <article class="case">
+          <div class="reel kr" data-video="" data-poster="">
+            <span class="reel-glyph" aria-hidden="true">한식</span>
+            <div class="reel-top"><span class="reel-badge">Reels · 9:16</span></div>
+            <div class="reel-bottom">
+              <p class="reel-title">Корейская кухня, которую узнают в лицо</p>
+              <button class="play" type="button" aria-label="Смотреть ролик"><svg><use href="#i-play"/></svg></button>
+            </div>
+          </div>
+          <div class="case-body">
+            <p class="case-type">Ресторан</p>
+            <h3>Корейский ресторан</h3>
+            <ul class="steps">
+              <li><span>Задача</span>Чтобы о ресторане узнали и пришли новые гости.</li>
+              <li><span>Сделал</span>Контент-план, съёмка и монтаж, сам в кадре как лицо заведения.</li>
+              <li class="result"><span>Результат</span>Выросла узнаваемость, гостей стало больше — меня узнавали лично.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="reel jp" data-video="" data-poster="">
+            <span class="reel-glyph" aria-hidden="true">日本</span>
+            <div class="reel-top"><span class="reel-badge">Reels · 9:16</span></div>
+            <div class="reel-bottom">
+              <p class="reel-title">Японский магазин, в который хочется зайти</p>
+              <button class="play" type="button" aria-label="Смотреть ролик"><svg><use href="#i-play"/></svg></button>
+            </div>
+          </div>
+          <div class="case-body">
+            <p class="case-type">Магазин</p>
+            <h3>Японский магазин</h3>
+            <ul class="steps">
+              <li><span>Задача</span>Рассказать о магазине и привести покупателей офлайн.</li>
+              <li><span>Сделал</span>Контент-план, съёмка и монтаж, сам в кадре.</li>
+              <li class="result"><span>Результат</span>Выросла узнаваемость — люди приходили в магазин после роликов.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="reel me" data-video="" data-poster="">
+            <span class="reel-face" aria-hidden="true"></span>
+            <div class="reel-top"><span class="reel-badge">Личный блог</span></div>
+            <div class="reel-bottom" style="display:block">
+              <div class="views" role="img" aria-label="Просмотры роликов: 10 тысяч, 70 тысяч и больше 20 тысяч на свежем">
+                <div><i style="height:22%"></i><b>10K</b></div>
+                <div class="top"><i style="height:100%"></i><b>70K</b></div>
+                <div><i style="height:36%"></i><b>20K+</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-body">
+            <p class="case-type">Свой аккаунт</p>
+            <h3>Личный блог</h3>
+            <ul class="steps">
+              <li><span>Задача</span>Проверить на себе, какой контент смотрят до конца.</li>
+              <li><span>Сделал</span>Идеи, съёмка, монтаж и ведение — полностью сам.</li>
+              <li class="result"><span>Результат</span>10K, 70K и 20K+ на свежем ролике. Умею делать контент, который досматривают.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Как работаем -->
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="process">
+        <div class="head">
+          <span class="tag on-dark">(03) Как работаем</span>
+          <h2 id="process-title">От сообщения до готовых рилсов — четыре шага.</h2>
+          <p>Никаких брифов на десять страниц. Вы пишете, дальше я веду процесс и держу вас в курсе.</p>
+        </div>
+        <ol class="pgrid" style="list-style:none;margin:0;padding:0">
+          <li class="pstep">
+            <div class="pstep-top"><span class="pstep-num">01</span><span class="pstep-arrow"><svg><use href="#i-arrow"/></svg></span></div>
+            <div>
+              <h3>Заявка</h3>
+              <p>Пишете в WhatsApp или Telegram: что за заведение и чего хотите добиться.</p>
+            </div>
+            <div class="chips"><span class="chip dark">WhatsApp</span><span class="chip dark">Telegram</span></div>
+          </li>
+          <li class="pstep">
+            <div class="pstep-top"><span class="pstep-num">02</span><span class="pstep-arrow"><svg><use href="#i-arrow"/></svg></span></div>
+            <div>
+              <h3>Созвон и идеи</h3>
+              <p>Обсуждаем задачу, я предлагаю идеи и контент-план под ваше заведение.</p>
+            </div>
+            <div class="chips"><span class="chip dark">Идеи</span><span class="chip dark">Контент-план</span></div>
+          </li>
+          <li class="pstep">
+            <div class="pstep-top"><span class="pstep-num">03</span><span class="pstep-arrow"><svg><use href="#i-arrow"/></svg></span></div>
+            <div>
+              <h3>Съёмка</h3>
+              <p>Приезжаю к вам и снимаю. Если нужно — сам выхожу в кадр.</p>
+            </div>
+            <div class="chips"><span class="chip dark">У вас на месте</span><span class="chip dark">В кадре</span></div>
+          </li>
+          <li class="pstep hl">
+            <div class="pstep-top"><span class="pstep-num">04</span><span class="pstep-arrow"><svg><use href="#i-arrow-up"/></svg></span></div>
+            <div>
+              <h3>Готовые рилсы</h3>
+              <p>Монтирую и отдаю ролики, готовые к публикации. Вам остаётся нажать «Поделиться».</p>
+            </div>
+            <div class="chips"><span class="chip">Монтаж</span><span class="chip">Готово к публикации</span></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Прайс -->
+  <!--
+    ЦЕНЫ: впишите стоимость вместо «Цена по запросу» в блоках .plan-price
+    (например «от 50 000 ₸») и уберите у этого блока класс tbd — цифры станут крупным шрифтом.
+    и при необходимости поправьте состав пакетов.
+  -->
+  <section class="section" id="prices" aria-labelledby="prices-title">
+    <div class="wrap">
+      <div class="head">
+        <span class="tag">(04) Цены</span>
+        <h2 id="prices-title">Три пакета — от пробного ролика до лица бренда.</h2>
+        <p>Не уверены, что выбрать? Напишите — подскажу, с чего начать именно вам.</p>
+      </div>
+
+      <div class="prices">
+        <article class="plan">
+          <div>
+            <div class="plan-top"><h3 class="plan-name">Пробный</h3></div>
+            <p class="plan-for">Чтобы познакомиться и посмотреть на результат</p>
+          </div>
+          <p class="plan-price tbd">Цена по запросу<small>за ролик</small></p>
+          <ul>
+            <li>Рилс под ключ: идея, сценарий, съёмка, монтаж</li>
+            <li>Один выезд на съёмку</li>
+          </ul>
+          <a class="btn btn-dark" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9F%D1%80%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="plan hl">
+          <div>
+            <div class="plan-top"><h3 class="plan-name">Месяц контента</h3><span class="chip badge">Оптимально</span></div>
+            <p class="plan-for">Регулярные рилсы, чтобы аккаунт работал весь месяц</p>
+          </div>
+          <p class="plan-price tbd">Цена по запросу<small>в месяц</small></p>
+          <ul>
+            <li>Контент-план на месяц</li>
+            <li>Серия рилсов под ключ</li>
+            <li>Съёмка с моим участием в кадре</li>
+          </ul>
+          <a class="btn btn-lime" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9C%D0%B5%D1%81%D1%8F%D1%86%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82%D0%B0%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="plan">
+          <div>
+            <div class="plan-top"><h3 class="plan-name">Лицо бренда</h3></div>
+            <p class="plan-for">Максимум узнаваемости: рилсы и фото в одном стиле</p>
+          </div>
+          <p class="plan-price tbd">Цена по запросу<small>в месяц</small></p>
+          <ul>
+            <li>Всё из пакета «Месяц контента»</li>
+            <li>Я — постоянное лицо заведения в роликах</li>
+            <li>Мобилография: фото для меню, карточек и соцсетей</li>
+          </ul>
+          <a class="btn btn-dark" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%C2%AB%D0%9B%D0%B8%D1%86%D0%BE%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%C2%BB" target="_blank" rel="noopener">Выбрать пакет<svg class="ico"><use href="#i-arrow"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Контакты -->
+  <section class="section" id="contacts" aria-labelledby="contacts-title">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <span class="tag on-dark">(05) Контакты</span>
+          <h2 id="contacts-title" style="margin-top:18px">Напишите&nbsp;—<br>обсудим ваш первый рилс</h2>
+          <p class="contact-sub">Расскажите, что у вас за заведение. Предложу идеи для роликов уже в переписке.</p>
+        </div>
+        <div class="clinks">
+          <a class="clink wa" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B8%D0%BB%D1%81%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B2%D0%BE%D0%B5%D0%B3%D0%BE%20%D0%B7%D0%B0%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F" target="_blank" rel="noopener">
+            <span class="ci"><svg class="ico"><use href="#i-wa"/></svg></span>
+            <span><span class="cl-label">WhatsApp</span><br><span class="cl-val">Написать</span></span>
+            <svg class="arr"><use href="#i-arrow-up"/></svg>
+          </a>
+          <a class="clink" href="https://t.me/username" target="_blank" rel="noopener">
+            <span class="ci"><svg class="ico"><use href="#i-tg"/></svg></span>
+            <span><span class="cl-label">Telegram</span><br><span class="cl-val">@username</span></span>
+            <svg class="arr"><use href="#i-arrow-up"/></svg>
+          </a>
+          <a class="clink" href="https://instagram.com/username" target="_blank" rel="noopener">
+            <span class="ci"><svg class="ico"><use href="#i-ig"/></svg></span>
+            <span><span class="cl-label">Instagram</span><br><span class="cl-val">@username</span></span>
+            <svg class="arr"><use href="#i-arrow-up"/></svg>
+          </a>
+          <a class="clink" href="tel:+77000000000">
+            <span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span>
+            <span><span class="cl-label">Телефон</span><br><span class="cl-val">+7 700 000 00 00</span></span>
+            <svg class="arr"><use href="#i-arrow-up"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Данияр Нурсалимов · Reels Maker</span>
+    <a href="#top">Наверх ↑</a>
+  </footer>
+</div>
+
+<!-- Кнопка связи, которая всегда под пальцем на телефоне -->
+<div class="dock" id="dock" aria-hidden="true">
+  <a class="btn btn-lime" tabindex="-1" href="https://wa.me/77000000000?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B8%D0%BB%D1%81%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B2%D0%BE%D0%B5%D0%B3%D0%BE%20%D0%B7%D0%B0%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+  <a class="btn btn-round" tabindex="-1" href="https://t.me/username" target="_blank" rel="noopener" aria-label="Telegram"><svg class="ico"><use href="#i-tg"/></svg></a>
+</div>
+
+<script>
+// Нижняя кнопка появляется, когда первый экран ушёл вверх, и прячется у блока контактов
+(function(){
+  var dock=document.getElementById('dock');
+  var hero=document.querySelector('.hero');
+  var contacts=document.getElementById('contacts');
+  if(!('IntersectionObserver' in window)) return;
+  var heroVisible=true, contactsVisible=false;
+  function update(){
+    var show=!heroVisible && !contactsVisible;
+    dock.classList.toggle('show',show);
+    dock.setAttribute('aria-hidden',show?'false':'true');
+    dock.querySelectorAll('a').forEach(function(a){a.tabIndex=show?0:-1;});
+  }
+  new IntersectionObserver(function(e){heroVisible=e[0].isIntersecting;update();}).observe(hero);
+  new IntersectionObserver(function(e){contactsVisible=e[0].isIntersecting;update();},{threshold:.15}).observe(contacts);
+})();
+
+// Видео в кейсах: если в data-video указан файл, кнопка запускает его прямо в карточке
+document.querySelectorAll('.reel').forEach(function(reel){
+  var btn=reel.querySelector('.play');
+  var src=reel.getAttribute('data-video');
+  if(!btn) return;
+  if(!src){ btn.hidden=true; return; }
+  var v=document.createElement('video');
+  v.src=src; v.playsInline=true; v.loop=true; v.preload='none';
+  v.setAttribute('playsinline','');
+  var poster=reel.getAttribute('data-poster'); if(poster) v.poster=poster;
+  reel.insertBefore(v,reel.firstChild);
+  btn.addEventListener('click',function(){
+    v.play(); reel.classList.add('playing');
+  });
+  v.addEventListener('click',function(){ v.pause(); reel.classList.remove('playing'); });
+});
+</script>
+</body>
+</html>
