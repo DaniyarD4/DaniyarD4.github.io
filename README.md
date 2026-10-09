@@ -13,7 +13,8 @@
 Лежит в папке `reels/` и не зависит от основного портфолио. Вёрстка mobile-first, без бэкенда — связь только через мессенджеры.
 
 - `reels/index.html` — вся страница
-- `reels/photo.webp`, `reels/photo.jpg` — фото на первом экране
+- `reels/hero.webp` — фото на первом экране: вырезано из фона и затонировано в красный (исходник — `images/myphoto.jpg`)
+- `reels/cases/` — ролики и обложки для кейсов
 - `reels/og.jpg` — превью ссылки в WhatsApp и Telegram
 - `reels/favicon.svg` — иконка вкладки
 
