@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@300;500;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="hero.webp" type="image/webp">
+<link rel="preload" as="image" href="me.webp" type="image/webp">
 
 <style>
 /* Палитра и токены. Чтобы сменить цвета сайта, достаточно поменять этот блок */
@@ -151,41 +151,63 @@ ul,ol{margin:0;padding:0;list-style:none;}
 .hero{
   position:relative;overflow:hidden;isolation:isolate;
   margin-top:8px;border-radius:var(--r-xl);
-  min-height:clamp(640px,calc(100svh - 76px),880px);
+  display:flex;flex-direction:column;padding:0 18px 20px;
   background:
-    radial-gradient(60% 45% at 50% 30%,rgba(200,22,30,.55) 0%,rgba(200,22,30,0) 70%),
+    radial-gradient(55% 40% at 50% 38%,rgba(200,22,30,.55) 0%,rgba(200,22,30,0) 70%),
     radial-gradient(120% 80% at 50% 110%,var(--wine-2) 0%,var(--wine) 60%,var(--night) 100%);
 }
 .hero-hud{
   position:absolute;z-index:5;left:22px;right:22px;top:22px;
   display:flex;justify-content:space-between;align-items:center;color:var(--light-soft);
 }
-/* Огромное имя за головой */
+/* Сцена: огромное имя, телефон с рилсом поверх и плавающие плашки */
+.stage{--pw:min(44vw,200px,calc((100svh - 340px) / 2.07));position:relative;height:calc(var(--pw) * 2.07 + 100px);margin:0 -18px;}
 .hero-word{
-  position:absolute;z-index:1;left:50%;top:76px;transform:translateX(-50%);
+  position:absolute;z-index:1;left:50%;top:62px;transform:translateX(-50%);
   font:800 calc((100vw - 60px) / 5.45)/.86 var(--f-wide);letter-spacing:-.045em;
   color:#fff;white-space:nowrap;user-select:none;pointer-events:none;
 }
-.hero-photo{
-  position:absolute;z-index:2;left:50%;top:78px;transform:translateX(-48%);
-  width:min(96vw,600px);
+.phone{
+  position:absolute;z-index:2;left:50%;top:86px;transform:translateX(-50%) rotate(-3deg);
+  width:var(--pw);aspect-ratio:9/18.6;padding:7px;border-radius:calc(var(--pw) * .17);
+  background:linear-gradient(145deg,#3a3a40,#0d0d10 40%,#26262b);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.14),0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6);
 }
-.hero-photo img{width:100%;height:auto;}
-/* Затемнение снизу, чтобы текст читался поверх фото */
-.hero::after{
-  content:"";position:absolute;z-index:3;inset:auto 0 0 0;height:58%;
-  background:linear-gradient(180deg,rgba(26,5,8,0) 0%,rgba(26,5,8,.82) 45%,var(--wine) 100%);
-  pointer-events:none;
-}
-.hero-tags{position:absolute;z-index:4;left:18px;right:18px;top:clamp(330px,92vw,420px);display:flex;justify-content:space-between;gap:8px;}
+.screen{position:relative;width:100%;height:100%;border-radius:calc(var(--pw) * .135);overflow:hidden;background:#000;}
+.screen picture{position:absolute;inset:0;}
+.screen img{width:100%;height:100%;object-fit:cover;object-position:52% 30%;}
+.island{position:absolute;z-index:3;top:7px;left:50%;transform:translateX(-50%);width:32%;height:calc(var(--pw) * .085);border-radius:99px;background:#000;}
+/* Интерфейс Reels поверх фото */
+.ui{position:absolute;inset:0;z-index:2;color:#fff;display:flex;flex-direction:column;justify-content:space-between;font-size:calc(var(--pw) * .052);}
+.ui-top{padding:calc(var(--pw) * .12) calc(var(--pw) * .06) 0;display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(180deg,rgba(0,0,0,.35),transparent);}
+.ui-top b{font:700 calc(var(--pw) * .075)/1 var(--f-body);letter-spacing:-.01em;}
+.ui-top svg{width:calc(var(--pw) * .085);height:calc(var(--pw) * .085);}
+.ui-side{position:absolute;right:calc(var(--pw) * .04);bottom:calc(var(--pw) * .36);display:flex;flex-direction:column;align-items:center;gap:calc(var(--pw) * .055);}
+.ui-side svg{width:calc(var(--pw) * .1);height:calc(var(--pw) * .1);filter:drop-shadow(0 1px 2px rgba(0,0,0,.5));}
+.ui-side .liked{color:#FF3040;}
+.ui-bottom{padding:calc(var(--pw) * .25) calc(var(--pw) * .2) calc(var(--pw) * .06) calc(var(--pw) * .055);
+  background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);}
+.ui-user{display:flex;align-items:center;gap:calc(var(--pw) * .03);font-weight:600;}
+.ui-user img{width:calc(var(--pw) * .1);height:calc(var(--pw) * .1);border-radius:50%;border:1.5px solid #fff;}
+.ui-user span.follow{padding:2px 7px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);font-size:.9em;}
+.ui-cap{margin-top:calc(var(--pw) * .025);line-height:1.3;}
+.ui-audio{margin-top:calc(var(--pw) * .02);opacity:.85;font-size:.9em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ui-bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.3);}
+.ui-bar i{display:block;height:100%;width:38%;background:#fff;animation:progress 15s linear infinite;}
+@keyframes progress{from{width:0}to{width:100%}}
+/* Плавающие плашки у телефона */
 .ftag{
-  display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:14px;
-  background:rgba(20,5,8,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  box-shadow:inset 0 0 0 1px var(--line-dark);
+  position:absolute;z-index:4;display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:14px;
+  background:rgba(20,5,8,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 0 0 1px var(--line-dark),0 16px 40px -18px rgba(0,0,0,.8);max-width:118px;padding:8px 11px;
 }
-.ftag b{font:700 20px/1 var(--f-wide);letter-spacing:-.03em;color:#fff;}
-.ftag span{font-size:11.5px;color:var(--light-soft);line-height:1.3;}
-.hero-copy{position:absolute;z-index:5;left:18px;right:18px;bottom:20px;}
+.ftag b{font:700 16px/1 var(--f-wide);letter-spacing:-.03em;color:#fff;}
+.ftag span{font-size:10.5px;color:var(--light-soft);line-height:1.3;}
+.ftag.t1{left:10px;top:calc(var(--pw) * 1.2);}
+.ftag.t2{right:10px;top:calc(var(--pw) * .75);}
+.ftag.t2 b{color:var(--red-hi);}
+.hero-copy{position:relative;z-index:5;}
 .hero-copy .label{color:var(--light-soft);}
 .hero h1{
   margin-top:10px;font:700 clamp(22px,6.4vw,34px)/1.08 var(--f-wide);
@@ -195,6 +217,8 @@ ul,ol{margin:0;padding:0;list-style:none;}
 .hero-sub{margin-top:10px;max-width:420px;font-size:15px;line-height:1.5;color:var(--light-soft);}
 .hero-sub b{color:var(--light);font-weight:600;}
 .hero-cta{margin-top:16px;display:flex;gap:10px;}
+@media (max-height:700px) and (max-width:639px){.hero-sub{display:none;}}
+@media (max-width:359px){.hero-cta .btn-round{display:none;}}
 .hero-cta .btn-white{flex:1;justify-content:space-between;}
 /* Круглая кнопка, как «Start a project» */
 .circle-cta{
@@ -209,16 +233,6 @@ ul,ol{margin:0;padding:0;list-style:none;}
 .circle-cta .rec{font-family:var(--f-body);color:var(--red);font-size:11px;}
 .circle-cta:hover .rec{color:#fff;}
 .circle-cta:hover .rec i{background:#fff;}
-/* Мини-карточка ролика, как «Watch» */
-.watch{
-  display:none;position:absolute;z-index:6;align-items:center;gap:12px;
-  padding:8px 16px 8px 8px;border-radius:18px;
-  background:rgba(20,5,8,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  box-shadow:inset 0 0 0 1px var(--line-dark);
-}
-.watch img{width:56px;height:76px;object-fit:cover;border-radius:10px;}
-.watch b{display:block;font:700 12px/1.2 var(--f-wide);text-transform:uppercase;letter-spacing:.02em;}
-.watch span{font-size:12px;color:var(--light-soft);}
 
 /* ---------- Цифры ---------- */
 .numbers{padding:56px 0 8px;}
@@ -344,7 +358,7 @@ ul,ol{margin:0;padding:0;list-style:none;}
 .play-center svg{width:22px;height:22px;}
 .reel.playing .reel-top,.reel.playing .reel-bottom,.reel.playing .reel-hero,.reel.playing .vf,.reel.playing .play{opacity:0;pointer-events:none;}
 .reel.yoko{background:radial-gradient(70% 55% at 50% 38%,rgba(229,48,43,.55),transparent 70%),linear-gradient(170deg,var(--wine-2),var(--night));}
-.reel.me{background:url(hero.webp) 50% 0/cover no-repeat,radial-gradient(70% 55% at 50% 30%,rgba(200,22,30,.5),transparent 70%),var(--wine);}
+.reel.me{background:url(me.webp) 50% 25%/cover no-repeat,var(--wine);}
 .reel.me::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(12,6,7,.85));}
 .reel-hero{
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -473,10 +487,14 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
   :root{--gutter:24px;}
   .nav-cta .tg{display:inline-flex;}
   .hide-m{display:inline;}
-  .hero-tags{left:28px;right:28px;}
-  .hero-photo{width:min(84vw,600px);top:60px;}
-  .hero-word{font-size:calc((100vw - 96px) / 5.45);}
-  .hero-copy{left:28px;right:28px;bottom:28px;}
+  .hero{padding:0 28px 28px;}
+  .stage{--pw:min(250px,calc((100svh - 360px) / 2.07));margin:0 -28px;}
+  .ftag{max-width:170px;padding:10px 14px;}
+  .ftag b{font-size:19px;}
+  .ftag span{font-size:11.5px;}
+  .hero-word{font-size:calc((100vw - 96px) / 5.45);top:70px;}
+  .ftag.t1{left:calc(50% - var(--pw) / 2 - 150px);}
+  .ftag.t2{right:calc(50% - var(--pw) / 2 - 150px);}
   .num-grid{grid-template-columns:1fr 1fr;border-top:0;gap:24px 32px;}
   .num:first-child{grid-column:1 / -1;}
   .num{border-top:1px solid var(--line-dark);border-bottom:0;padding:24px 0 0;}
@@ -497,17 +515,20 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
 /* ---------- Десктоп ---------- */
 @media (min-width:1000px){
   .nav-links{display:flex;}
-  .hero{min-height:780px;}
+  .hero{min-height:800px;padding:0;}
   .hero-hud{left:40px;right:40px;top:30px;}
-  .hero-word{top:130px;font-size:calc((min(100vw,1240px) - 128px) / 5.45);}
-  .hero-photo{top:60px;width:560px;}
-  .hero::after{height:34%;}
-  .hero-tags{left:40px;right:auto;top:auto;bottom:300px;flex-direction:column;align-items:flex-start;}
-  .hero-copy{left:40px;right:auto;bottom:40px;max-width:400px;}
+  .stage{--pw:300px;position:absolute;inset:0;height:auto;margin:0;}
+  .ftag{max-width:200px;}
+  .hero-word{top:150px;font-size:calc((min(100vw,1240px) - 128px) / 5.45);}
+  .phone{top:96px;}
+  .ftag{max-width:190px;}
+  .ftag.t1{left:auto;right:calc(50% + var(--pw) / 2 + 24px);top:470px;}
+  .ftag.t2{right:auto;left:calc(50% + var(--pw) / 2 + 24px);top:430px;}
+  .ftag b{font-size:22px;}
+  .hero-copy{position:absolute;left:40px;bottom:40px;max-width:380px;}
   .hero h1{font-size:28px;}
   .hero-cta{display:none;}
-  .circle-cta{display:flex;right:60px;bottom:70px;}
-  .watch{display:flex;right:40px;top:auto;bottom:300px;}
+  .circle-cta{display:flex;right:60px;bottom:60px;}
 
   .numbers{padding-top:80px;}
   .num-grid{grid-template-columns:1.45fr .7fr 1.25fr;gap:0 40px;}
@@ -615,20 +636,38 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
         <span class="rec"><i></i>Rec&nbsp;00:15</span>
       </div>
 
-      <div class="hero-word" aria-hidden="true">ДАНИЯР</div>
-      <div class="hero-photo">
-        <img src="hero.webp" width="900" height="1271" alt="Данияр Нурсалимов" fetchpriority="high">
-      </div>
+      <div class="stage">
+        <div class="hero-word" aria-hidden="true">ДАНИЯР</div>
 
-      <div class="hero-tags">
-        <span class="ftag"><b>4&nbsp;млн</b><span>просмотров на лучшем ролике</span></span>
-        <span class="ftag"><b>В кадре</b><span>сам — лицо бренда</span></span>
-      </div>
+        <!-- Телефон с открытым рилсом: внутри исходное фото без обработки -->
+        <div class="phone">
+          <div class="screen">
+            <span class="island" aria-hidden="true"></span>
+            <picture>
+              <source srcset="me.webp" type="image/webp">
+              <img src="me.jpg" width="900" height="1354" alt="Данияр Нурсалимов" fetchpriority="high">
+            </picture>
+            <div class="ui" aria-hidden="true">
+              <div class="ui-top"><b>Reels</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7.5h3l1.6-2.5h6.8L17 7.5h3a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V9A1.5 1.5 0 0 1 4 7.5z"/><circle cx="12" cy="13.3" r="3.6"/></svg></div>
+              <div class="ui-side">
+                <svg class="liked" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.5 4.5 7 4.5c2 0 3.6 1.1 5 2.9 1.4-1.8 3-2.9 5-2.9 3.5 0 5.6 3.5 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.4 7.6L3.5 20.5l1.4-4.4A8.5 8.5 0 1 1 20.5 11.5z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21.5 3.5L10 14.5M21.5 3.5l-7 17-4.5-6-6.5-4z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
+              </div>
+              <div class="ui-bottom">
+                <div class="ui-user"><img src="me-avatar.jpg" alt="" width="48" height="48">daniyar.217<span class="follow">Подписаться</span></div>
+                <p class="ui-cap">Снимаю рилсы, которые приводят гостей 🎬</p>
+                <p class="ui-audio">♫ Данияр · Оригинальный звук</p>
+              </div>
+              <span class="ui-bar"><i></i></span>
+            </div>
+          </div>
+        </div>
 
-      <a class="watch" href="#cases">
-        <img src="cases/chico-1.jpg" alt="" width="56" height="76" loading="lazy">
-        <span><b>Смотреть кейсы</b><span>YOKO · Чико · блог</span></span>
-      </a>
+        <span class="ftag t1"><b>4&nbsp;млн</b><span>просмотров на лучшем ролике</span></span>
+        <span class="ftag t2"><b>В кадре</b><span>сам — лицо бренда</span></span>
+      </div>
 
       <div class="hero-copy">
         <span class="label">Данияр Нурсалимов</span>
