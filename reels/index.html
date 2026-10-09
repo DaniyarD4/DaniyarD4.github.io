@@ -358,10 +358,12 @@ ul,ol{margin:0;padding:0;list-style:none;}
 .play-center svg{width:22px;height:22px;}
 .reel.playing .reel-top,.reel.playing .reel-bottom,.reel.playing .reel-hero,.reel.playing .vf,.reel.playing .play{opacity:0;pointer-events:none;}
 /* Скриншоты профиля и статистики вместо заглушек */
-.reel.shot{aspect-ratio:9/16;background:var(--wine-2);}
+.reel.shot{background:var(--wine-2);}
+.reel.shot picture{position:absolute;inset:0;}
 .shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;}
-.reel.shot::after{content:"";position:absolute;inset:auto 0 0 0;height:22%;background:linear-gradient(180deg,transparent,rgba(12,6,7,.7));pointer-events:none;}
-.reel.shot .reel-bottom{z-index:2;}
+.reel.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,5,8,.62) 0%,rgba(26,5,8,.7) 45%,rgba(26,5,8,.9) 100%);pointer-events:none;}
+.reel.shot .reel-top,.reel.shot .reel-bottom,.reel.shot .reel-hero{z-index:2;}
+.reel.shot .vf{z-index:3;}
 .reel.playing .shot-img{opacity:0;}
 .reel-hero{
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -761,11 +763,18 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
         -->
         <article class="case">
           <div class="reel shot" data-video="" data-poster="">
-            <picture><source srcset="cases/yoko-tiktok.webp" type="image/webp"><img class="shot-img" src="cases/yoko-tiktok.jpg" width="720" height="1280" loading="lazy" alt="Профиль YOKO в TikTok: 6278 подписчиков, 664 тысячи лайков, лучший ролик — 4 млн просмотров"></picture>
+            <picture><source srcset="cases/yoko-tiktok.webp" type="image/webp"><img class="shot-img" src="cases/yoko-tiktok.jpg" width="720" height="1280" loading="lazy" alt=""></picture>
             <span class="vf" aria-hidden="true"></span>
-            <div class="reel-bottom">
-              <span class="reel-badge">TikTok @yoko_omsk</span>
+            <div class="reel-hero" aria-hidden="true"><b>4&nbsp;млн</b><span>просмотров на лучшем ролике</span></div>
+            <div class="reel-top">
+              <span class="reel-badge">TikTok · 9:16</span>
               <button class="play" type="button" aria-label="Смотреть ролик YOKO"><svg><use href="#i-play"/></svg></button>
+            </div>
+            <div class="reel-bottom">
+              <div class="reel-stats" role="img" aria-label="Аккаунт YOKO: 6270 подписчиков и 662 тысячи лайков">
+                <div><b>6270</b><small>подписчиков</small></div>
+                <div class="top"><b>662K</b><small>лайков</small></div>
+              </div>
             </div>
           </div>
           <div class="case-body">
@@ -774,7 +783,7 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
             <ul class="steps">
               <li><span>Задача</span>Привести покупателей в офлайн-магазин через короткие видео.</li>
               <li><span>Сделал</span>Всё от идеи до монтажа — сценарий, съёмка, монтаж, сам в кадре.</li>
-              <li class="result"><span>Результат</span>Мой лучший ролик — 4 млн просмотров. Аккаунт: 6278 подписчиков, 664K лайков.</li>
+              <li class="result"><span>Результат</span>Мой лучший ролик — 4 млн просмотров. Аккаунт: 6270 подписчиков, 662K лайков.</li>
             </ul>
             <a class="case-link" href="https://www.tiktok.com/@yoko_omsk" target="_blank" rel="noopener">Смотреть аккаунт <em>@yoko_omsk</em><span class="arrow"><svg><use href="#i-arrow"/></svg></span></a>
           </div>
@@ -813,11 +822,17 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
 
         <article class="case">
           <div class="reel shot" data-video="" data-poster="">
-            <picture><source srcset="cases/blog-stats.webp" type="image/webp"><img class="shot-img" src="cases/blog-stats.jpg" width="720" height="1280" loading="lazy" alt="Статистика ролика в Instagram: 345 тысяч просмотров, 11,5 тысячи лайков, 15,4 тысячи репостов"></picture>
+            <picture><source srcset="cases/blog-stats.webp" type="image/webp"><img class="shot-img" src="cases/blog-stats.jpg" width="720" height="1280" loading="lazy" alt=""></picture>
             <span class="vf" aria-hidden="true"></span>
-            <div class="reel-bottom">
-              <span class="reel-badge">Instagram @daniyar.217</span>
+            <div class="reel-top">
+              <span class="reel-badge">Instagram · блог</span>
               <button class="play" type="button" aria-label="Смотреть ролик из блога"><svg><use href="#i-play"/></svg></button>
+            </div>
+            <div class="reel-bottom">
+              <div class="reel-stats" role="img" aria-label="Лучший ролик: 345 тысяч просмотров и 15,4 тысячи репостов">
+                <div class="top"><b>345K</b><small>просмотров на лучшем ролике</small></div>
+                <div><b>15,4K</b><small>репостов</small></div>
+              </div>
             </div>
           </div>
           <div class="case-body">
@@ -826,7 +841,7 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
             <ul class="steps">
               <li><span>Задача</span>Проверить на себе, какой контент смотрят до конца.</li>
               <li><span>Сделал</span>Полностью сам — идеи, съёмка, монтаж, ведение.</li>
-              <li class="result"><span>Результат</span>127K на лучшем ролике за сутки, 51K просмотров за 30 дней.</li>
+              <li class="result"><span>Результат</span>345K просмотров и 15,4K репостов на лучшем ролике. Умею делать контент, который досматривают и пересылают.</li>
             </ul>
             <a class="case-link" href="https://www.instagram.com/daniyar.217/" target="_blank" rel="noopener">Смотреть блог <em>@daniyar.217</em><span class="arrow"><svg><use href="#i-arrow"/></svg></span></a>
           </div>
