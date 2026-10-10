@@ -29,6 +29,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@300;500;700;800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="me.webp" type="image/webp">
+<link rel="preload" as="image" href="phone-back.webp" type="image/webp">
+<link rel="preload" as="image" href="phone-front.webp" type="image/webp">
 
 <style>
 /* Палитра и токены. Чтобы сменить цвета сайта, достаточно поменять этот блок */
@@ -167,16 +169,69 @@ ul,ol{margin:0;padding:0;list-style:none;}
   font:800 calc((100vw - 60px) / 5.45)/.86 var(--f-wide);letter-spacing:-.045em;
   color:#fff;white-space:nowrap;user-select:none;pointer-events:none;
 }
+/*
+  Телефон собран из трёх слоёв:
+  .phone       — место на экране и лёгкое «парение»;
+  .phone-tilt  — наклон за мышкой (переменные --rx/--ry задаёт скрипт) и свечение вокруг;
+  .phone-body  — сам корпус, анимация появления и контурный свет по рамке.
+*/
+@property --rim{syntax:'<angle>';inherits:true;initial-value:0deg;}
 .phone{
-  position:absolute;z-index:2;left:50%;top:86px;transform:translateX(-50%) rotate(-3deg);
-  width:var(--pw);aspect-ratio:9/18.6;padding:7px;border-radius:calc(var(--pw) * .17);
-  background:linear-gradient(145deg,#3a3a40,#0d0d10 40%,#26262b);
-  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.14),0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6);
+  position:absolute;z-index:2;left:50%;top:86px;width:var(--pw);aspect-ratio:291/600;
+  transform:translateX(-50%) rotate(-3deg);perspective:900px;
+  animation:appear .5s ease-out .15s both,float 6s ease-in-out 2.6s infinite;
 }
-.screen{position:relative;width:100%;height:100%;border-radius:calc(var(--pw) * .135);overflow:hidden;background:#000;}
+@keyframes appear{from{opacity:0;}}
+@keyframes float{50%{transform:translateX(-50%) rotate(-3deg) translateY(-8px);}}
+.phone-tilt{
+  --rx:0deg;--ry:0deg;position:absolute;inset:0;border-radius:calc(var(--pw) * .17);
+  transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  animation:rim 7s linear infinite;
+}
+@keyframes rim{to{--rim:360deg;}}
+/* Мягкое свечение за телефоном: бежит по кругу вместе с бликом на рамке */
+.phone-tilt::before{
+  content:"";position:absolute;inset:-10px;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:conic-gradient(from var(--rim),rgba(229,48,43,0) 0deg,rgba(229,48,43,.9) 40deg,rgba(255,214,206,.9) 70deg,rgba(229,48,43,.6) 100deg,rgba(229,48,43,0) 150deg,rgba(229,48,43,0) 200deg,rgba(229,48,43,.55) 250deg,rgba(229,48,43,0) 300deg);
+  filter:blur(22px);opacity:.85;
+  animation:glow-in 1.2s ease-out 1.2s both;
+}
+@keyframes glow-in{from{opacity:0;}}
+.phone-body{
+  position:relative;width:100%;height:100%;border-radius:inherit;transform-style:preserve-3d;
+  animation:flip 2.2s cubic-bezier(.45,.05,.2,1) .15s both;
+}
+/* Появление: телефон лежит спиной к зрителю, поднимается и поворачивается экраном */
+@keyframes flip{
+  from{transform:translateY(50px) rotateX(58deg) rotateY(180deg) rotateZ(-8deg) scale(.82);}
+  45%{transform:translateY(0) rotateX(0) rotateY(180deg) rotateZ(0) scale(.94);}
+  to{transform:none;}
+}
+/* Две стороны телефона: лицевая (рамка мокапа поверх рилса) и спина */
+.face{position:absolute;inset:0;border-radius:inherit;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.face-back{transform:rotateY(180deg);background:url(phone-back.webp) center/100% 100% no-repeat;}
+.face-front .screen{position:absolute;left:4.12%;right:4.12%;top:1.5%;bottom:1.67%;width:auto;height:auto;border-radius:calc(var(--pw) * .138);}
+.face-front .frame{position:absolute;inset:0;z-index:6;width:100%;height:100%;pointer-events:none;}
+/* Контурный свет: тонкая светящаяся линия, которая обегает рамку */
+.phone-body::after{
+  content:"";position:absolute;inset:0;z-index:5;border-radius:inherit;padding:1.6px;pointer-events:none;
+  background:conic-gradient(from var(--rim),rgba(255,255,255,0) 0deg,rgba(255,120,110,.9) 35deg,#fff 65deg,rgba(255,120,110,.9) 95deg,rgba(255,255,255,0) 140deg,rgba(255,255,255,0) 210deg,rgba(229,48,43,.7) 255deg,rgba(255,255,255,0) 300deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:glow-in 1.2s ease-out 1.2s both;
+}
+/* Блик, который один раз проходит по экрану после появления */
+.screen::after{
+  content:"";position:absolute;z-index:4;inset:-20% -60%;pointer-events:none;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);
+  transform:translateX(-70%);animation:sheen 1.4s ease-in-out 1.3s both;
+}
+@keyframes sheen{to{transform:translateX(70%);}}
+.screen{position:relative;width:100%;height:100%;border-radius:calc(var(--pw) * .135);overflow:hidden;background:#000;transform:translateZ(0);}
 .screen picture{position:absolute;inset:0;}
 .screen img{width:100%;height:100%;object-fit:cover;object-position:52% 30%;}
-.island{position:absolute;z-index:3;top:7px;left:50%;transform:translateX(-50%);width:32%;height:calc(var(--pw) * .085);border-radius:99px;background:#000;}
+.island{position:absolute;z-index:3;top:calc(var(--pw) * .03);left:50%;transform:translateX(-50%);width:32%;height:calc(var(--pw) * .085);border-radius:99px;background:#000;}
 /* Интерфейс Reels поверх фото */
 .ui{position:absolute;inset:0;z-index:2;color:#fff;display:flex;flex-direction:column;justify-content:space-between;font-size:calc(var(--pw) * .052);}
 .ui-top{padding:calc(var(--pw) * .12) calc(var(--pw) * .06) 0;display:flex;justify-content:space-between;align-items:center;
@@ -569,6 +624,8 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
+  .phone-body{transform:none;}
+  .phone-tilt{--rim:60deg;}
   *{transition:none !important;animation:none !important;}
 }
 </style>
@@ -636,6 +693,10 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
 
         <!-- Телефон с открытым рилсом: внутри исходное фото без обработки -->
         <div class="phone">
+         <div class="phone-tilt">
+          <div class="phone-body">
+          <div class="face face-back" aria-hidden="true"></div>
+          <div class="face face-front">
           <div class="screen">
             <span class="island" aria-hidden="true"></span>
             <picture>
@@ -658,6 +719,10 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
               <span class="ui-bar"><i></i></span>
             </div>
           </div>
+          <img class="frame" src="phone-front.webp" alt="" width="578" height="1200">
+          </div>
+        </div>
+         </div>
         </div>
 
         <span class="ftag t1"><b>4&nbsp;млн</b><span>просмотров на лучшем ролике</span></span>
@@ -987,6 +1052,23 @@ footer{padding:28px 0 110px;color:var(--light-soft);font-size:13px;display:flex;
 </div>
 
 <script>
+// Телефон на первом экране слегка наклоняется вслед за мышкой (только на устройствах с мышью)
+(function(){
+  var hero=document.querySelector('.hero'), tilt=document.querySelector('.phone-tilt');
+  if(!hero||!tilt) return;
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  hero.addEventListener('pointermove',function(e){
+    var r=hero.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    tilt.style.setProperty('--ry',(x*16).toFixed(2)+'deg');
+    tilt.style.setProperty('--rx',(-y*12).toFixed(2)+'deg');
+  });
+  hero.addEventListener('pointerleave',function(){
+    tilt.style.setProperty('--ry','0deg'); tilt.style.setProperty('--rx','0deg');
+  });
+})();
+
 // Нижняя кнопка появляется, когда первый экран ушёл вверх, и прячется у блока контактов
 (function(){
   var dock=document.getElementById('dock');
