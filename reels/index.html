@@ -26,7 +26,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="og.jpg">
 <link rel="preload" href="fonts/inter-cyrillic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=11">
+<link rel="stylesheet" href="css/site.css?v=12">
 <script>
   document.documentElement.classList.replace('no-js', 'js');
 </script>
@@ -45,6 +45,7 @@
 <nav class="vnav" aria-label="Основная навигация">
   <a class="logo" href="#top">DANIYAR</a>
   <div class="links">
+    <a href="#about">Обо мне</a>
     <a href="#services">Услуги</a>
     <a href="#cases">Кейсы</a>
     <a href="#process">Процесс</a>
@@ -56,6 +57,17 @@
 
 <!-- 1. Первый экран -->
 <header class="vhero" id="top">
+  <!-- Небо: созвездие с путеводной звездой -->
+  <svg class="sky" viewBox="0 0 320 220" aria-hidden="true">
+    <defs>
+      <linearGradient id="fv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="fh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <radialGradient id="core"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#e6dcff" stop-opacity=".9"/><stop offset="1" stop-color="#b9a3ff" stop-opacity="0"/></radialGradient>
+    </defs>
+    <path class="lines" d="M24 168 L78 132 L120 150 L170 96 L228 112 L262 58 M170 96 L196 40 M228 112 L292 150"/>
+    <g class="dots"><circle cx="24" cy="168" r="1.6"/><circle cx="78" cy="132" r="2"/><circle cx="120" cy="150" r="1.4"/><circle cx="228" cy="112" r="1.8"/><circle cx="262" cy="58" r="1.5"/><circle cx="196" cy="40" r="1.3"/><circle cx="292" cy="150" r="1.4"/></g>
+    <g class="flare"><circle cx="170" cy="96" r="16" fill="url(#core)"/><rect x="169.4" y="20" width="1.2" height="152" fill="url(#fv)"/><rect x="132" y="95.4" width="76" height="1.2" fill="url(#fh)"/><circle cx="170" cy="96" r="2.6" fill="#fff"/></g>
+  </svg>
   <h1 class="rv"><span>Рилсы,</span><span>которые</span><span>приводят</span><span>гостей</span></h1>
 
   <!-- Телефон: исходное фото без обработки внутри рилса -->
@@ -102,6 +114,21 @@
 </header>
 
 <main>
+<!-- 1б. Обо мне: образы из моего мудборда, тонкой линией -->
+<section class="block about" id="about">
+  <div class="wrap">
+    <span class="kicker rv">Обо мне</span>
+    <h2 class="rv">Что меня <span class="hl">ведёт</span></h2>
+    <p class="sub rv">Образы, которые всегда со мной — и в работе тоже.</p>
+    <div class="signs">
+      <div class="sign rv"><svg viewBox="0 0 120 120"><path pathLength="1" d="M8 96 L40 58 L50 68 L66 38 L92 76 L112 96"/><path pathLength="1" d="M58 52 L66 38 L74 52"/><path class="soft" pathLength="1" d="M14 104 Q30 98 46 104 T78 104 T110 104"/><path class="soft" pathLength="1" d="M26 112 Q42 107 58 112 T90 112"/><path class="star" d="M66 10 L68 21 L79 23 L68 25 L66 36 L64 25 L53 23 L64 21 Z"/></svg><h3>Вершина</h3><p>Смотрю на цель, а не на просмотры. Удачный ролик — тот, после которого приходят гости.</p></div>
+      <div class="sign rv" style="--d:.08s"><svg viewBox="0 0 120 120"><path pathLength="1" d="M34 14 H86 M34 106 H86"/><path pathLength="1" d="M40 14 C40 42 58 50 60 60 C58 70 40 78 40 106 M80 14 C80 42 62 50 60 60 C62 70 80 78 80 106"/><path class="soft" pathLength="1" d="M48 36 Q60 46 72 36"/><path class="sand" d="M60 62 V98"/><path class="pile" d="M47 104 Q60 88 73 104 Z"/></svg><h3>Время</h3><p>У ролика есть три секунды, чтобы его не пролистали. Каждую собираю вручную.</p></div>
+      <div class="sign rv" style="--d:.16s"><svg viewBox="0 0 120 120"><path pathLength="1" d="M66 38 A24 24 0 1 1 18 38 A24 24 0 1 1 66 38"/><path class="soft" pathLength="1" d="M38 30 a4 4 0 1 0 0.1 0"/><path class="soft" pathLength="1" d="M52 46 a3 3 0 1 0 0.1 0"/><path pathLength="1" d="M4 104 Q36 92 62 98 Q86 104 116 98"/><path class="wolf" transform="translate(66 39) scale(.95)" d="M10 60 L12 44 C8 38 8 32 11 28 L9 25 L12 23 L10 20 L13 17 L8 8 L4.5 3 L6 1.5 L12 5 L15.5 6 L18 3.5 L21 -1 L21.5 8 C24 13 26 18 28 22 C34 28 38 36 40 46 C41 52 40 56 38 58 C43 52 51 51 53 56 C53.5 58.5 52 60 49 60 Z"/></svg><h3>Одиночка</h3><p>Идея, съёмка, монтаж и кадр — всё сам. Поэтому стиль один от начала до конца.</p></div>
+      <div class="sign rv" style="--d:.24s"><svg viewBox="0 0 120 120"><path pathLength="1" d="M42 14 H78"/><path pathLength="1" d="M47 14 C47 28 30 36 30 62 C30 90 44 106 60 106 C76 106 90 90 90 62 C90 36 73 28 73 14"/><path class="gold" pathLength="1" d="M63 14 L55 34 L65 46 L52 64 L62 78 L56 106 M65 46 L78 52"/></svg><h3>Живое</h3><p>Не вылизываю кадр до пластика. Шероховатости, как золото в трещине, делают ролик настоящим.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- 2. Услуги -->
 <section class="block" id="services">
   <div class="wrap">
@@ -203,6 +230,8 @@
 
 <!-- 4. Как работаем -->
 <section class="block" id="process">
+  <svg class="wisp" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 560 C200 540 400 585 600 552 S900 520 1040 470 S1100 200 1120 90"/><path class="w2" d="M-20 585 C220 565 420 595 620 570 S920 540 1050 490 S1105 220 1120 90"/></svg>
+  <svg class="wisp-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 L22.4 17.6 L40 20 L22.4 22.4 L20 40 L17.6 22.4 L0 20 L17.6 17.6 Z"/></svg>
   <div class="wrap">
     <span class="kicker rv">Как работаем</span>
     <h2 class="rv"><span class="hl">Четыре</span> шага</h2>
@@ -251,6 +280,7 @@
 
 <!-- 7. Контакты -->
 <section class="final" id="contacts">
+  <div class="night" aria-hidden="true"><span class="stars"></span><span class="moon"></span><span class="sea"><i></i></span></div>
   <div class="wrap">
     <div class="final-grid">
       <div>
@@ -285,6 +315,6 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/app.js?v=11"></script>
+<script src="js/app.js?v=12"></script>
 </body>
 </html>
