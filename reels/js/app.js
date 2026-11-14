@@ -128,7 +128,7 @@
   };
 
   // ---------- scroll-linked UI ----------
-  const tl = $('#timeline'), bar = $('#tlProgress');
+  const tl = null, bar = null;
   const chapters = tl ? $$('.chapter', tl) : [];
   const links = $$('.nav-pill a[href^="#"]:not(.cta)');
   const linkTargets = links.map((a) => $(a.getAttribute('href')));
@@ -151,7 +151,7 @@
     if (h && h.dataset.hud !== hudCur) {
       hudCur = h.dataset.hud;
       const [n, label] = hudCur.split('|');
-      hudNum.textContent = n; hud.textContent = label;
+      if (hudNum) { hudNum.textContent = n; hud.textContent = label; }
     }
     const max = document.documentElement.scrollHeight - innerHeight;
     if (sb) sb.style.transform = `translateY(${(scrollY / Math.max(1, max)) * 355}%)`;
