@@ -7,7 +7,7 @@
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mobile = matchMedia('(max-width: 760px)').matches;
-  const N = mobile ? 9000 : 18000;
+  const N = mobile ? 7000 : 14000;
   const TAU = Math.PI * 2;
 
   // ---------- per-particle randoms ----------
@@ -24,7 +24,7 @@
   const build = (fn) => { const a = new Float32Array(N * 3); for (let i = 0; i < N; i++) fn(i, a, i * 3); return a; };
 
   // Фигуры по разделам Reels-страницы (data-stage в index.html):
-  // 0 объектив · 1 чашка с паром · 2 сердце-лайк · 3 созвездие из 4 шагов · 4 звёздное поле · 5 портрет
+  // 0 объектив · 1–4 звёздное небо · 5 портрет
 
   // 0 — объектив: насечка, кольца оправы, лепестки диафрагмы (вращаются), стекло с бликами
   const BLADES = 7, R_IN = 1.85;
@@ -71,51 +71,6 @@
   };
   updateLens(0);
 
-  // 1 — чашка с паром на блюдце
-  const cup = build((i, a, o) => {
-    const k = rnd[i * 4 + 2];
-    let x, y, z;
-    if (k < 0.16) { // блюдце: кромка и редкая заливка
-      const t = Math.random() * TAU, r = Math.random() < 0.6 ? 2.0 + gauss() * 0.02 : Math.sqrt(Math.random()) * 2.0;
-      x = Math.cos(t) * r; z = Math.sin(t) * r; y = -1.32 + (r > 1.95 ? 0.06 : 0);
-    } else if (k < 0.5) { // стенки чашки (усечённый конус)
-      const h = Math.random(), r = 0.78 + 0.42 * Math.pow(h, 0.8), t = Math.random() * TAU;
-      x = Math.cos(t) * r; z = Math.sin(t) * r; y = -1.18 + h * 1.55;
-    } else if (k < 0.6) { // край чашки
-      const t = Math.random() * TAU, r = 1.2 + gauss() * 0.015; x = Math.cos(t) * r; z = Math.sin(t) * r; y = 0.37;
-    } else if (k < 0.66) { // кофе
-      const t = Math.random() * TAU, r = Math.sqrt(Math.random()) * 1.12; x = Math.cos(t) * r; z = Math.sin(t) * r; y = 0.26;
-    } else if (k < 0.74) { // ручка
-      const t = (Math.random() - 0.5) * 3.4, tt = Math.random() * TAU;
-      const cx = 1.12 + Math.cos(t) * 0.48, cy = -0.4 + Math.sin(t) * 0.48;
-      x = cx + Math.cos(t) * Math.cos(tt) * 0.07; y = cy + Math.sin(t) * Math.cos(tt) * 0.07; z = Math.sin(tt) * 0.07;
-    } else { // пар: три волнистые струйки
-      const s = Math.floor(Math.random() * 3), h = Math.pow(Math.random(), 0.8), yy = 0.55 + h * 2.1;
-      const x0 = (s - 1) * 0.38, ph = s * 2.1;
-      x = x0 + Math.sin(yy * 2.8 + ph) * (0.12 + h * 0.18) + gauss() * (0.02 + h * 0.07);
-      z = Math.cos(yy * 2.2 + ph) * 0.12 + gauss() * (0.02 + h * 0.05); y = yy;
-    }
-    a[o] = x; a[o + 1] = y - 0.2; a[o + 2] = z;
-  });
-
-  // 2 — сердце-лайк: плотный контур, объёмная заливка, искры
-  const heartXY = (t) => [16 * Math.pow(Math.sin(t), 3), 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)];
-  const heart = build((i, a, o) => {
-    const k = rnd[i * 4 + 2], t = Math.random() * TAU, [hx, hy] = heartXY(t), S = 0.13;
-    if (k < 0.5) { a[o] = hx * S + gauss() * 0.02; a[o + 1] = hy * S + 0.3 + gauss() * 0.02; a[o + 2] = gauss() * 0.06; return; }
-    if (k < 0.86) { const f = Math.sqrt(Math.random()); a[o] = hx * S * f; a[o + 1] = hy * S * f + 0.3; a[o + 2] = (Math.random() < 0.5 ? 1 : -1) * Math.sqrt(1 - f * f) * 0.55; return; }
-    const f = 1.08 + Math.abs(gauss()) * 0.35; a[o] = hx * S * f; a[o + 1] = hy * S * f + 0.3; a[o + 2] = gauss() * 0.3;
-  });
-
-  // 3 — созвездие из четырёх шагов: яркие узлы, линия пути, фон из звёзд
-  const NODES = [[-2.6, -1.15], [-0.9, -0.35], [0.85, 0.35], [2.6, 1.25]];
-  const constellation = build((i, a, o) => {
-    const k = rnd[i * 4 + 2];
-    if (k < 0.3) { const [cx, cy] = NODES[Math.floor(Math.random() * 4)]; const ring = Math.random() < 0.35; const t = Math.random() * TAU, r = ring ? 0.3 + gauss() * 0.01 : Math.abs(gauss()) * 0.07; a[o] = cx + Math.cos(t) * r; a[o + 1] = cy + Math.sin(t) * r; a[o + 2] = gauss() * 0.03; return; }
-    if (k < 0.62) { const sgi = Math.floor(Math.random() * 3), [x0, y0] = NODES[sgi], [x1, y1] = NODES[sgi + 1]; let u = Math.random(); u = Math.floor(u * 22) / 22 + Math.random() * 0.03; a[o] = x0 + (x1 - x0) * u + gauss() * 0.01; a[o + 1] = y0 + (y1 - y0) * u + gauss() * 0.01; a[o + 2] = 0; return; }
-    a[o] = (Math.random() - 0.5) * 11; a[o + 1] = (Math.random() - 0.5) * 6; a[o + 2] = -1 - Math.random() * 4;
-  });
-
   const field = build((i, a, o) => {
     if (rnd[i * 4 + 2] < 0.35) { // milky way band
       const x = (Math.random() - 0.5) * 22; a[o] = x; a[o + 1] = x * 0.32 + gauss() * 0.7; a[o + 2] = -4 - Math.random() * 6; return;
@@ -128,14 +83,15 @@
     a[o] = Math.cos(t) * r; a[o + 1] = Math.sin(t) * r; a[o + 2] = gauss() * 0.1;
   });
 
-  const shapes = [lens, cup, heart, constellation, field, portrait];
+  // Сдержанно: объектив на первом экране и портрет в финале, между ними тихое звёздное небо
+  const shapes = [lens, field, field, field, field, portrait];
   // per-stage look: [offsetX desktop, offsetY desktop, offsetY mobile, dim, moonlight share, spin speed, rotation allowed]
   const LOOK = [
     [2.65, 0.25, 2.25, 1.0, 0.15, 0.0, 0],
-    [2.4, -0.1, 2.55, 0.8, 0.2, 0.12, 1],
-    [0, 0.2, 0.6, 0.62, 0.25, 0.1, 1],
-    [1.6, 0.1, 0.4, 0.55, 0.35, 0.0, 0],
-    [0, 0, 0, 0.55, 0.6, 0.015, 1],
+    [0, 0, 0, 0.3, 0.6, 0.012, 1],
+    [0, 0, 0, 0.3, 0.6, 0.012, 1],
+    [0, 0, 0, 0.3, 0.6, 0.012, 1],
+    [0, 0, 0, 0.3, 0.6, 0.012, 1],
     [2.3, 0, 2.05, 1.0, 0.0, 0.0, 0],
   ];
   const lastStage = shapes.length - 1;
