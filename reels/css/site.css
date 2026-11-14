@@ -933,21 +933,6 @@ section.block::before, .final::before {
 @keyframes twinkle { 50% { opacity: .25; } }
 @keyframes flare { 50% { transform: scale(.86); opacity: .8; } }
 
-/* обо мне: четыре образа тонкой линией, рисуются при появлении */
-.signs { margin: 110px auto 0; max-width: 1100px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 56px; }
-.sign svg { display: block; width: 104px; height: 104px; margin-bottom: 30px; overflow: visible; fill: none; stroke: var(--lilac); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(158, 120, 255, .55)); }
-.sign svg [pathLength] { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s cubic-bezier(.6, 0, .2, 1) var(--d, 0s); }
-.sign.in svg [pathLength] { stroke-dashoffset: 0; }
-.sign svg .soft { stroke: rgba(203, 188, 255, .45); stroke-width: 1; }
-.sign svg .star { fill: #fff; stroke: none; filter: drop-shadow(0 0 6px #fff); }
-.sign svg .wolf, .sign svg .pile { fill: var(--lilac); stroke: none; }
-.sign svg .pile { opacity: .7; }
-.sign svg .gold { stroke: #fff; stroke-width: 1.8; filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px rgba(158, 120, 255, 1)); }
-.sign svg .sand { stroke: rgba(255, 255, 255, .8); stroke-width: 1; stroke-dasharray: 1.5 4; animation: sand 1.6s linear infinite; }
-@keyframes sand { to { stroke-dashoffset: -11; } }
-.sign h3 { font-family: var(--sans); font-weight: 500; font-size: clamp(22px, 2vw, 26px); letter-spacing: -.025em; }
-.sign p { margin-top: 14px; color: var(--muted); font-size: 16px; line-height: 1.7; }
-
 /* процесс: дымка-путь поднимается к звезде */
 #process { position: relative; padding-bottom: 240px; }
 #process .wisp { position: absolute; z-index: -1; left: 0; bottom: 10px; width: 100%; height: 260px; pointer-events: none; fill: none; }
@@ -981,11 +966,9 @@ section.block::before, .final::before {
   filter: drop-shadow(0 0 6px rgba(158, 120, 255, .9)); animation: ripple 3.2s linear infinite; }
 @keyframes ripple { to { background-position: 0 9px; } }
 
-@media (max-width: 1000px) { .signs { grid-template-columns: 1fr 1fr; gap: 64px 48px; } .vhero .sky { width: 260px; } }
+@media (max-width: 1000px) { .vhero .sky { width: 260px; } }
 @media (max-width: 760px) {
   .vhero .sky { right: -10px; top: 300px; width: 190px; opacity: .85; }
-  .signs { margin-top: 64px; grid-template-columns: 1fr; gap: 48px; }
-  .sign svg { width: 84px; height: 84px; margin-bottom: 20px; }
   #process { padding-bottom: 180px; }
   #process .wisp { height: 180px; }
   #process .wisp-star { bottom: calc(10px + 180px * .85 - 14px); left: calc(93.3% - 22px); }
@@ -994,6 +977,5 @@ section.block::before, .final::before {
   .night .sea { height: 150px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .vhero .sky *, #process .wisp path, #process .wisp-star, .sign svg .sand, .night .sea i { animation: none !important; }
-  .sign svg [pathLength] { stroke-dashoffset: 0; transition: none; }
+  .vhero .sky *, #process .wisp path, #process .wisp-star, .night .sea i { animation: none !important; }
 }
