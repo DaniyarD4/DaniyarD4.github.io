@@ -98,8 +98,6 @@
       activeCase = on;
       dots.forEach((d, i) => d.classList.toggle('on', i === on));
       if (counter) counter.textContent = String(on + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
-      const h = $('h3', cards[on]);
-      if (h && !reduce) { h.classList.remove('reveal'); void h.offsetWidth; h.classList.add('reveal'); }
     }
   };
 
@@ -136,27 +134,6 @@
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
   onScroll();
-
-  // ---------- WhatsApp по нику: кнопка копирует ник и подсказывает, где его вставить ----------
-  const NICK = 'daniyar2110';
-  const toast = $('#toast');
-  let toastT;
-  const show = (html) => { toast.innerHTML = html; toast.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => toast.classList.remove('show'), 6000); };
-  const copy = (text) => {
-    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-    const t = document.createElement('textarea'); t.value = text; t.style.cssText = 'position:fixed;opacity:0';
-    document.body.appendChild(t); t.select();
-    try { document.execCommand('copy'); } catch (e) { /* старый браузер: ник всё равно покажем */ }
-    document.body.removeChild(t);
-    return Promise.resolve();
-  };
-  $$('[data-wa]').forEach((btn) => btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const fmt = btn.dataset.wa, tail = fmt ? ' Спросите про формат «' + fmt + '».' : '';
-    copy(NICK).then(
-      () => show('Ник <b>@' + NICK + '</b> скопирован. Откройте WhatsApp и вставьте его в поиск.' + tail),
-      () => show('Мой WhatsApp: <b>@' + NICK + '</b>. Найдите этот ник через поиск в WhatsApp.' + tail));
-  }));
 
   // ---------- плеер роликов из кейсов: видео грузится только по нажатию ----------
   const player = $('.player'), video = player && $('video', player), pnav = player && $('.player-nav', player);
