@@ -110,8 +110,10 @@
   const hud = $('.hud-label'), hudNum = $('.hud-num');
   const sb = $('.scrollbar i');
   let hudCur = '';
+  const vnav = $('.vnav');
   const onScroll = () => {
     const mid = innerHeight * 0.55;
+    if (vnav) vnav.classList.toggle('scrolled', scrollY > 24);
     if (tl) {
       const r = tl.getBoundingClientRect();
       bar.style.height = Math.max(0, Math.min(r.height - 20, mid - r.top)) + 'px';
