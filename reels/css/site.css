@@ -760,3 +760,155 @@ section.block { padding-top: 240px; }
 }
 
 .gallery-head .wrap { text-align: center; }
+
+/* =====================================================================
+   Стиль «свет и аметист» (по референсу VYRO): фиолетовая палитра,
+   Inter без курсива, мягкий свет вместо частиц, белые кнопки-пилюли.
+   Перекрывает правила выше.
+   ===================================================================== */
+:root {
+  --ink-rgb: 6, 4, 11; --ink2-rgb: 16, 11, 28; --glass-hi-rgb: 46, 30, 84; --text-rgb: 244, 241, 251; --tint-rgb: 222, 210, 255;
+  --accent-rgb: 158, 120, 255; --champ-rgb: 226, 214, 255; --ember-rgb: 196, 160, 255; --bronze-rgb: 66, 40, 130; --moon-rgb: 226, 224, 240;
+  --accent-2: #4a22b0; --btn-top: #c9b4ff; --btn-hover: #b49bff; --on-accent: #06040b; --muted: #a9a2bd; --dim: #6e6784;
+  --lilac: #cbbcff;
+  --display: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "Inter", system-ui, -apple-system, sans-serif;
+}
+body { background: var(--bg); }
+::selection { background: var(--lilac); color: #06040b; }
+
+/* заголовки: один шрифт, без курсива и градиентной заливки */
+h1, h2, h3 { font-family: var(--sans); }
+h2 { font-weight: 500; letter-spacing: -.035em; line-height: 1.04; text-shadow: none; }
+h1 .hl, h2 .hl, blockquote .hl { font-style: normal; background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--lilac); filter: none; padding-right: 0; }
+.kicker { font-family: var(--sans); font-size: 12px; letter-spacing: .26em; color: var(--dim); }
+
+/* мягкий фиолетовый свет над каждым разделом вместо частиц */
+section.block, .final { isolation: isolate; }
+section.block::before, .final::before {
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 80px; translate: -50% 0; width: min(1100px, 100%); height: 520px; pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 30%, rgba(123, 77, 255, .16), transparent 70%);
+}
+.final::before { top: 0; height: 100%; background: radial-gradient(45% 55% at 50% 40%, rgba(123, 77, 255, .3), transparent 70%); }
+
+/* кнопки: белая пилюля с тёмным кружком-стрелкой, как в первом экране */
+.btn { font-family: var(--sans); letter-spacing: 0; text-transform: none; font-size: 15px; font-weight: 500; }
+.btn-accent { color: var(--ink, #06040b); color: #06040b; background: rgb(var(--text-rgb)); box-shadow: none; }
+.btn-accent:hover { background: #fff; box-shadow: 0 14px 40px -14px rgba(123, 77, 255, .7); }
+.btn-accent svg { color: #06040b; }
+.btn-ghost { border-color: rgba(255,255,255,.16); }
+
+/* ---------- навигация ---------- */
+.vnav { position: fixed; z-index: 60; top: 22px; left: 56px; right: 56px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; pointer-events: none; }
+.vnav > * { pointer-events: auto; }
+.vnav .logo { justify-self: start; font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: .38em; }
+.vnav .links { display: flex; gap: 4px; padding: 5px; border-radius: 999px; font-size: 14px; background: rgba(var(--ink2-rgb), .45); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.vnav .links a { padding: 9px 16px; border-radius: 999px; color: rgba(244, 241, 251, .72); transition: background .2s, color .2s; }
+.vnav .links a:hover { color: var(--text); }
+.vnav .links a.active { background: #06040b; color: var(--text); }
+.vnav .cta-top { justify-self: end; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; background: #06040b; border: 1px solid rgba(255,255,255,.08); font-size: 14px; font-weight: 500; }
+.vnav .cta-top i { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 10px #3ddc84; }
+
+/* ---------- первый экран ---------- */
+.vhero { position: relative; z-index: 3; min-height: 100vh; min-height: 100svh; overflow: hidden; isolation: isolate; }
+.vhero::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background:
+    radial-gradient(42% 62% at 50% 12%, #d6c8ff 0%, #a083ff 20%, #6b3df2 40%, rgba(64, 26, 180, .7) 60%, rgba(20, 8, 60, 0) 82%),
+    radial-gradient(90% 40% at 50% -10%, rgba(160, 130, 255, .55), transparent 70%),
+    radial-gradient(40% 30% at 85% 30%, rgba(123, 77, 255, .25), transparent 70%),
+    linear-gradient(180deg, #120830 0%, #07050f 62%, #06040b 100%);
+}
+.vhero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .06; mix-blend-mode: overlay; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.vhero h1 { position: absolute; z-index: 2; left: 56px; top: 31%; margin: 0; font-family: var(--sans); font-weight: 500; font-size: clamp(44px, 4.6vw, 72px); line-height: 1.02; letter-spacing: -.035em; text-shadow: none; }
+.vhero h1 span { display: block; }
+.vhero h1 span:nth-child(3) { color: var(--lilac); }
+.vhero h1 span:nth-child(4) { color: #8a82a3; }
+.vhero .stage { position: absolute; z-index: 1; left: 50%; top: 52%; translate: -50% -50%; width: 560px; height: 640px; display: grid; place-items: center; }
+.vhero .halo { position: absolute; left: 50%; top: 46%; translate: -50% -50%; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(123, 77, 255, .45), transparent 65%); filter: blur(20px); }
+.vhero .phone { --pw: 270px; transform: none; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.14), 0 70px 120px -40px rgba(0,0,0,.95), -30px -10px 80px -30px rgba(185, 161, 255, .55); }
+.vhero .phone::before { display: none; }
+.vhero .phone::after { padding: 1.5px; background: linear-gradient(160deg, rgba(220, 205, 255, .9), transparent 30%, transparent 70%, rgba(123, 77, 255, .7)); }
+.vhero .aside { position: absolute; z-index: 2; right: 56px; top: 36%; width: 270px; font-size: 15px; line-height: 1.6; color: var(--muted); }
+.vhero .aside b { color: var(--text); font-weight: 500; }
+.vhero .cta { position: absolute; z-index: 2; left: 56px; top: calc(31% + 300px); display: inline-flex; align-items: center; gap: 14px; height: 54px; padding: 0 8px 0 24px; border-radius: 999px; background: rgb(var(--text-rgb)); color: #06040b; font-size: 15px; font-weight: 500; transition: box-shadow .25s, background .2s; }
+.vhero .cta:hover { background: #fff; box-shadow: 0 14px 40px -14px rgba(123, 77, 255, .8); }
+.vhero .cta i { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: #06040b; color: var(--text); font-style: normal; }
+.vhero .thumbs-cap { position: absolute; z-index: 2; left: 56px; bottom: 160px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--dim); }
+.vhero .thumbs { position: absolute; z-index: 2; left: 56px; bottom: 52px; display: flex; gap: 10px; align-items: flex-end; }
+.vhero .thumbs button { position: relative; width: 74px; height: 96px; padding: 0; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.14); background: #000; cursor: pointer; }
+.vhero .thumbs button.wide { width: 150px; }
+.vhero .thumbs img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.vhero .thumbs button:hover img { transform: scale(1.05); }
+.vhero .thumbs button > span { position: absolute; left: 8px; bottom: 8px; color: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,.8)); }
+.vhero .vcard { position: absolute; z-index: 2; right: 56px; bottom: 52px; width: 340px; display: flex; gap: 16px; align-items: center; padding: 16px 20px 16px 16px; border-radius: 22px; text-align: left; color: var(--text); cursor: pointer; font: inherit;
+  background: linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(22px) saturate(140%); -webkit-backdrop-filter: blur(22px) saturate(140%); box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); transition: border-color .2s; }
+.vhero .vcard:hover { border-color: rgba(203, 188, 255, .45); }
+.vhero .vcard .pic { position: relative; flex: none; width: 76px; height: 96px; border-radius: 14px; overflow: hidden; }
+.vhero .vcard .pic img { width: 100%; height: 100%; object-fit: cover; }
+.vhero .vcard .tagnum { position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 999px; background: #7b4dff; font-size: 11px; font-weight: 600; }
+.vhero .vcard small { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+.vhero .vcard b { display: block; margin-top: 6px; font-weight: 500; font-size: 22px; letter-spacing: -.02em; }
+.vhero .vcard .txt > span { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }
+.vhero .vcard em { display: inline-block; margin-top: 10px; font-style: normal; font-size: 13px; }
+
+/* ---------- остальные разделы: тот же шрифт и вес ---------- */
+.plain-grid h3, .steps-row h3, .rule h3, .fmt-row h3, .case h3 { font-family: var(--sans); font-weight: 500; letter-spacing: -.025em; }
+.plain-grid h3, .steps-row h3 { font-size: clamp(22px, 2vw, 26px); }
+.rule h3 { font-size: 21px; }
+.rule .n { font-family: var(--sans); font-size: 12px; color: var(--lilac); }
+.steps-row .num { font-family: var(--sans); font-weight: 400; font-size: 52px; letter-spacing: -.04em; color: var(--lilac); }
+.fmt-row .cnt { font-family: var(--sans); font-weight: 400; font-size: 56px; letter-spacing: -.05em; }
+.fmt-row .cnt small, .fmt-row .ask-link, .case-meta, .case .label, .gallery-foot .wrap, .final-nick { font-family: var(--sans); letter-spacing: .14em; }
+.fmt-row h3 { font-size: 22px; }
+.fmt-row.hl .cnt { color: var(--lilac); text-shadow: none; }
+.fmt-row .ask-link { color: var(--lilac); }
+.badge { font-family: var(--sans); letter-spacing: .08em; background: rgba(var(--accent-rgb), .16); color: var(--lilac); }
+.case h3 { font-size: clamp(28px, 3vw, 46px); line-height: 1.02; }
+.case h3 small { font-family: var(--sans); }
+.case .mega { font-family: var(--sans); font-weight: 400; letter-spacing: -.05em; color: var(--lilac); text-shadow: none; font-size: clamp(56px, 6.6vw, 104px); }
+.case .label b { color: var(--lilac); }
+.case .result b { color: var(--lilac); }
+.reel-thumb .pl, .watch .pl { background: #fff; color: #06040b; box-shadow: none; }
+.dots i.on { background: var(--lilac); box-shadow: none; }
+.player-nav button.on { background: var(--lilac); color: #06040b; border-color: var(--lilac); }
+.toast b { color: var(--lilac); }
+
+/* контакты: по центру, без портрета */
+.final { align-items: center; text-align: center; min-height: 80vh; padding: 200px 0 120px; }
+.final-grid { justify-items: center; }
+.final .final-sub, .final .kicker { margin-left: auto; margin-right: auto; }
+.final h2 { font-size: clamp(48px, 7vw, 112px); }
+.final .hero-cta { justify-content: center; }
+
+@media (max-width: 1100px) { .vnav .links { display: none; } .vnav { grid-template-columns: 1fr auto; } }
+@media (max-width: 1000px) { .vhero .aside { width: 220px; } .vhero .stage { width: 420px; } .vhero .phone { --pw: 230px; } }
+@media (max-width: 760px) {
+  .vnav { left: 16px; right: 16px; top: 14px; }
+  .vnav .cta-top { padding: 11px 16px; font-size: 13px; }
+  .vhero { display: flex; flex-direction: column; padding: 92px 18px 36px; }
+  .vhero h1 { position: relative; left: auto; top: auto; font-size: 11vw; }
+  .vhero .stage { position: relative; left: auto; top: auto; translate: none; width: 100%; height: 450px; margin-top: 10px; }
+  .vhero .halo { width: 300px; height: 300px; }
+  .vhero .phone { --pw: 200px; }
+  .vhero .aside { position: relative; right: auto; top: auto; width: auto; }
+  .vhero .cta { position: relative; left: auto; top: auto; margin-top: 22px; align-self: flex-start; }
+  .vhero .thumbs, .vhero .thumbs-cap { display: none; }
+  .vhero .vcard { position: relative; right: auto; bottom: auto; width: 100%; margin-top: 26px; }
+  .final { padding: 140px 0 100px; }
+}
+/* шапка: мягкое затемнение сверху, чтобы текст не проезжал под ней */
+.vnav::before { content: ""; position: fixed; z-index: -1; left: 0; right: 0; top: 0; height: 96px; pointer-events: none; background: linear-gradient(180deg, rgba(6, 4, 11, .92), rgba(6, 4, 11, 0)); }
+@media (max-width: 760px) {
+  /* на телефоне свет опускается за телефон, заголовок остаётся на тёмном */
+  .vhero::before {
+    background:
+      radial-gradient(70% 34% at 50% 52%, #b9a3ff 0%, #7a4cf5 30%, rgba(64, 26, 180, .65) 58%, rgba(20, 8, 60, 0) 82%),
+      radial-gradient(120% 24% at 50% -6%, rgba(123, 77, 255, .45), transparent 70%),
+      linear-gradient(180deg, #0d0624 0%, #07050f 70%, #06040b 100%);
+  }
+}

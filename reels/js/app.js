@@ -130,7 +130,7 @@
   // ---------- scroll-linked UI ----------
   const tl = null, bar = null;
   const chapters = tl ? $$('.chapter', tl) : [];
-  const links = $$('.nav-pill a[href^="#"]:not(.cta)');
+  const links = $$('.vnav .links a[href^="#"]');
   const linkTargets = links.map((a) => $(a.getAttribute('href')));
   const hudEls = $$('[data-hud]');
   const hud = $('.hud-label'), hudNum = $('.hud-num');
