@@ -3,35 +3,11 @@
   const $ = (q, el = document) => el.querySelector(q);
   const $$ = (q, el = document) => [...el.querySelectorAll(q)];
 
-  // ---------- text scramble ----------
-  const GLYPHS = '▶◉◎⊙✦✧◇△▽⋆·♡';
-  const scramble = (el) => {
-    if (reduce || el.dataset.done) return;
-    el.dataset.done = '1';
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) if (walker.currentNode.nodeValue.trim()) nodes.push({ n: walker.currentNode, t: walker.currentNode.nodeValue });
-    const total = nodes.reduce((a, x) => a + x.t.length, 0);
-    const dur = Math.min(1400, 500 + total * 18), t0 = performance.now();
-    let idx = 0;
-    nodes.forEach((x) => { x.at = [...x.t].map(() => (idx++ / total) * 0.65 + Math.random() * 0.35); });
-    const tick = (now) => {
-      const p = Math.min(1, (now - t0) / dur);
-      nodes.forEach((x) => {
-        x.n.nodeValue = [...x.t].map((ch, i) => (ch === ' ' || ch === '\n' || p >= x.at[i]) ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0]).join('');
-      });
-      if (p < 1) requestAnimationFrame(tick); else nodes.forEach((x) => (x.n.nodeValue = x.t));
-    };
-    requestAnimationFrame(tick);
-  };
-
   // ---------- reveal on scroll ----------
   const rvObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
       e.target.classList.add('in');
-      if (e.target.matches('[data-scramble]')) scramble(e.target);
-      $$('[data-scramble]', e.target).forEach(scramble);
       rvObs.unobserve(e.target);
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
@@ -123,7 +99,7 @@
       dots.forEach((d, i) => d.classList.toggle('on', i === on));
       if (counter) counter.textContent = String(on + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
       const h = $('h3', cards[on]);
-      if (h) { delete h.dataset.done; scramble(h); }
+      if (h && !reduce) { h.classList.remove('reveal'); void h.offsetWidth; h.classList.add('reveal'); }
     }
   };
 
