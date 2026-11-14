@@ -912,3 +912,88 @@ section.block::before, .final::before {
       linear-gradient(180deg, #0d0624 0%, #07050f 70%, #06040b 100%);
   }
 }
+
+/* =========================================================
+   Личные образы из мудборда: путеводная звезда, созвездие,
+   вершина, песочные часы, луна и волк, золото в трещине,
+   дымка-путь, лунная дорожка. Тонкая светящаяся линия, без частиц.
+   ========================================================= */
+
+/* фирменный знак: четырёхлучевая звезда перед подписью раздела */
+.kicker::before { content: ""; display: inline-block; width: 9px; height: 9px; margin: 0 12px 1px 0; vertical-align: middle; background: var(--lilac);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); filter: drop-shadow(0 0 6px rgba(203, 188, 255, .9)); }
+
+/* первый экран: созвездие с путеводной звездой справа вверху */
+.vhero .sky { position: absolute; z-index: 0; right: 4%; top: 92px; width: 340px; height: auto; pointer-events: none; overflow: visible; }
+.vhero .sky .lines { fill: none; stroke: rgba(255, 255, 255, .32); stroke-width: .8; stroke-dasharray: 2 4; }
+.vhero .sky .dots circle { fill: #fff; }
+.vhero .sky .dots circle:nth-child(odd) { animation: twinkle 4.5s ease-in-out infinite; }
+.vhero .sky .dots circle:nth-child(3n) { animation-delay: -2s; }
+.vhero .sky .flare { transform-origin: 170px 96px; animation: flare 6s ease-in-out infinite; }
+@keyframes twinkle { 50% { opacity: .25; } }
+@keyframes flare { 50% { transform: scale(.86); opacity: .8; } }
+
+/* обо мне: четыре образа тонкой линией, рисуются при появлении */
+.signs { margin: 110px auto 0; max-width: 1100px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 56px; }
+.sign svg { display: block; width: 104px; height: 104px; margin-bottom: 30px; overflow: visible; fill: none; stroke: var(--lilac); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(158, 120, 255, .55)); }
+.sign svg [pathLength] { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s cubic-bezier(.6, 0, .2, 1) var(--d, 0s); }
+.sign.in svg [pathLength] { stroke-dashoffset: 0; }
+.sign svg .soft { stroke: rgba(203, 188, 255, .45); stroke-width: 1; }
+.sign svg .star { fill: #fff; stroke: none; filter: drop-shadow(0 0 6px #fff); }
+.sign svg .wolf, .sign svg .pile { fill: var(--lilac); stroke: none; }
+.sign svg .pile { opacity: .7; }
+.sign svg .gold { stroke: #fff; stroke-width: 1.8; filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px rgba(158, 120, 255, 1)); }
+.sign svg .sand { stroke: rgba(255, 255, 255, .8); stroke-width: 1; stroke-dasharray: 1.5 4; animation: sand 1.6s linear infinite; }
+@keyframes sand { to { stroke-dashoffset: -11; } }
+.sign h3 { font-family: var(--sans); font-weight: 500; font-size: clamp(22px, 2vw, 26px); letter-spacing: -.025em; }
+.sign p { margin-top: 14px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+
+/* процесс: дымка-путь поднимается к звезде */
+#process { position: relative; padding-bottom: 240px; }
+#process .wisp { position: absolute; z-index: -1; left: 0; bottom: 10px; width: 100%; height: 260px; pointer-events: none; fill: none; }
+#process .wisp path { stroke: rgba(203, 188, 255, .5); stroke-width: 1.2; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 6px rgba(158, 120, 255, .9)); stroke-dasharray: 260 40; animation: drift 14s linear infinite; }
+#process .wisp .w2 { stroke: rgba(203, 188, 255, .22); stroke-dasharray: 120 60; animation-duration: 20s; }
+@keyframes drift { to { stroke-dashoffset: -600; } }
+#process .wisp-star { position: absolute; z-index: -1; left: calc(93.3% - 14px); bottom: calc(10px + 260px * .85 - 14px); width: 28px; height: 28px; fill: #fff; filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px rgba(158, 120, 255, 1)); animation: flare 6s ease-in-out infinite; }
+
+/* контакты: звёзды, луна и лунная дорожка на воде */
+.final { position: relative; overflow: hidden; padding-top: 330px; padding-bottom: 260px; }
+.final .wrap { position: relative; z-index: 1; }
+.night { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.night .stars { position: absolute; inset: 0 0 200px; opacity: .7;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff, transparent), radial-gradient(1px 1px at 22% 62%, #fff, transparent), radial-gradient(1.5px 1.5px at 31% 34%, #fff, transparent),
+    radial-gradient(1px 1px at 43% 12%, #fff, transparent), radial-gradient(1px 1px at 58% 70%, #fff, transparent), radial-gradient(1.5px 1.5px at 66% 24%, #fff, transparent),
+    radial-gradient(1px 1px at 77% 52%, #fff, transparent), radial-gradient(1px 1px at 86% 16%, #fff, transparent), radial-gradient(1.5px 1.5px at 92% 44%, #fff, transparent),
+    radial-gradient(1px 1px at 6% 48%, #fff, transparent), radial-gradient(1px 1px at 38% 80%, #fff, transparent), radial-gradient(1px 1px at 72% 86%, #fff, transparent); }
+.night .moon { position: absolute; left: 50%; top: 150px; translate: -50% 0; width: 116px; height: 116px; border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 38%, rgba(140, 120, 200, .35) 0 7%, transparent 8%),
+    radial-gradient(circle at 62% 60%, rgba(140, 120, 200, .3) 0 5%, transparent 6%),
+    radial-gradient(circle at 64% 30%, rgba(140, 120, 200, .25) 0 3.5%, transparent 4.5%),
+    radial-gradient(circle at 40% 35%, #fbf8ff, #ddd2ff 55%, #b9a3ff 100%);
+  box-shadow: 0 0 40px rgba(203, 188, 255, .55), 0 0 140px 30px rgba(123, 77, 255, .35); }
+.night .sea { position: absolute; left: 0; right: 0; bottom: 0; height: 200px; border-top: 1px solid rgba(203, 188, 255, .18);
+  background: linear-gradient(180deg, rgba(123, 77, 255, .08), transparent 80%); }
+.night .sea i { position: absolute; left: 50%; top: 0; translate: -50% 0; width: min(360px, 70%); height: 100%;
+  background: repeating-linear-gradient(180deg, rgba(230, 220, 255, .9) 0 1.5px, transparent 1.5px 9px);
+  -webkit-mask: radial-gradient(50% 100% at 50% 0, #000 10%, rgba(0,0,0,.35) 45%, transparent 75%); mask: radial-gradient(50% 100% at 50% 0, #000 10%, rgba(0,0,0,.35) 45%, transparent 75%);
+  filter: drop-shadow(0 0 6px rgba(158, 120, 255, .9)); animation: ripple 3.2s linear infinite; }
+@keyframes ripple { to { background-position: 0 9px; } }
+
+@media (max-width: 1000px) { .signs { grid-template-columns: 1fr 1fr; gap: 64px 48px; } .vhero .sky { width: 260px; } }
+@media (max-width: 760px) {
+  .vhero .sky { right: -10px; top: 300px; width: 190px; opacity: .85; }
+  .signs { margin-top: 64px; grid-template-columns: 1fr; gap: 48px; }
+  .sign svg { width: 84px; height: 84px; margin-bottom: 20px; }
+  #process { padding-bottom: 180px; }
+  #process .wisp { height: 180px; }
+  #process .wisp-star { bottom: calc(10px + 180px * .85 - 14px); left: calc(93.3% - 22px); }
+  .night .moon { width: 86px; height: 86px; top: 110px; }
+  .final { padding-top: 250px; padding-bottom: 200px; }
+  .night .sea { height: 150px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vhero .sky *, #process .wisp path, #process .wisp-star, .sign svg .sand, .night .sea i { animation: none !important; }
+  .sign svg [pathLength] { stroke-dashoffset: 0; transition: none; }
+}
