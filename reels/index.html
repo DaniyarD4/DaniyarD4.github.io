@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" class="no-js v-phone">
+<html lang="ru" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,7 +7,7 @@
 <meta name="description" content="Снимаю рилсы, которые приводят гостей, а не просто набирают лайки. До 4 млн просмотров на лучшем ролике. Идея, сценарий, съёмка, монтаж и съёмка с моим участием в кадре. Астана.">
 <meta name="author" content="Данияр Нурсалимов">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#080305">
+<meta name="theme-color" content="#06040b">
 <link rel="canonical" href="https://daniyard4.github.io/reels/">
 
 <!-- Превью ссылки в мессенджерах и соцсетях -->
@@ -25,15 +25,13 @@
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="og.jpg">
-<link rel="preload" href="fonts/cormorant-garamond-cyrillic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-cyrillic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css">
 <script>
   document.documentElement.classList.replace('no-js', 'js');
 </script>
 </head>
 <body>
-<canvas id="gl" aria-hidden="true" data-portrait="img/portrait.jpg"></canvas>
-<div class="vignette" aria-hidden="true"></div>
 
 
 <!--
@@ -43,28 +41,26 @@
   Если появится номер: замените href="#contacts" data-wa… на https://wa.me/7XXXXXXXXXX.
 -->
 
-<!-- Навигация и HUD -->
-<div class="nav-shell">
-  <nav class="nav" aria-label="Основная навигация">
-    <a href="#top" class="logo">
-      <span class="logo-mark" style="color:var(--accent)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/><path d="M12 4v4.8M18.9 8l-4.2 2.4M18.9 16l-4.2-2.4M12 20v-4.8M5.1 16l4.2-2.4M5.1 8l4.2 2.4"/></svg></span>
-      DANIYAR
-    </a>
-    <div class="nav-pill">
-      <a href="#services">Услуги</a>
-      <a href="#cases">Кейсы</a>
-      <a href="#process">Процесс</a>
-      <a href="#formats">Форматы</a>
-      <a href="#faq">Вопросы</a>
-      <a href="#contacts" class="cta" data-wa="">WhatsApp</a>
-    </div>
-  </nav>
-</div>
+<!-- Навигация -->
+<nav class="vnav" aria-label="Основная навигация">
+  <a class="logo" href="#top">DANIYAR</a>
+  <div class="links">
+    <a href="#services">Услуги</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#process">Процесс</a>
+    <a href="#formats">Форматы</a>
+    <a href="#faq">Вопросы</a>
+  </div>
+  <a class="cta-top" href="#contacts" data-wa=""><i></i>Написать в WhatsApp</a>
+</nav>
 
 <!-- 1. Первый экран -->
-<header class="hero" id="top" data-stage="0" data-hud="00|Начало">
-  <!-- Телефон: исходное фото без обработки внутри рилса, объектив из частиц за ним -->
-  <div class="hero-phone" data-gl-anchor>
+<header class="vhero" id="top">
+  <h1 class="rv"><span>Рилсы,</span><span>которые</span><span>приводят</span><span>гостей</span></h1>
+
+  <!-- Телефон: исходное фото без обработки внутри рилса -->
+  <div class="stage">
+    <span class="halo" aria-hidden="true"></span>
     <div class="phone">
       <div class="screen">
         <span class="island" aria-hidden="true"></span>
@@ -89,32 +85,25 @@
     </div>
   </div>
 
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <p class="hero-tag rv">Reels Maker · Астана</p>
-        <h1 class="rv" style="--d:.1s">
-          <span class="line">Рилсы, которые</span>
-          <span class="line"><span class="hl">приводят</span></span>
-          <span class="line">гостей.</span>
-        </h1>
-      </div>
-      <div class="hero-side rv" style="--d:.3s">
-        <div>
-          <p>Идея, съёмка, монтаж — и я сам в кадре как лицо заведения. Мой лучший ролик собрал 4&nbsp;млн просмотров.</p>
-          <div class="hero-cta">
-            <a href="#contacts" class="btn btn-accent" data-wa="">Написать в WhatsApp <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a href="#cases" class="btn btn-ghost">Кейсы</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <p class="aside rv" style="--d:.15s"><b>Reels Maker в Астане.</b> Идея, съёмка, монтаж — и я сам в кадре как лицо заведения.</p>
+  <a class="cta rv" style="--d:.2s" href="#contacts" data-wa="">Написать в WhatsApp <i aria-hidden="true">↗</i></a>
+
+  <p class="thumbs-cap">Что уже снято</p>
+  <div class="thumbs">
+    <button type="button" data-videos="cases/chico-1.mp4|cases/chico-2.mp4" data-posters="cases/chico-1.jpg|cases/chico-2.jpg" aria-label="Ролики для Чико"><img src="cases/chico-1.jpg" alt="" width="74" height="96"><span><svg width="10" height="10" viewBox="0 0 24 24"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.3-7.2c.6-.4.6-1.3 0-1.7L8.6 3.9C7.9 3.5 7 4 7 4.8z" fill="currentColor"/></svg></span></button>
+    <button type="button" data-videos="cases/pantera.mp4" data-posters="cases/pantera.jpg" aria-label="Ролик для PANTERA"><img src="cases/pantera.jpg" alt="" width="74" height="96"><span><svg width="10" height="10" viewBox="0 0 24 24"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.3-7.2c.6-.4.6-1.3 0-1.7L8.6 3.9C7.9 3.5 7 4 7 4.8z" fill="currentColor"/></svg></span></button>
+    <button type="button" class="wide" data-videos="cases/yoko-4m.mp4" data-posters="cases/yoko-4m.jpg" aria-label="Ролик для YOKO"><img src="cases/yoko-4m.jpg" alt="" width="150" height="96"><span><svg width="10" height="10" viewBox="0 0 24 24"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.3-7.2c.6-.4.6-1.3 0-1.7L8.6 3.9C7.9 3.5 7 4 7 4.8z" fill="currentColor"/></svg></span></button>
   </div>
+
+  <button type="button" class="vcard" data-videos="cases/yoko-4m.mp4" data-posters="cases/yoko-4m.jpg">
+    <span class="pic"><img src="cases/yoko-4m.jpg" alt="" width="76" height="96"><span class="tagnum">4 млн</span></span>
+    <span class="txt"><small>Лучший кейс</small><b>YOKO, Омск</b><span>Магазин азиатских товаров</span><em>Смотреть ролик →</em></span>
+  </button>
 </header>
 
 <main>
 <!-- 2. Услуги -->
-<section class="block" id="services" data-stage="1" data-hud="01|Услуги">
+<section class="block" id="services">
   <div class="wrap">
     <span class="kicker rv">Услуги</span>
     <h2 class="rv">Контент, после которого <span class="hl">приходят</span></h2>
@@ -129,7 +118,7 @@
 </section>
 
 <!-- 3. Кейсы: закреплённая 3D-галерея -->
-<section class="gallery" id="cases" data-stage="2" data-hud="02|Кейсы">
+<section class="gallery" id="cases">
   <div class="gallery-sticky">
     <div class="gallery-head">
       <div class="wrap">
@@ -213,7 +202,7 @@
 </section>
 
 <!-- 4. Как работаем -->
-<section class="block" id="process" data-stage="3" data-hud="03|Процесс">
+<section class="block" id="process">
   <div class="wrap">
     <span class="kicker rv">Как работаем</span>
     <h2 class="rv"><span class="hl">Четыре</span> шага</h2>
@@ -228,7 +217,7 @@
 </section>
 
 <!-- 5. Форматы работы. Цены не указаны: стоимость называется в переписке -->
-<section class="block" id="formats" data-stage="4" data-hud="04|Форматы">
+<section class="block" id="formats">
   <div class="wrap">
     <span class="kicker rv">Форматы</span>
     <h2 class="rv">Форматы <span class="hl">работы</span></h2>
@@ -245,7 +234,7 @@
 </section>
 
 <!-- 6. Частые вопросы -->
-<section class="block" id="faq" data-stage="4" data-hud="05|Вопросы">
+<section class="block" id="faq">
   <div class="wrap">
     <span class="kicker rv">Вопросы</span>
     <h2 class="rv">Частые <span class="hl">вопросы</span></h2>
@@ -260,8 +249,8 @@
   </div>
 </section>
 
-<!-- 7. Контакты: портрет из частиц -->
-<section class="final" id="contacts" data-stage="5" data-hud="06|Контакты">
+<!-- 7. Контакты -->
+<section class="final" id="contacts">
   <div class="wrap">
     <div class="final-grid">
       <div>
@@ -296,7 +285,6 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/particles.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
