@@ -807,7 +807,7 @@ section.block::before, .final::before {
 .vnav .links a:hover { color: var(--text); }
 .vnav .links a.active { background: #06040b; color: var(--text); }
 .vnav .cta-top { justify-self: end; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; background: #06040b; border: 1px solid rgba(255,255,255,.08); font-size: 14px; font-weight: 500; }
-.vnav .cta-top i { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 10px #3ddc84; }
+.vnav .cta-top i { width: 8px; height: 8px; border-radius: 50%; background: var(--lilac); box-shadow: 0 0 10px var(--lilac); }
 
 /* ---------- первый экран ---------- */
 .vhero { position: relative; z-index: 3; min-height: 100vh; min-height: 100svh; overflow: hidden; isolation: isolate; }
@@ -988,8 +988,3 @@ section.block::before, .final::before {
   .vhero .cta { top: auto; bottom: 224px; }
 }
 
-/* смена карточки кейса: заголовок мягко проявляется из лёгкого размытия */
-.case h3.reveal { animation: soft-in .9s cubic-bezier(.2, .7, .2, 1) both; }
-.case h3.reveal small { animation: soft-in .9s .12s cubic-bezier(.2, .7, .2, 1) both; }
-@keyframes soft-in { from { opacity: 0; transform: translateY(12px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
-@media (prefers-reduced-motion: reduce) { .case h3.reveal, .case h3.reveal small { animation: none; } }
