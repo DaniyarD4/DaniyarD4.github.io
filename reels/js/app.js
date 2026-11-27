@@ -89,13 +89,14 @@
   const rPlay = () => {
     rl.forEach((r, i) => {
       const v = $('video', r);
-      if (i !== rAct || !rVisible || !r.dataset.video) { v.pause(); r.classList.remove('playing'); return; }
+      if (i !== rAct || !rVisible || !r.dataset.video) { v.pause(); r.classList.remove('playing'); if (i !== rAct) r.classList.remove('paused'); return; }
+      if (r.classList.contains('paused')) { v.pause(); return; }
       if (!v.getAttribute('src')) v.src = r.dataset.video;
       v.muted = !rSoundOn;
       const p = v.play();
       if (p && p.then) p.then(() => r.classList.add('playing')).catch(() => {
         v.muted = true; rSoundOn = false; syncSound();
-        v.play().then(() => r.classList.add('playing')).catch(() => {});
+        v.play().then(() => r.classList.add('playing')).catch(() => r.classList.add('paused'));
       });
     });
   };
@@ -125,14 +126,35 @@
   };
   const rGo = (i) => { i = Math.max(0, Math.min(rl.length - 1, i)); if (i === rAct) return; rAct = i; rLayout(true); };
   if (reels && rl.length) {
-    rl.forEach((r, i) => r.addEventListener('click', () => rGo(i)));
+    // у каждого ролика: кнопка «играть», полоска прогресса с перемоткой, пауза по нажатию
+    const PL = '<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.3-7.2c.6-.4.6-1.3 0-1.7L8.6 3.9C7.9 3.5 7 4 7 4.8z" fill="currentColor"/></svg>';
+    const togglePlay = (r) => {
+      const v = $('video', r); if (!r.dataset.video) return;
+      if (v.paused) { r.classList.remove('paused'); rPlay(); } else { v.pause(); r.classList.add('paused'); }
+    };
+    rl.forEach((r, i) => {
+      const v = $('video', r);
+      if (r.dataset.video) {
+        r.insertAdjacentHTML('beforeend', '<span class="r-play" aria-hidden="true">' + PL + '</span><span class="r-prog" role="slider" aria-label="Перемотка" tabindex="-1"><i></i></span>');
+        const bar = $('.r-prog', r), fill = $('i', bar);
+        v.addEventListener('timeupdate', () => { if (v.duration) fill.style.transform = 'scaleX(' + v.currentTime / v.duration + ')'; });
+        v.addEventListener('play', () => r.classList.remove('paused'));
+        const seek = (e) => { const b = bar.getBoundingClientRect(); if (v.duration) v.currentTime = Math.max(0, Math.min(1, (e.clientX - b.left) / b.width)) * v.duration; };
+        let drag = false;
+        bar.addEventListener('pointerdown', (e) => { e.stopPropagation(); drag = true; bar.setPointerCapture(e.pointerId); seek(e); });
+        bar.addEventListener('pointermove', (e) => { if (drag) seek(e); });
+        bar.addEventListener('pointerup', (e) => { e.stopPropagation(); drag = false; });
+        bar.addEventListener('click', (e) => e.stopPropagation());
+      }
+      r.addEventListener('click', () => { if (i === rAct) togglePlay(r); else rGo(i); });
+    });
     rTabs.forEach((t, i) => t.addEventListener('click', () => rGo(i)));
     rPrev.addEventListener('click', () => rGo(rAct - 1));
     rNext.addEventListener('click', () => rGo(rAct + 1));
     rSound.addEventListener('click', () => { rSoundOn = !rSoundOn; syncSound(); rPlay(); });
     const stage = $('.reels-stage', reels);
     stage.tabIndex = 0;
-    stage.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') rGo(rAct - 1); if (e.key === 'ArrowRight') rGo(rAct + 1); });
+    stage.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') rGo(rAct - 1); if (e.key === 'ArrowRight') rGo(rAct + 1); if (e.key === ' ' && e.target === stage) { e.preventDefault(); togglePlay(rl[rAct]); } });
     let sx = 0, sy = 0;
     stage.addEventListener('pointerdown', (e) => { sx = e.clientX; sy = e.clientY; });
     stage.addEventListener('pointerup', (e) => {
