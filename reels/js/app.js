@@ -85,6 +85,10 @@
     const d = rl[rAct].dataset;
     rEl('.ri-big').textContent = d.big; rEl('.ri-label').textContent = d.label;
     rEl('.ri-title').textContent = d.title; rEl('.ri-text').textContent = d.text;
+    const cta = rEl('.ri-cta');
+    cta.dataset.mode = d.video ? 'watch' : 'blog';
+    rEl('.ri-cta-t').textContent = d.video ? 'Смотреть со звуком' : 'Открыть блог в Instagram';
+    cta.firstElementChild.dataset.k = d.video ? 'play' : 'link';
   };
   const rPlay = () => {
     rl.forEach((r, i) => {
@@ -151,6 +155,14 @@
     rTabs.forEach((t, i) => t.addEventListener('click', () => rGo(i)));
     rPrev.addEventListener('click', () => rGo(rAct - 1));
     rNext.addEventListener('click', () => rGo(rAct + 1));
+    // явная кнопка просмотра: с начала и со звуком
+    $('.ri-cta', reels).addEventListener('click', () => {
+      const r = rl[rAct], v = $('video', r);
+      if (!r.dataset.video) { window.open('https://www.instagram.com/daniyar.217/', '_blank', 'noopener'); return; }
+      rSoundOn = true; r.classList.remove('paused'); v.currentTime = 0; syncSound(); rPlay();
+      rEl('.ri-cta-t').textContent = 'Смотреть сначала';
+      $('.ri-cta', reels).firstElementChild.dataset.k = 'again';
+    });
     rSound.addEventListener('click', () => { rSoundOn = !rSoundOn; syncSound(); rPlay(); });
     const stage = $('.reels-stage', reels);
     stage.tabIndex = 0;

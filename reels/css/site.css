@@ -1087,7 +1087,11 @@ section.block::before, .final::before {
 .ri-text { display: block; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
 .ri-cta { flex: none; display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; background: rgb(var(--text-rgb)); color: #06040b; font-size: 14px; font-weight: 600; white-space: nowrap; transition: box-shadow .25s; }
 .ri-cta:hover { box-shadow: 0 14px 40px -14px rgba(123, 77, 255, .8); }
-.ri-cta i { font-style: normal; }
+.ri-cta { border: 0; cursor: pointer; font-family: var(--sans); }
+.ri-ico { width: 22px; height: 22px; border-radius: 50%; background: #06040b; position: relative; flex: none; }
+.ri-ico::before { content: ""; position: absolute; left: 9px; top: 6px; border-left: 8px solid #fff; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.ri-ico[data-k="link"]::before { left: 6px; top: 5px; width: 8px; height: 8px; border: 0; border-top: 2px solid #fff; border-right: 2px solid #fff; transform: rotate(0); }
+.ri-ico[data-k="again"]::before { left: 5px; top: 5px; width: 8px; height: 8px; border: 2px solid #fff; border-right-color: transparent; border-radius: 50%; }
 @media (max-height: 820px) and (min-width: 761px) { .reels-info { bottom: 24px; padding-top: 12px; padding-bottom: 12px; } .ri-text { font-size: 13px; } }
 @media (max-width: 1000px) and (min-width: 761px) { .r-arr.prev { left: 20px; } .r-arr.next { right: 20px; } .reels-info { width: calc(100% - 48px); gap: 18px; } .ri-big { min-width: 110px; font-size: 34px; } }
 
