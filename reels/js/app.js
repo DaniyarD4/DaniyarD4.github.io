@@ -73,33 +73,75 @@
     });
   });
 
-  // ---------- 3D case gallery ----------
-  const gallery = $('.gallery');
-  const cards = gallery ? $$('.case', gallery) : [];
-  const dots = gallery ? $$('.dots i', gallery) : [];
-  const counter = gallery ? $('.gallery-count', gallery) : null;
-  let activeCase = -1;
-  const layoutGallery = () => {
-    if (!gallery) return;
-    const r = gallery.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-    const idx = p * (cards.length - 1);
-    const step = Math.min(760, innerWidth * 0.86) * (innerWidth < 720 ? 0.96 : 1.0);
-    cards.forEach((c, i) => {
-      const o = i - idx, a = Math.abs(o);
-      c.style.transform = `translate3d(${o * step}px, 0, ${-a * 650}px) rotateY(${-o * 30}deg)`;
-      c.style.opacity = String(Math.max(0, 1 - Math.max(0, a - 0.9) * 1.2));
-      c.style.zIndex = String(100 - Math.round(a * 10));
-      c.style.setProperty('--sx', (50 + o * 70) + '%');
-      c.style.pointerEvents = a < 0.5 ? 'auto' : 'none';
-    });
-    const on = Math.round(idx);
-    if (on !== activeCase) {
-      activeCase = on;
-      dots.forEach((d, i) => d.classList.toggle('on', i === on));
-      if (counter) counter.textContent = String(on + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
-    }
+  // ---------- Работы: лента роликов ----------
+  const reels = $('.reels');
+  const rl = reels ? $$('.reel', reels) : [];
+  const rInfo = reels && $('.reels-info', reels), rTabs = reels ? $$('.reels-tabs i', reels) : [];
+  const rCount = reels && $('.reels-count b', reels), rSound = reels && $('.r-sound', reels);
+  const rPrev = reels && $('.r-arr.prev', reels), rNext = reels && $('.r-arr.next', reels);
+  let rAct = Math.min(2, rl.length - 1), rSoundOn = false, rVisible = false, rSwapT = 0;
+  const rEl = (c) => rInfo && $(c, rInfo);
+  const fillInfo = () => {
+    const d = rl[rAct].dataset;
+    rEl('.ri-big').textContent = d.big; rEl('.ri-label').textContent = d.label;
+    rEl('.ri-title').textContent = d.title; rEl('.ri-text').textContent = d.text;
   };
+  const rPlay = () => {
+    rl.forEach((r, i) => {
+      const v = $('video', r);
+      if (i !== rAct || !rVisible || !r.dataset.video) { v.pause(); r.classList.remove('playing'); return; }
+      if (!v.getAttribute('src')) v.src = r.dataset.video;
+      v.muted = !rSoundOn;
+      const p = v.play();
+      if (p && p.then) p.then(() => r.classList.add('playing')).catch(() => {
+        v.muted = true; rSoundOn = false; syncSound();
+        v.play().then(() => r.classList.add('playing')).catch(() => {});
+      });
+    });
+  };
+  const syncSound = () => {
+    if (!rSound) return;
+    rSound.setAttribute('aria-pressed', String(rSoundOn));
+    rSound.setAttribute('aria-label', rSoundOn ? 'Выключить звук' : 'Включить звук');
+    rSound.classList.toggle('hide', !rl[rAct].dataset.video);
+  };
+  const rLayout = (swap) => {
+    rl.forEach((r, i) => {
+      const o = i - rAct;
+      r.dataset.o = Math.abs(o) <= 2 ? String(o) : 'far';
+      r.style.setProperty('--o', o);
+      r.setAttribute('aria-hidden', o === 0 ? 'false' : 'true');
+    });
+    rTabs.forEach((t, i) => t.classList.toggle('on', i === rAct));
+    if (rCount) rCount.textContent = String(rAct + 1).padStart(2, '0');
+    if (rPrev) rPrev.disabled = rAct === 0;
+    if (rNext) rNext.disabled = rAct === rl.length - 1;
+    syncSound();
+    if (swap && rInfo) {
+      rInfo.classList.add('swap'); clearTimeout(rSwapT);
+      rSwapT = setTimeout(() => { fillInfo(); rInfo.classList.remove('swap'); }, 220);
+    } else fillInfo();
+    rPlay();
+  };
+  const rGo = (i) => { i = Math.max(0, Math.min(rl.length - 1, i)); if (i === rAct) return; rAct = i; rLayout(true); };
+  if (reels && rl.length) {
+    rl.forEach((r, i) => r.addEventListener('click', () => rGo(i)));
+    rTabs.forEach((t, i) => t.addEventListener('click', () => rGo(i)));
+    rPrev.addEventListener('click', () => rGo(rAct - 1));
+    rNext.addEventListener('click', () => rGo(rAct + 1));
+    rSound.addEventListener('click', () => { rSoundOn = !rSoundOn; syncSound(); rPlay(); });
+    const stage = $('.reels-stage', reels);
+    stage.tabIndex = 0;
+    stage.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') rGo(rAct - 1); if (e.key === 'ArrowRight') rGo(rAct + 1); });
+    let sx = 0, sy = 0;
+    stage.addEventListener('pointerdown', (e) => { sx = e.clientX; sy = e.clientY; });
+    stage.addEventListener('pointerup', (e) => {
+      const dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) rGo(rAct + (dx < 0 ? 1 : -1));
+    });
+    new IntersectionObserver((en) => { rVisible = en[0].isIntersecting; rPlay(); }, { threshold: 0.35 }).observe(reels);
+    rLayout(false);
+  }
 
   // ---------- scroll-linked UI ----------
   const tl = null, bar = null;
@@ -131,7 +173,6 @@
     }
     const max = document.documentElement.scrollHeight - innerHeight;
     if (sb) sb.style.transform = `translateY(${(scrollY / Math.max(1, max)) * 355}%)`;
-    layoutGallery();
   };
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
