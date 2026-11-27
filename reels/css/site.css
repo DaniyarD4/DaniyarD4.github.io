@@ -1114,4 +1114,23 @@ section.block::before, .final::before {
   .ri-text { color: rgba(255,255,255,.78); font-size: 14px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
   .ri-cta { display: flex; justify-content: center; height: 54px; margin-top: 14px; font-size: 15px; }
 }
+
+/* нажатие на активный ролик — пауза/играть; полоска внизу — перемотка */
+.reel[data-o="0"][data-video]:not([data-video=""]) { cursor: pointer; }
+.r-play { position: absolute; z-index: 4; left: 50%; top: 50%; translate: -50% -50%; width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; color: #fff; padding-left: 4px; opacity: 0; scale: .85; pointer-events: none;
+  background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: opacity .25s, scale .25s; }
+.reel[data-o="0"].paused .r-play { opacity: 1; scale: 1; }
+.r-prog { position: absolute; z-index: 4; left: 14px; right: 14px; bottom: 8px; height: 22px; display: none; cursor: pointer; touch-action: none; }
+.reel[data-o="0"] .r-prog { display: block; }
+.r-prog::before { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.3); transition: height .15s, bottom .15s; }
+.r-prog:hover::before { height: 6px; bottom: 7px; }
+.r-prog i { position: absolute; left: 0; right: 0; bottom: 8px; height: 4px; border-radius: 2px; background: #fff; transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
+.r-prog:hover i { height: 6px; bottom: 7px; }
+@media (max-width: 760px) {
+  .r-prog { left: 0; right: 0; bottom: 0; height: 28px; }
+  .r-prog::before, .r-prog i { bottom: 0; height: 4px; border-radius: 0; }
+  .r-play { width: 84px; height: 84px; }
+  .reels-info { pointer-events: none; padding-bottom: 34px; }
+  .ri-cta { pointer-events: auto; }
+}
 @media (prefers-reduced-motion: reduce) { .reel, .reels-info { transition: none; } }
