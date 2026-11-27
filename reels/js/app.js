@@ -79,7 +79,7 @@
   const rInfo = reels && $('.reels-info', reels), rTabs = reels ? $$('.reels-tabs i', reels) : [];
   const rCount = reels && $('.reels-count b', reels), rSound = reels && $('.r-sound', reels);
   const rPrev = reels && $('.r-arr.prev', reels), rNext = reels && $('.r-arr.next', reels);
-  let rAct = Math.min(2, rl.length - 1), rSoundOn = false, rVisible = false, rSwapT = 0;
+  let rAct = Math.min(2, rl.length - 1), rSoundOn = false, rVisible = false, rSwapT = 0, rModal = false;
   const rEl = (c) => rInfo && $(c, rInfo);
   const fillInfo = () => {
     const d = rl[rAct].dataset;
@@ -87,13 +87,13 @@
     rEl('.ri-title').textContent = d.title; rEl('.ri-text').textContent = d.text;
     const cta = rEl('.ri-cta');
     cta.dataset.mode = d.video ? 'watch' : 'blog';
-    rEl('.ri-cta-t').textContent = d.video ? 'Смотреть со звуком' : 'Открыть блог в Instagram';
+    rEl('.ri-cta-t').textContent = d.video ? 'Смотреть ролик' : 'Открыть блог в Instagram';
     cta.firstElementChild.dataset.k = d.video ? 'play' : 'link';
   };
   const rPlay = () => {
     rl.forEach((r, i) => {
       const v = $('video', r);
-      if (i !== rAct || !rVisible || !r.dataset.video) { v.pause(); r.classList.remove('playing'); if (i !== rAct) r.classList.remove('paused'); return; }
+      if (i !== rAct || !rVisible || rModal || !r.dataset.video) { v.pause(); r.classList.remove('playing'); if (i !== rAct) r.classList.remove('paused'); return; }
       if (r.classList.contains('paused')) { v.pause(); return; }
       if (!v.getAttribute('src')) v.src = r.dataset.video;
       v.muted = !rSoundOn;
@@ -155,13 +155,12 @@
     rTabs.forEach((t, i) => t.addEventListener('click', () => rGo(i)));
     rPrev.addEventListener('click', () => rGo(rAct - 1));
     rNext.addEventListener('click', () => rGo(rAct + 1));
-    // явная кнопка просмотра: с начала и со звуком
+    // явная кнопка просмотра: ролик открывается в окне плеера (как в первом экране)
     $('.ri-cta', reels).addEventListener('click', () => {
-      const r = rl[rAct], v = $('video', r);
+      const r = rl[rAct];
       if (!r.dataset.video) { window.open('https://www.instagram.com/daniyar.217/', '_blank', 'noopener'); return; }
-      rSoundOn = true; r.classList.remove('paused'); v.currentTime = 0; syncSound(); rPlay();
-      rEl('.ri-cta-t').textContent = 'Смотреть сначала';
-      $('.ri-cta', reels).firstElementChild.dataset.k = 'again';
+      rModal = true; rPlay();
+      openPlayer({ dataset: { videos: r.dataset.video, posters: $('img', r).getAttribute('src') } });
     });
     rSound.addEventListener('click', () => { rSoundOn = !rSoundOn; syncSound(); rPlay(); });
     const stage = $('.reels-stage', reels);
@@ -228,7 +227,7 @@
     player.classList.add('open'); document.body.style.overflow = 'hidden';
     play(0); $('.player-close', player).focus();
   };
-  const closePlayer = () => { video.pause(); video.removeAttribute('src'); video.load(); player.classList.remove('open'); document.body.style.overflow = ''; };
+  const closePlayer = () => { video.pause(); video.removeAttribute('src'); video.load(); player.classList.remove('open'); document.body.style.overflow = ''; rModal = false; rPlay(); };
   if (player) {
     $$('[data-videos]').forEach((b) => b.addEventListener('click', () => openPlayer(b)));
     $('.player-close', player).addEventListener('click', closePlayer);
